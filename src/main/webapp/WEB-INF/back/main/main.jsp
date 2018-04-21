@@ -336,7 +336,7 @@
                      <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 新闻管理 </span><b class="arrow icon-angle-down"></b></a>
 					   <ul class="submenu">
                          <li class="home"><a  href="javascript:void(0)" name="NewsServlet.do"  title="新闻类表" class="iframeurl"><i class="icon-double-angle-right"></i>新闻列表</a></li>
-						 <li class="home"><a  href="javascript:void(0)" name="BrandListServlet.do" title="新闻分类"  class="iframeurl"><i class="icon-double-angle-right"></i>新闻分类</a></li>
+						 <li class="home"><a  href="javascript:void(0)" name="NewsTypeListServlet.do" title="新闻分类"  class="iframeurl"><i class="icon-double-angle-right"></i>新闻分类</a></li>
 
 						</ul>
 					</li>
