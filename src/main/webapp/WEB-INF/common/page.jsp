@@ -17,6 +17,12 @@
      	<c:if test="${!empty nt_name }">
      		<input type="hidden" name="nt_name" value="${nt_name }">
      	</c:if>
+     	<c:if test="${!empty e_name }">
+     		<input type="hidden" name="nt_name" value="${nt_name }">
+     	</c:if>
+     	<c:if test="${!empty e_tel }">
+     		<input type="hidden" name="nt_name" value="${nt_name }">
+     	</c:if>
      	<input type="hidden" name="pages" id="pages">
      	<div style="float: right;">
 	     	<a title="首页" onclick="jumpPages(1)" href="javascript:;"  class="btn btn-xs btn-success" ><i class="icon-edit bigger-120">首页</i></a> 
