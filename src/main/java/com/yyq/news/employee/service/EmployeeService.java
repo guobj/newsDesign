@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.yyq.news.employee.dao.AuthorityDao;
 import com.yyq.news.employee.dao.EmployeeDao;
 import com.yyq.news.employee.model.Employee;
 
@@ -25,6 +26,7 @@ public class EmployeeService {
 	}
 	
 	EmployeeDao dao = EmployeeDao.getInstance();
+	AuthorityDao authDao = AuthorityDao.getInstance();
 	
 	//查询所有新闻信息
 	public List<Map<String,Object>> queryListForPage(int pages,HttpServletRequest request){
@@ -43,6 +45,37 @@ public class EmployeeService {
 		Integer res = dao.employeeAdd(employee);
 		if(res <= 0){
 			throw new RuntimeException("添加失败！");
+		}
+		return res;
+	}
+	
+	//编辑员工
+	public Integer employeeUpdate(Employee employee){
+		
+		Integer res = dao.employeeUpdate(employee);
+		if(res <= 0){
+			throw new RuntimeException("编辑失败！");
+		}
+		return res;
+	}
+	
+	//查询单条记录
+	public Map<String, Object> queryOne(Integer id){
+		
+		Map<String, Object> map = dao.queryOne(id);
+		
+		List<Map<String, Object>> list = authDao.queryList();
+		
+		map.put("auth", list);
+		return map;
+	}
+	
+	//删除记录-逻辑删除
+	public Integer employeeDel(Integer id){
+		
+		Integer res = dao.employeeDel(id);
+		if(res <= 0){
+			throw new RuntimeException("删除失败！");
 		}
 		return res;
 	}

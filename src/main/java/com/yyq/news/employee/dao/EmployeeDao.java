@@ -56,4 +56,37 @@ public class EmployeeDao {
 				employee.getFk_p_id(),employee.getE_tel(),employee.getE_email(),employee.getAccount(),"1234",true});
 		return res;
 	}
+	
+	//编辑员工
+	public Integer employeeUpdate(Employee employee){
+		
+		String sql = "update employee set e_name = ?,e_sex = ?,"
+				+ "e_age = ?,e_address = ?,fk_p_id = ?,"
+				+ "e_tel = ?,e_email = ? where e_id = ?";
+		
+		Integer res = jd.updateData(sql, new Object[]{employee.getE_name(),employee.getE_sex(),employee.getE_age(),employee.getE_address(),
+				employee.getFk_p_id(),employee.getE_tel(),employee.getE_email(),employee.getE_id()});
+		
+		return res;
+		
+	}
+	
+	//查询一条记录
+	public Map<String, Object> queryOne(Integer id){
+		
+		String sql = "select * from employee where e_id = "+id;
+		
+		Map<String, Object> map = jd.queryOne(sql, null);
+		
+		return map;
+	}
+	
+	//删除记录-逻辑删除
+	public Integer employeeDel(Integer id){
+		String sql = "update employee set e_dr = false where e_id = "+id;
+		
+		Integer res = jd.updateData(sql, null);
+		
+		return res;
+	}
 }

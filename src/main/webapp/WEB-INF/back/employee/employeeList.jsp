@@ -95,8 +95,8 @@
 	     <tr>
 		     <td><label><input name="e_id" type="checkbox" class="ace" value="${list.e_id }"><span class="lbl"></span></label></td>
 		     <td>${list.e_name }</td>
-		     <td><c:if test="${list.e_sex eq 1 }">女</c:if>
-	             <c:if test="${list.e_sex eq 0 }">男</c:if>
+		     <td><c:if test="${list.e_sex eq 1 }">男</c:if>
+	             <c:if test="${list.e_sex eq 0 }">女</c:if>
 		     </td>
 		     <td>${list.e_age }</td>
 		     <td>${list.e_address }</td>
@@ -124,8 +124,8 @@
     <ul class=" page-content">
      <li><label class="label_name">员工姓名：</label><span class="add_name"><input id="e_name" value="" name="员工姓名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
-     <label><input id="e_sex" name="form-field-radio" type="radio" value="1" checked="checked" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input id="e_sex" name="form-field-radio" type="radio" value="0" class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="e_sex" type="radio" value="1" checked="checked" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="e_sex" type="radio" value="0" class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
      </span>
      <div class="prompt r_f"></div>
      </li>
@@ -145,7 +145,7 @@
 </body>
 </html>
 <script type="text/javascript">
-/*新闻-添加*/
+/*员工-添加*/
 $('#member_add').on('click', function(){
 	$.post(
 			"AuthorityServlet.do",
@@ -183,12 +183,13 @@ $('#member_add').on('click', function(){
 			  layer.alert('添加成功！',function(){
 				  $.ajax({
 					  type:"post",
-					  url:"NewsAddServlet.do",
-					  data:{"e_name":$("#e_name").val(),"e_sex":$("#e_sex").val(),
+					  url:"EmployeeAddServlet.do",
+					  data:{
+						  "e_name":$("#e_name").val(),"e_sex":$("input[name='e_sex']:checked").val(),
 						  "e_age":$("#e_age").val(),"e_address":$("#e_address").val(),
 						  "e_tel":$("#e_tel").val(),"e_email":$("#e_email").val(),
-						  "account":$("#account").val(),"fk_p_id":$("#fk_p_id").val()},
-					  }
+						  "account":$("#account").val(),"fk_p_id":$("#fk_p_id").val()
+					  },
 					  success:function (data) {
 						  window.location.reload();
 					  }
@@ -201,28 +202,38 @@ $('#member_add').on('click', function(){
    });
 });
 
-/*新闻-编辑*/
+/*员工-编辑*/
 function member_edit(id){
 	$.post(
-		"NewsQueryOneServlet.do",
+		"EmployeeQueryOneServlet.do",
 		{id:id},
 		function(data) {
 			/* console.log(data) */
-			$("#title").val(data.title);
-			$("#auth").val(data.auth);
-			console.log(data.type)
-			for(var t in data.type){
-				$("#type").append("<option value="+data.type[t].nt_id+">"+data.type[t].nt_name+"</option>");
-				if(parseInt(data.fk_nt_id) == data.type[t].nt_id){
-					$("#type option[value='"+data.type[t].nt_id+"']").attr("selected",true);
+			$("#e_name").val(data.e_name);
+			//$("#e_sex").val(data.),
+			$("#e_age").val(data.e_age);
+			$("#e_address").val(data.e_address);
+			$("#e_tel").val(data.e_tel);
+			$("#e_email").val(data.e_email);
+			$("#account").val(data.account);
+			for(var auth in data.auth){
+				$("#fk_p_id").append("<option value="+data.auth[auth].p_id+">"+data.auth[auth].p_name+"</option>");
+				if(parseInt(data.fk_p_id) == data.auth[auth].p_id){
+					$("#fk_p_id option[value='"+data.auth[auth].p_id+"']").attr("selected",true);
 				}
+			}
+			//$(":radio[name='e_sex']").attr("checked",data.e_sex);
+			$("input[type=radio][name=e_sex][value="+data.e_sex+"]").attr("checked",'checked')
+			if(parseInt(data.fk_p_id) == 3){
+				$("#account").attr("readonly",'readonly');
+				$("#fk_p_id").attr("disabled",'disabled');
 			}
 		},
 			"json"
 		)
 	  layer.open({
         type: 1,
-        title: '修改新闻信息',
+        title: '修改员工信息',
 		maxmin: true, 
 		shadeClose:false, //点击遮罩关闭层
         area : ['800px' , ''],
@@ -247,8 +258,13 @@ function member_edit(id){
 			  layer.alert('编辑成功！',function(){
 				  $.ajax({
 					  type:"post",
-					  url:"NewsUpdateServlet.do",
-					  data:{"id":id,"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()},
+					  url:"EmployeeUpdateServlet.do",
+					  data:{
+						  "id":id,"e_name":$("#e_name").val(),"e_sex":$('input[name="e_sex"]:checked').val(),
+						  "e_age":$("#e_age").val(),"e_address":$("#e_address").val(),
+						  "e_tel":$("#e_tel").val(),"e_email":$("#e_email").val(),
+						  "fk_p_id":$("#fk_p_id").val()
+					  },
 					  success:function (data) {
 						  window.location.reload();
 					  }
@@ -265,7 +281,7 @@ function member_del(id){
 	layer.confirm('确认要删除吗？',function(){
 		$.ajax({
 			  type:"get",
-			  url:"NewsDelServlet.do",
+			  url:"EmployeeDelServlet.do",
 			  data:{"id":id},
 			  success:function (data) {
 				  window.location.reload();
