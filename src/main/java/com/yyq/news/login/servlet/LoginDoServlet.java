@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yyq.news.login.service.LoginService;
+import com.yyq.news.utils.JsonUtil;
 
 /**
  * Servlet implementation class LoginDoServlet
@@ -29,12 +31,16 @@ public class LoginDoServlet extends HttpServlet {
 			
 			Map<String, Object> map = loginService.login(account, password);
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("map", map);
 			request.setAttribute("map", map);
 			
-			request.getRequestDispatcher("WEB-INF/back/main/main.jsp").forward(request, response);
+//			request.getRequestDispatcher("MainServlet.do").forward(request, response);
+//			JsonUtil.getInstance().toJson(response, map);
 		} catch (Exception e) {
 			request.setAttribute("message", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/back/login/login.jsp").forward(request, response);
+			JsonUtil.getInstance().toJson(response, e.getMessage());
+//			request.getRequestDispatcher("LoginServlet.do").forward(request, response);
 		}
 	}
 

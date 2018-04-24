@@ -394,7 +394,7 @@
 						</li>
 						<li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 个人信息 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)" onclick="personInfo()" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
+							<li class="home"><a href="javascript:void(0)" name="PersonInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
 								<li class="home"><a href="javascript:void(0)" onclick="pwdUpdate(${sessionScope.eMap.e_id})" title="密码修改" class="iframeurl"><i class="icon-double-angle-right"></i>密码修改</a></li>
                               
 							</ul>

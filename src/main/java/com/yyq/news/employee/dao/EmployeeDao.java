@@ -89,4 +89,24 @@ public class EmployeeDao {
 		
 		return res;
 	}
+	
+	//编辑个人信息
+	public Integer personInfoUpdate(Employee employee){
+		String sql = "update employee set e_name = ?,e_sex = ?,"
+				+ "e_age = ?,e_address = ?,"
+				+ "e_tel = ?,e_email = ? where e_id = ?";
+		
+		Integer res = jd.updateData(sql, new Object[]{employee.getE_name(),employee.getE_sex(),employee.getE_age(),employee.getE_address(),
+				employee.getE_tel(),employee.getE_email(),employee.getE_id()});
+		
+		return res;
+	}
+	
+	//修改密码
+	public Integer passwordUpdate(Integer id, String password){
+		
+		String sql = "update employee set password = ? where e_id ="+id;
+		Integer res = jd.updateData(sql, new Object[]{password});
+		return res;
+	}
 }

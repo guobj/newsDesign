@@ -79,4 +79,24 @@ public class EmployeeService {
 		}
 		return res;
 	}
+	
+	//编辑员工
+	public Integer personInfoUpdate(Employee employee){
+		
+		Integer res = dao.employeeUpdate(employee);
+		if(res <= 0){
+			throw new RuntimeException("编辑失败！");
+		}
+		return res;
+	}
+	
+	//修改密码
+	public Integer passwordUpdate(Integer id,String password){
+		
+		Integer res = dao.passwordUpdate(id, password);
+		if(res <= 0){
+			throw new RuntimeException("密码修改失败！");
+		}
+		return res;
+	}
 }
