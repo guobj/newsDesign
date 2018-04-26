@@ -52,9 +52,11 @@ public class NewsDao {
 	//添加新闻
 	public int newsAdd(News news){
 		
-		String sql = "insert into news(title,fk_nt_id,auth,dr,creat_time,update_time) value(?,?,?,?,?,?)";
+		String sql = "insert into news(title,fk_nt_id,auth,dr,content,img,creat_time,update_time) value(?,?,?,?,?,?,?,?)";
 		
-		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),news.getAuth(),news.getDr(),news.getCreat_time(),news.getUpdate_time()});
+		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),
+				news.getAuth(),news.getDr(),news.getContent(),
+				news.getImg(),news.getCreat_time(),news.getUpdate_time()});
 		
 		return res; 
 		

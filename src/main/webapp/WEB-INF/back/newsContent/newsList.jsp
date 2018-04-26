@@ -28,14 +28,12 @@
         <script src="assets/laydate/laydate.js" type="text/javascript"></script>
         <script src="assets/js/jquery.easy-pie-chart.min.js"></script>
         <script src="js/lrtk.js" type="text/javascript" ></script>
-        <script type="text/javascript" src="js/jquery.js"></script>
-			<script src="assets/js/jquery.min.js"></script>
-
-
-		<script type="text/javascript">
+        <script type="text/javascript">
 			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
-
+        <!-- <script type="text/javascript" src="js/jquery.js"></script> -->
+        <script type="text/javascript" src="js/ajaxfileupload.js"></script>
+			<!-- <script src="assets/js/jquery.min.js"></script> -->
 
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
@@ -48,36 +46,30 @@
         <script type="text/javascript" src="js/H-ui.admin.js"></script> 
         <script src="assets/layer/layer.js" type="text/javascript" ></script>
         <script src="assets/laydate/laydate.js" type="text/javascript"></script>
-        <script type="text/javascript" src="artDialog/dist/dialog-plus.js"></script>
-	    <link href="artDialog/css/ui-dialog.css" rel="stylesheet" type="text/css" />
+        <!-- <script type="text/javascript" charset="utf-8">
+        window.UEDITOR_HOME_URL = "ueditor/"; //UEDITOR_HOME_URL、config、all这三个顺序不能改变
+    </script>-->
+		<script type="text/javascript" src="ueditor/ueditor.config.js"></script>    
+        <script type="text/javascript" src="ueditor/ueditor.all.js"></script>  
+		<script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script> 	    
 	<title>订单管理</title>
-		<script type="text/javascript">
-			function productsDel(id) {
-				var d = top.dialog({
-					title:'否决产品',
-					url:'ProductsDelServlet.do?p_id='+id,
-					onclose:function(){
-						window.location.href="ProductsListServlet.do";
-					}
-					
-				});
-				d.showModal();
-			}
-		</script>
-		<script type="text/javascript">
-			function productfail(id) {
-				var d = top.dialog({
-					title:'删除产品',
-					url:'ProductFailServlet.do?p_id='+id,
-					onclose:function(){
-						window.location.href="ProductsListServlet.do";
-					}
-					
-				});
-				d.showModal();
-			}
-		</script>
+			<script type="text/javascript">
 			
+			$(function(){  
+			     var fil=$("#img");  
+			     $("<img id='file'>").insertAfter($("#img"));  
+			     fil.bind('change',function(){  
+			         var fordate=new FormData();  //得到一个FormData对象：
+			         var fils=$("#img").get(0).files[0];  //得到file对象
+			         console.log(fils);
+			         fordate.append('pic',fils);  //用append方法添加键值对
+			         var srcc=window.URL.createObjectURL(fils);     //传入的参数创建一个指向该参数对象的URL
+			         console.log(srcc);   
+			         $("#file").attr({'src':srcc,'width':130+'px','heigth':130+'px'});  
+			     });  
+			    });  
+
+			</script>
 	</head>
 	
 <body>
@@ -144,18 +136,40 @@
 <!--添加用户图层-->
 <div class="add_menber" id="add_menber_style" style="display:none">
   
+  <form id="test">
     <ul class=" page-content">
-     <li><label class="label_name">新闻标题：</label><span class="add_name"><input id="title" value="" name="新闻标题" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</label><span class="add_name"><input id="auth" name="作者" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">新闻标题：</label><span class="add_name"><input id="title" value="" name="title" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</label><span class="add_name"><input id="auth" name="auth" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
       <li><label class="label_name">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：&nbsp;</label>
       <span class="add_name">
-      <select class="text_add" name="分类" id="type">
+      <select class="text_add" name="type" id="type">
       <option>请选择</option>
       </select></span><div class="prompt r_f"></div></li>
+      <!-- 加载编辑器的容器 -->
+      <li><label class="label_name">图片上传：</label><span class="add_name"><input id="img" name="file" type="file"  class="text_add"/></span><div class="prompt r_f"></div></li>
+    <li><label class="label_name">文章内容：</label>
+    <span class="add_name">
+    <script id="container" name="content" type="text/plain">
+    </script>
+    	<!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('container',{
+        	initialFrameWidth : 600,
+            initialFrameHeight: 400
+        })
+        var text = UE.getContentTxt();
+         function func(){
+        	
+        	return text;
+        }   
+    </script>
+    	</span></li>
     </ul>
+    </form>
  </div>
 </body>
 </html>
+
 <script type="text/javascript">
 /*新闻-添加*/
 $('#member_add').on('click', function(){
@@ -173,7 +187,7 @@ $('#member_add').on('click', function(){
        title: '添加新闻',
 		maxmin: true, 
 		shadeClose: true, //点击遮罩关闭层
-       area : ['800px' , ''],
+       area : ['800px' , '500px'],
        content:$('#add_menber_style'),
 		btn:['发布','取消'],
 		yes:function(index,layero){
@@ -193,10 +207,29 @@ $('#member_add').on('click', function(){
 		  if(num>0){  return false;}	 	
          else{
 			  layer.alert('添加成功！',function(){
-				  $.ajax({
+				  /* $.ajaxFileUpload({  
+					    type: "POST",  
+					    url: "NewsAddServlet.do",  
+					    data:{"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()},//要传到后台的参数，没有可以不写  
+					    secureuri : false,//是否启用安全提交，默认为false  
+					    fileElementId:'img',//文件选择框的id属性  
+					    dataType: 'json',//服务器返回的格式  
+					    async : false,  
+					    success: function(data){  
+					    	window.location.reload();
+					    } 
+					});  */
+					/* {"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()} */
+					var text = func();
+					var form = new FormData(document.getElementById("test"));
+					console.log(text);
+					form.append("content",text);
+				$.ajax({
 					  type:"post",
 					  url:"NewsAddServlet.do",
-					  data:{"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()},
+					  data:form,
+					  processData:false,
+		              contentType:false,
 					  success:function (data) {
 						  window.location.reload();
 					  }
