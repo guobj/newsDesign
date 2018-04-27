@@ -18,10 +18,16 @@
      		<input type="hidden" name="nt_name" value="${nt_name }">
      	</c:if>
      	<c:if test="${!empty e_name }">
-     		<input type="hidden" name="nt_name" value="${nt_name }">
+     		<input type="hidden" name="nt_name" value="${e_name }">
      	</c:if>
      	<c:if test="${!empty e_tel }">
-     		<input type="hidden" name="nt_name" value="${nt_name }">
+     		<input type="hidden" name="e_tel" value="${e_tel }">
+     	</c:if>
+     	<c:if test="${!empty u_name }">
+     		<input type="hidden" name="u_name" value="${u_name }">
+     	</c:if>
+     	<c:if test="${!empty account }">
+     		<input type="hidden" name="account" value="${"account" }">
      	</c:if>
      	<input type="hidden" name="pages" id="pages">
      	<div style="float: right;">

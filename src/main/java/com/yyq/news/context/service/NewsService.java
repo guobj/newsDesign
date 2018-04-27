@@ -84,4 +84,20 @@ public class NewsService {
 		}
 		return res;
 	}
+	
+	/*
+	 * 以下方法为前台专用，请勿随便调用
+	 * 
+	 */
+	
+	public List<Map<String, Object>> queryAll(){
+		
+		List<Map<String, Object>> list = dao.queryAll();
+		
+		if(list == null || list.size() <= 0){
+			throw new RuntimeException("暂无数据");
+		}
+		
+		return list;
+	}
 }

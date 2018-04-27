@@ -11,6 +11,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<base href="${basePath }">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
@@ -73,9 +74,9 @@
 										<li class="frame_style form_error"><label
 											class="password_icon"></label><input name="密码"
 											type="password" id="password" /><i>密码</i></li>
-										
+
 									</ul>
-										<div id="message">${message }</div>
+									<div id="message">${message }</div>
 									<div class="space"></div>
 
 									<div class="clearfix">
@@ -89,7 +90,7 @@
 									<div class="space-4"></div>
 								</fieldset>
 							</form>
-								${message }
+							${message }
 							<div class="social-or-login center">
 								<span class="bigger-110">通知</span>
 							</div>
@@ -132,22 +133,22 @@
 			$.ajax({
 				type : "post",
 				url : "LoginDoServlet.do",
-				dataType :"json",
+				dataType : "json",
 				data : {
 					"account" : $("#account").val(),
 					"password" : $("#password").val()
 				},
-			success:function (data) {
-				$("#message").html(data).css("color",'red')
-				console.log(data)
-				if(data == null){
-					window.location.href="MainServlet.do";
+				success : function(data) {
+					$("#message").html(data).css("color", 'red')
+					console.log(data)
+					if (data == null) {
+						window.location.href = "MainServlet.do";
+					}
+
+				},
+				error : function() {
+					window.location.href = "MainServlet.do";
 				}
-				 
-			},
-			error:function(){
-			  window.location.href="MainServlet.do";
-			}
 			})
 		}
 

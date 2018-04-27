@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.w3c.dom.ls.LSInput;
+
 import com.yyq.news.context.model.News;
 import com.yyq.news.utils.JdbcUtils;
 import com.yyq.news.utils.PageUtil;
@@ -31,7 +33,8 @@ public class NewsDao {
 	//查询所有新闻信息
 	public List<Map<String, Object>> newsList(int pages,HttpServletRequest request){
 		
-		StringBuilder sqls = new StringBuilder("select * from news n left join news_type nt on n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1");
+		StringBuilder sqls = new StringBuilder("select * from news n left join "
+				+ "news_type nt on n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1");
 		
 		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
 			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
@@ -52,7 +55,8 @@ public class NewsDao {
 	//添加新闻
 	public int newsAdd(News news){
 		
-		String sql = "insert into news(title,fk_nt_id,auth,dr,content,img,creat_time,update_time) value(?,?,?,?,?,?,?,?)";
+		String sql = "insert into news(title,fk_nt_id,auth,dr,content,img,creat_time,update_time)"
+				+ " value(?,?,?,?,?,?,?,?)";
 		
 		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),
 				news.getAuth(),news.getDr(),news.getContent(),
@@ -90,5 +94,21 @@ public class NewsDao {
 		Integer res = jd.updateData(sql, null);
 		
 		return res;
+	}
+	
+	/*
+	 * 以下方法为前台专用，请勿随便调用
+	 * 
+	 */
+	
+	//查询新闻
+	public List<Map<String, Object>> queryAll(){
+		
+		String sql = "select * from news n left join news_type nt on "
+				+ "n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1";
+		
+		List<Map<String, Object>> list = jd.query(sql, null);
+		
+		return list;
 	}
 }
