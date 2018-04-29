@@ -94,6 +94,8 @@ public class NewsService {
 		
 		List<Map<String, Object>> list = dao.queryAll();
 		
+//		List<Map<String, Object>> type = ntDao.queryForList();
+		
 		if(list == null || list.size() <= 0){
 			throw new RuntimeException("暂无数据");
 		}

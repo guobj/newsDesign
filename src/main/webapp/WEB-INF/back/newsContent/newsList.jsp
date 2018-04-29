@@ -66,6 +66,7 @@
 			         var srcc=window.URL.createObjectURL(fils);     //传入的参数创建一个指向该参数对象的URL
 			         console.log(srcc);   
 			         $("#file").attr({'src':srcc,'width':130+'px','heigth':130+'px'});  
+			         $("#img").attr("style",'display:none')
 			     });  
 			    });  
 

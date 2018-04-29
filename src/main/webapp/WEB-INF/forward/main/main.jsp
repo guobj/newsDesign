@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+	<base href="${basePath }">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>个人中心-虎嗅网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,10 +29,53 @@
 	<script language="javascript" type="text/javascript" src="forward/js/main.js"></script>
     <script language="javascript" type="text/javascript" src="forward/js/popwin.js"></script> 
     <link rel="stylesheet" type="text/css" href="forward/css/nanoscroller.css">
-    
+    <script type="text/javascript" src="js/jquery.js"></script>
     
 </head>
-
+<style>
+	.test {
+		font-size:14px;
+		color:#999;
+		line-height:24px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space:nowrap;
+	}
+</style>
+<script type="text/javascript">
+	$(function() {
+		var x = 1;
+		$.ajax({
+			type : "post",
+			url : "ArticleListServlet.so",
+			dataType : "json",
+			success : function(data) {
+				for (var list in data){
+					if(x == 1){
+						$("#firsta").attr({"href":'ArticleServlet.so?id='+data[list].n_id,"title":data[list].title})
+						$("#firstimg").attr({"src":'/upload/'+data[list].img,"alt":data[list].title})
+						$("#firsth").html(data[list].title)
+					}
+					if(x == 2){
+						$("#seconda").attr({"href":'ArticleServlet.so?id='+data[list].n_id,"title":data[list].title})
+						$("#secondimg").attr({"src":'/upload/'+data[list].img,"alt":data[list].title})
+						$("#secondh").html(data[list].title)
+					}
+					if(x == 3){
+						$("#thirda").attr({"href":'ArticleServlet.so?id='+data[list].n_id,"title":data[list].title})
+						$("#thirdimg").attr({"src":'/upload/'+data[list].img,"alt":data[list].title})
+						$("#thirdh").html(data[list].title)
+					}
+					x = x+1;
+				}
+					
+			},
+			error : function() {
+				window.location.href = "MainServlet.do";
+			}
+		})
+	});
+</script>
 <body>
 
 <header id="top" role="banner" class="transition">
@@ -86,56 +130,7 @@
         return true;
     }
 </script>
-    <div class="container">
-        <div class="navbar-header transition">
-            <a href="#" title="首页"><img src="forward/images/logo.jpg" alt="虎嗅网" title="首页" /></a>
-        </div>
-        <ul class="nav navbar-nav navbar-left" id="jsddm">
-            <li class="nav-news js-show-menu">
-               <a href="#">资讯 <span class="caret"></span></a>
-				<ul>
-					<li><a href="#" target="_blank">电商消费</a></li>
-                    <li><a href="#" target="_blank">娱乐淘金</a></li>
-                    <li><a href="#" target="_blank">雪花一代</a></li>
-                    <li><a href="#" target="_blank">人工智能</a></li>
-                    <li><a href="#" target="_blank">车与出行</a></li>
-                    <li><a href="#" target="_blank">智能终端</a></li>
-                    <li><a href="#" target="_blank">医疗健康</a></li>
-                    <li><a href="#" target="_blank">金融地产</a></li>
-                    <li><a href="#" target="_blank">企业服务</a></li>
-                    <li><a href="#" target="_blank">创业维艰</a></li>
-                    <li><a href="#" target="_blank">社交通讯</a></li>
-                    <li><a href="#" target="_blank">全球热点</a></li>
-                    <li><a href="#" target="_blank">生活腔调</a></li>
-				</ul>
-            </li>
-            <style>
-#jsddm ul{position: absolute; visibility: hidden; background:#fff; width:250px;  top:60px; left:-50px; z-index:9999; box-shadow:0 1px 15px rgba(18,21,21,.2);padding:10px 5px;}
-#jsddm ul li{ float:left; width:105px; padding-left:20px; line-height:40px;}
-</style>
-            <li class="nav-news"><a href="#" target="_blank">热议<span class="nums-prompt nums-prompt-topic"></span></a></li>
-            <li class="nav-news"><a href="#" target="_blank">活动</a></li>
-            <li class="nav-news"><a href="#" target="_blank">创业白板<span class="nums-prompt"></span></a></li>
-            <li class="nav-news"><a href="#" target="_blank">会员专享<em class="nums-prompt"></em></a></li>
-            <li class="nav-news"><a href="#" target="_blank">官方Blog</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right transition  xiala main_nav">
-            <li class="app-guide js-app-guide" >
-                <div class="app-guide-box">
-                    <img src="forward/images/1448211685.png">
-                    <div class="app-guide-title">
-                        <span>微信扫一扫</span><br>
-                        <span>下载虎嗅APP</span>
-                    </div>
-                </div>
-                <i class="icon icon-sm-phone"></i>APP下载<em class="guide-prompt"></em>
-            </li>
-            <li class="search-li js-show-search-box"><a><i class="icon icon-search "></i></a><span>搜索</span></li>
-            <li class="login-link-box"><a class="cd-signin">登录</a></li>
-            <li ><a class="cd-signup" >注册</a></li>
-            <li><a class="cd-tougao">投稿</a></li>
-        </ul>
-    </div>
+    <jsp:include page="../../common/tag.jsp"></jsp:include>
 <div class="cd-user-modal"> 
 	<div class="cd-user-modal-container">
 		<div id="cd-login"> <!-- 登录表单 -->
@@ -210,7 +205,7 @@
 	</div>
 </div>
 
-<script src="js/d-login.js"></script>
+<script src="forward/js/d-login.js"></script>
 <div id="cd-signup"> <!-- 注册表单 -->
 	<div class="modal-alert-title">极速注册</div>
     <div class="user-register-box">
@@ -242,596 +237,73 @@
 	<div class="wrap-left pull-left">
         <div class="big-pic-box">
              <div class="big-pic">
-                  <a href="#" target="_blank" class="transition" title="醒醒吧，腾讯、网易称霸的游戏行业，谁都没机会成为第三">
-                     <div class="back-img"><img src="forward/sy-img/061708387437.jpg"  alt="醒醒吧，腾讯、网易称霸的游戏行业，谁都没机会成为第三"></div>
+                  <a id="firsta" target="_blank" class="transition">
+                     <div class="back-img"><img width="533px" height="400px" id="firstimg"></div>
                      <div class="big-pic-content">
-                          <h1 class="t-h1">醒醒吧，腾讯、网易称霸的游戏行业，谁都没机会成为第三</h1>
+                          <h1 id="firsth" class="t-h1"></h1>
                       </div>
                   </a>
              </div>
              <div class="big2-pic big2-pic-index big2-pic-index-top">
-                  <a href="#" class="back-img transition" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
-                     <img class="lazy" src="sy-img/142618969973.jpg" alt="嘘！Facebook 正在上海悄悄寻找办公室">
-                  </a>
-                  <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
-                     <div class="big2-pic-content">
-                          <h2 class="t-h1">嘘！Facebook 正在上海悄悄寻找办公室</h2>
+                  <a id="seconda" class="back-img transition" target="_blank">
+                     <div class="back-img"><img width="257px" height="195px" id="secondimg" class="lazy"></div>
+                  	<div class="big2-pic-content">
+                          <h2 id="secondh" class="t-h1"></h2>
                      </div>
                   </a>
+                  <!-- <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
+                     
+                  </a> -->
              </div>
              <div class="big2-pic big2-pic-index big2-pic-index-bottom">
-                  <a href="#" class="back-img transition" target="_blank" title="马云在人生最艰难时去了延安，在革命根据地决定建立淘宝">
-                     <img class="lazy" src="forward/sy-img/093433055013.jpg" alt="马云在人生最艰难时去了延安，在革命根据地决定建立淘宝">
-                  </a>
-                  <a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
-                     <div class="big2-pic-content">
-                          <h2 class="t-h1">马云在人生最艰难时去了延安，在革命根据地决定建立淘宝</h2>
+                  <a id="thirda" class="back-img transition" target="_blank">
+                    <div class="back-img"><img width="257px" height="195px" class="lazy" id="thirdimg"></div>
+                  	<div class="big2-pic-content">
+                          <h2  id="thirdh" class="t-h1"></h2>
                      </div>
                   </a>
+                  <!--<a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
+                     
+                  </a> -->
              </div>
        </div>
        <div class="mod-info-flow">
+       <c:forEach  var="list" items="${list }" begin="3">
             <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
+            	<!--  <div class="mod-angle">热</div>--> 
                  <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="forward/sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
+                       <a class="transition" title="${list.title }" href="ArticleServlet.so?id=${list.n_id }" target="_blank">
+						  <img class="lazy" src="/upload/${list.img }" alt="${list.title }">
                        </a>
                  </div>
                  <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
+                 	<a href="ArticleServlet.so?id=${list.n_id }" class="column-link" target="_blank">${list.nt_name }</a>
                  </div>
                  <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="forward/sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
+                    <h2><a href="ArticleServlet.so?id=${list.n_id }" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
                          <div class="author-face">
                               <a href="#" target="_blank"><img src="forward/sy-img/59_1502432173.jpg"></a>
                          </div>
-                         <a href="#" target="_blank">
+                         <!-- <a href="#" target="_blank">
                             <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
+                         </a> -->
+                         <!-- <a href="#" target="_blank" title="购买VIP会员"></a> -->
                          <span class="time">1小时前</span>
                          <i class="icon icon-cmt"></i><em>0</em>
                          <i class="icon icon-fvr"></i><em>0</em>
                     </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
+                    <div class="test">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
+                    a's'kBS jsaliuhflakjhsd lkaidhksdjakfkjasdfkNkH lj asedfoij efo按键松开的方法烦烦烦烦烦烦烦烦烦烦烦烦
+                    jshfdlas hasiluafdhlahflahfl就少得可怜回复你看了就收到回复啦圣诞节欸佛啊啊发       i
+                    好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
+                    a's'kBS jsaliuhflakjhsd lkaidhksdjakfkjasdfkNkH lj asedfoij efo按键松开的方法烦烦烦烦烦烦烦烦烦烦烦烦
+                    jshfdlas hasiluafdhlahflahfl就少得可怜回复你看了就收到回复啦圣诞节欸佛啊啊发       i
+                    好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
+                    </div>
                  </div>
             </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>    
-            <div class="mod-b mod-art mod-b-push ">
-                 <a class="transition" href="#" target="_blank" title="弯道超车的大业，怎么能靠政策呢？">
-                    <div class="mod-thumb ">
-                         <img class="lazy" src="sy-img/104239030071.jpg" alt="弯道超车的大业，怎么能靠政策呢？">
-                    </div>
-                 </a>
-                 <div class="column-link-box column-link-big-box">
-                    <a href="#" class="column-link" target="_blank">车与出行</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row5" target="_blank">弯道超车的大业，怎么能靠政策呢？</a></h2>
-                    <div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img class="lazy" src="sy-img/default.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                              <span class="author-name">autocarweekly</span>
-                         </a>
-                         <a href="#" target="_blank"></a>
-                         <span class="time">5小时前</span>
-                    </div>
-					<div class="mob-sub">希望变失望、机会变门槛、黄金变铁皮</div>
-                </div>
-            </div>
-            <div class="mod-b mod-art promote">
-                 <a href="#" target="_blank" title="">
-                    <div class="mod-thumb">
-                         <img class="lazy" src="sy-img/233950517521.jpg">
-                    </div>
-                 </a>
-                 <div class="mob-ctt">
-                      <a href="#" target="_blank">实体商业转型</a>
-                      <span class="point">&bull;</span>
-                      <a href="#" target="_blank">实体空间在召唤，他们押宝了零售业态转型升级</a>
-                      <span class="span-mark-pro">推广</span>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art mod-b-push ">
-                 <a class="transition" href="#" target="_blank" title="弯道超车的大业，怎么能靠政策呢？">
-                    <div class="mod-thumb ">
-                         <img class="lazy" src="sy-img/104239030071.jpg" alt="弯道超车的大业，怎么能靠政策呢？">
-                    </div>
-                 </a>
-                 <div class="column-link-box column-link-big-box">
-                    <a href="#" class="column-link" target="_blank">车与出行</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row5" target="_blank">弯道超车的大业，怎么能靠政策呢？</a></h2>
-                    <div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img class="lazy" src="sy-img/default.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                              <span class="author-name">autocarweekly</span>
-                         </a>
-                         <a href="#" target="_blank"></a>
-                         <span class="time">5小时前</span>
-                    </div>
-					<div class="mob-sub">希望变失望、机会变门槛、黄金变铁皮</div>
-                </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art mod-b-push ">
-                 <a class="transition" href="#" target="_blank" title="弯道超车的大业，怎么能靠政策呢？">
-                    <div class="mod-thumb ">
-                         <img class="lazy" src="sy-img/104239030071.jpg" alt="弯道超车的大业，怎么能靠政策呢？">
-                    </div>
-                 </a>
-                 <div class="column-link-box column-link-big-box">
-                    <a href="#" class="column-link" target="_blank">车与出行</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row5" target="_blank">弯道超车的大业，怎么能靠政策呢？</a></h2>
-                    <div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img class="lazy" src="sy-img/default.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                              <span class="author-name">autocarweekly</span>
-                         </a>
-                         <a href="#" target="_blank"></a>
-                         <span class="time">5小时前</span>
-                    </div>
-					<div class="mob-sub">希望变失望、机会变门槛、黄金变铁皮</div>
-                </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-            	 <div class="mod-angle">热</div>
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
-            <div class="mod-b mod-art" data-aid="213665">
-                 <div class="mod-thumb ">
-                       <a class="transition" title="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低" href="#" target="_blank">
-						  <img class="lazy" src="sy-img/111527830443.jpg" alt="你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低">
-                       </a>
-                 </div>
-                 <div class="column-link-box">
-                 	<a href="#" class="column-link" target="_blank">娱乐淘金</a>
-                 </div>
-                 <div class="mob-ctt">
-                    <h2><a href="#" class="transition msubstr-row2" target="_blank">你的公司够前沿吗？至少在AI这件事上，多数企业都眼高手低</a></h2>
-					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="sy-img/59_1502432173.jpg"></a>
-                         </div>
-                         <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a>
-                         <a href="#" target="_blank" title="购买VIP会员"></a>
-                         <span class="time">1小时前</span>
-                         <i class="icon icon-cmt"></i><em>0</em>
-                         <i class="icon icon-fvr"></i><em>0</em>
-                    </div>
-                    <div class="mob-sub">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多</div>
-                 </div>
-            </div>
+        </c:forEach>
 		</div>
         <div class="get-mod-more js-get-mod-more-list transition" data-cur_page="1" data-last_dateline="1504655833">
             点击加载更多
@@ -1125,7 +597,7 @@
             </a>
             <a href="https://chuanyan.huxiu.com/rumor/detail/684.html" target="_blank">
                 <div class="big2-pic-content">
-                    <h2 class="t-h1">传苹果和亚马逊正在竞购“007”品牌特许经营权</h2>
+                   <!--  <h2 class="t-h1">传苹果和亚马逊正在竞购“007”品牌特许经营权</h2> -->
                 </div>
                 <div class="clear"></div>
             </a>
@@ -1397,7 +869,7 @@
 <div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
 <div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)"><div class="moquu_wshareh"></div></a></div>
 </footer>
-<script type="text/javascript" src="js/mouse.js"></script>
+<script type="text/javascript" src="forward/js/mouse.js"></script>
 
 </body>
 
