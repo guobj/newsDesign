@@ -48,4 +48,11 @@ public class UserDao {
 		return list;
 		
 	}
+	
+	
+	/*
+	 * 前台调用接口-----请勿随便调用
+	 * 
+	 */
+	
 }

@@ -24,10 +24,20 @@ public class LoginDao {
 	//取到JDBC实例
 	JdbcUtils jd = JdbcUtils.getInstance();
 	
-	//登录
+	//后台登录
 	public Map<String, Object> login(String account,String password){
 		
 		String sql = "select * from employee where account = ? and password = ?";
+		
+		Map<String, Object> map = jd.login(sql, account, password);
+		
+		return map;
+	}
+	
+	//前台登陆
+	public Map<String, Object> loginForward(String account,String password){
+		
+		String sql = "select * from user where account = ? and password = ?";
 		
 		Map<String, Object> map = jd.login(sql, account, password);
 		

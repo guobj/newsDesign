@@ -75,24 +75,6 @@
 			}
 		})
 	});
-	
-</script>
-<script type="text/javascript">
-	<!-- 登录操作 -->
-	$(document).ready(function(){
-		$("#login-button").click(function(){
-			$.ajax({
-					type : "post",
-					url : "LoginForwardServlet.so",
-					dataType : "json",
-					data : {"account":$("#login_username").val(),"password":$("#login_password").val()},
-					success : function(data){
-						window.location.reload();
-					}
-			});
-		});
-	});
-	
 </script>
 <body>
 
@@ -152,36 +134,36 @@
 <div class="cd-user-modal"> 
 	<div class="cd-user-modal-container">
 		<div id="cd-login"> <!-- 登录表单 -->
-			<div class="modal-alert-title">登录</div>
+			<div class="modal-alert-title">登录虎嗅</div>
             <div class="register" >
 				<div class="register-top" id="reg-top"><i><a id="qrcode" href="#"></a></i></div>
 				<div class="register-con" id="rc">
                 	<div class="login-form username-box " style="margin-top:52px;">
-           				<!-- <a class="js-open-sms-login sms-text">短信快捷登录</a> -->
+           				<a class="js-open-sms-login sms-text">短信快捷登录</a>
             			<label class="login-label transition" >
-                			<input id="login_username" name="account" class="login-input" placeholder="手机号／邮箱／虎嗅账号">
+                			<input id="login_username" class="login-input" placeholder="手机号／邮箱／虎嗅账号">
             			</label>
             			<label class="login-label">
-                			<input id="login_password" name="password" class="login-input password" type="password" placeholder="输入6～24位密码">
+                			<input id="login_password" class="login-input password" type="password" placeholder="输入6～24位密码">
             			</label>
             			<a class="js-label-select label-select-box hide login-label-select text-center"><span class="js-country-user">+86</span><i class="icon-modal icon-l-caret"></i></a>
 						<div class="login-operation">
-                			<!-- <label><input id="autologin" type="checkbox">&nbsp;2周内自动登录</label> -->
-               				<!-- <a href="/user/reset_password" class="js-forget-passward pull-right">忘记密码</a> -->
+                			<label><input id="autologin" type="checkbox">&nbsp;2周内自动登录</label>
+               				<a href="/user/reset_password" class="js-forget-passward pull-right">忘记密码</a>
             			</div>
-            			<button id="login-button" class="js-btn-login btn-login">登&nbsp;录</button>
+            			<button class="js-btn-login btn-login">登&nbsp;录</button>
         			</div>
         			<div class="js-open-register register-text">极速注册</div>
-        			<!-- <div class="third-box">
+        			<div class="third-box">
             			<div class="title"><span>第三方登录</span></div>
             			<a href="#"><i class="icon-modal icon-login-qq"></i></a>
             			<a class="js-login-switch"><i class="icon-modal icon-login-wx"></i></a>
             			<a href="#"><i class="icon-modal icon-login-wb"></i></a>
             			<a href="#"><i class="icon-modal icon-login-zfb"></i></a>
-        			</div> -->
+        			</div>
     			</div>
             </div>
-			<!-- <div class="saoma" id="sm">
+			<div class="saoma" id="sm">
 				<div class="qr-code" style="text-align:center">
                     <div class="title">微信登录</div>
 					<div class="waiting panelContent">
@@ -195,7 +177,7 @@
 					</div>
                  </div>
         		<div class="screen-tu" id="screen"></div>
-			</div> -->
+			</div>
 		</div>
     	<div id="cd-signup"> <!-- 注册表单 -->
 			<div class="modal-alert-title">极速注册</div>
@@ -219,7 +201,7 @@
 				</div>
 				<div class="js-user-login register-text">已有账号，立即登录</div></div>
     		</div>
-			<a href="javascript:void(0)" class="cd-close-form ">关闭</a>
+			<a href="#0" class="cd-close-form ">关闭</a>
 	</div>
 </div>
 
@@ -253,7 +235,7 @@
 <div class="placeholder-height"></div>
 <div class="container" id="index">
 	<div class="wrap-left pull-left">
-        <div class="big-pic-box">
+        <!-- <div class="big-pic-box">
              <div class="big-pic">
                   <a id="firsta" target="_blank" class="transition">
                      <div class="back-img"><img width="533px" height="400px" id="firstimg"></div>
@@ -269,9 +251,9 @@
                           <h2 id="secondh" class="t-h1"></h2>
                      </div>
                   </a>
-                  <!-- <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
+                  <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
                      
-                  </a> -->
+                  </a>
              </div>
              <div class="big2-pic big2-pic-index big2-pic-index-bottom">
                   <a id="thirda" class="back-img transition" target="_blank">
@@ -280,11 +262,11 @@
                           <h2  id="thirdh" class="t-h1"></h2>
                      </div>
                   </a>
-                  <!--<a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
+                  <a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
                      
-                  </a> -->
+                  </a>
              </div>
-       </div>
+       </div> -->
        <div class="mod-info-flow">
        <c:forEach  var="list" items="${list }" begin="3">
             <div class="mod-b mod-art" data-aid="213665">

@@ -23,10 +23,20 @@ public class LoginService {
 	//实例化dao
 	LoginDao dao = LoginDao.getInstance();
 	
-	//登录
+	//后台登录
 	public Map<String, Object> login(String account,String password){
 		
 		Map<String, Object> map = dao.login(account, password);
+		if(map.isEmpty()){
+			throw new RuntimeException("用户名或密码错误");
+		}
+		return map;
+	}
+	
+	//前台登录
+	public Map<String, Object> loginForward(String account,String password){
+		
+		Map<String, Object> map = dao.loginForward(account, password);
 		if(map.isEmpty()){
 			throw new RuntimeException("用户名或密码错误");
 		}

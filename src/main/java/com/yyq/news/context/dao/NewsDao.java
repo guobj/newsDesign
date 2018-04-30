@@ -111,4 +111,15 @@ public class NewsDao {
 		
 		return list;
 	}
+	
+	//按照分类查询新闻
+	public List<Map<String, Object>> queryByType(Integer nt_id){
+		
+		String sql = "select * from news n left join news_type nt on "
+				+ "n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1 and nt.nt_id = "+nt_id;
+		
+		List<Map<String, Object>> list = jd.query(sql, null);
+		
+		return list;
+	}
 }
