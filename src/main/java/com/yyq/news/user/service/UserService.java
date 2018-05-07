@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.yyq.news.context.service.NewsService;
 import com.yyq.news.user.dao.UserDao;
+import com.yyq.news.user.model.User;
 
 public class UserService {
 
@@ -36,5 +37,37 @@ public class UserService {
 		}
 		
 		return list;
+	}
+	
+	
+	/**
+	 * 
+	 * 
+	 * 以下接口为前台所用，请勿随便调用
+	 * 
+	 * 
+	 */
+	//查询账号是否存在
+	public Map<String, Object> queryUserByAccount(String account){
+		
+		Map<String, Object> map = dao.queryUserByAccount(account);
+		
+		if(!map.isEmpty()){
+			throw new RuntimeException("账号已存在");
+		}
+		
+		return map;
+	}
+	
+	//用户注册
+	public Integer register(User user){
+		
+		Integer res = dao.register(user);
+		
+		if(res <= 0){
+			throw new RuntimeException("注册失败");
+		}
+		
+		return res;
 	}
 }

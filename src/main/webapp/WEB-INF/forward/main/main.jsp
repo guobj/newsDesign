@@ -94,6 +94,50 @@
 	});
 	
 </script>
+<script type="text/javascript">
+	$(function() {
+		$("#username").change(function() {
+			$.get(
+				"IsUserByAccountServlet.so",
+				{username:$("#username").val()},
+				function(data) {
+					console.log(typeof(data))
+					if(data != null){
+						$("#userExist").html(data)
+						//$("#register").attr("disabled",'disabled')
+					}
+				},
+				"json"
+				);
+		}) 
+	});
+	function register() {
+		var passward = $("#pwd").val();
+		var repwd = $("#repwd").val();
+		console.log(passward)
+		if(passward == null || passward == ''){
+			$("#errorPwd").html("密码为空")
+		}else if(repwd == null || repwd == ''){
+			$("#errorPwd").html("密码为空")
+		}else if(passward != repwd){
+			$("#errorPwd").html("密码不一致")
+		}else{
+			$.get(
+				"UserRegisterServlet.so",
+				{username:$("#username").val(),passward:$("#pwd").val()},
+				function(data) {
+					if(data >= 1){
+						alert("注册成功！")
+						window.location.href = "MainForwardServlet.so"
+					}else{
+						alert(data)
+					}
+				},
+				"json"
+			);
+		}
+	}
+</script>
 <body>
 
 <header id="top" role="banner" class="transition">
@@ -201,21 +245,16 @@
 			<div class="modal-alert-title">极速注册</div>
        	    <div class="user-register-box">
 				<div class="login-form sms-box">
-					<label class="login-label col-xs-label transition"><input id="sms_username" class="login-input username" placeholder="手机号"></label>
-					<div class="geetest_login_sms_box" >
-						<div id="geetest_1496454436837" class="gt_holder gt_float" style="touch-action: none;">
-							<div class="gt_slider">
-								<div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div>
-								<div class="gt_slider_knob gt_show" style="left: 0px;"></div>
-								<div class="gt_curtain_knob gt_hide">移动到此开始验证</div>
-								<div class="gt_ajax_tip gt_ready"></div>
-							</div>
-						</div>
-					</div>
-					<label class="login-label captcha"><input id="sms_captcha" class="login-input" placeholder="输入6位验证码" maxlength="6">
-					<span class="js-btn-captcha btn-captcha">获取验证码</span></label>
-					<a class="js-label-select label-select-box text-center"><span class="js-country-sms">+86</span><i class="icon-modal icon-l-caret"></i></a>
-					<button class="js-btn-sms-login btn-login">注&nbsp;册</button>
+						<label class="login-label transition" >
+                			<span style="display:inline;">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</span><input style="display:inline;width: 250px;" id="username" name="account" class="login-input" placeholder="手机号／邮箱／虎嗅账号"/>
+            			</label><font id="userExist" color="red"></font>
+						<label class="login-label transition" >
+                			<span style="display:inline;">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</span><input style="display:inline;width: 250px;" id="pwd" name="password" type="password" class="login-input" placeholder="密码">
+            			</label>
+            			<label class="login-label transition" >
+                			<span style="display:inline;">确认密码：</span><input style="display:inline;width: 250px;" id="repwd" name="repassword" type="password" class="login-input" placeholder="确认密码">
+            			</label><font id="errorPwd" color="red"></font>
+					<button id="register" onclick="register()" class="js-btn-sms-login btn-login">注&nbsp;册</button>
 				</div>
 				<div class="js-user-login register-text">已有账号，立即登录</div></div>
     		</div>

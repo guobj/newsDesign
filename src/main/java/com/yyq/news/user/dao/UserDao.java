@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.yyq.news.context.dao.NewsDao;
+import com.yyq.news.user.model.User;
 import com.yyq.news.utils.JdbcUtils;
 import com.yyq.news.utils.PageUtil;
 
@@ -55,4 +55,22 @@ public class UserDao {
 	 * 
 	 */
 	
+	//查询账号是否存在
+	public Map<String, Object> queryUserByAccount(String account){
+		
+		String sql = "select * from user where account = ?";
+		
+		Map<String, Object> map = jd.queryOne(sql, new Object[]{account});
+		
+		return map;
+	}
+	
+	//用户注册
+	public Integer register(User user){
+		String sql = "insert into user(account,password,u_dr) values(?,?,?)";
+		
+		Integer res = jd.updateData(sql, new Object[]{user.getAccount(),user.getPassword(),true});
+		
+		return res;
+	}
 }

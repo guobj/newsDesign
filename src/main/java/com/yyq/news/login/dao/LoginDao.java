@@ -27,7 +27,7 @@ public class LoginDao {
 	//后台登录
 	public Map<String, Object> login(String account,String password){
 		
-		String sql = "select * from employee where account = ? and password = ?";
+		String sql = "select * from employee where account = ? and password = ? and e_dr = true";
 		
 		Map<String, Object> map = jd.login(sql, account, password);
 		
@@ -37,7 +37,7 @@ public class LoginDao {
 	//前台登陆
 	public Map<String, Object> loginForward(String account,String password){
 		
-		String sql = "select * from user where account = ? and password = ?";
+		String sql = "select * from user where account = ? and password = ? and u_dr = true";
 		
 		Map<String, Object> map = jd.login(sql, account, password);
 		
