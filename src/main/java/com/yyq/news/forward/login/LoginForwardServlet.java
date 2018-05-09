@@ -33,14 +33,14 @@ public class LoginForwardServlet extends HttpServlet {
 			Map<String, Object> map = loginService.loginForward(account, password);
 
 			HttpSession session = request.getSession();
-			session.setAttribute("map", map);
-			request.setAttribute("map", map);
+			session.setAttribute("umap", map);
+			request.setAttribute("umap", map);
 
 //			request.getRequestDispatcher("MainForwardServlet.so").forward(request,response);
 			JsonUtil.getInstance().toJson(response, map);
 		} catch (Exception e) {
 			request.setAttribute("message", e.getMessage());
-//			JsonUtil.getInstance().toJson(response, e.getMessage());
+			JsonUtil.getInstance().toJson(response, e.getMessage());
 			// request.getRequestDispatcher("LoginServlet.do").forward(request,
 			// response);
 		}

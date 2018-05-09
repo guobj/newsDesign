@@ -27,8 +27,21 @@
     <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="forward/js/main.js"></script>
     <script language="javascript" type="text/javascript" src="forward/js/popwin.js"></script> 
+    <script type="text/javascript" src="js/jquery.js"></script>
 </head>
-
+<script type="text/javascript">
+	function publish(){
+		$.ajax({
+			type : "post",
+			url : "CommentAddServlet.so",
+			dataType : "json",
+			data : {"fk_n_id":"${map.n_id}","fk_u_id":"${sessionScope.umap.u_id}","comment":$("#saytext197460").val()},
+			success : function(data){
+					window.location.href = "ArticleServlet.so?id="+${map.n_id}
+			}
+		});
+	}
+</script>
 <body>
 <header id="top" role="banner" class="transition">
 <!--搜索弹窗 开始-->
@@ -84,79 +97,6 @@
     }
 </script>
 <jsp:include page="../../common/tag.jsp"></jsp:include>
-<div class="cd-user-modal"> 
-	<div class="cd-user-modal-container">
-		<div id="cd-login"> <!-- 登录表单 -->
-			<div class="modal-alert-title">登录虎嗅</div>
-            <div class="register" >
-				<div class="register-top" id="reg-top"><i><a id="qrcode" href="#"></a></i></div>
-				<div class="register-con" id="rc">
-                	<div class="login-form username-box " style="margin-top:52px;">
-           				<a class="js-open-sms-login sms-text">短信快捷登录</a>
-            			<label class="login-label transition" >
-                			<input id="login_username" class="login-input" placeholder="手机号／邮箱／虎嗅账号">
-            			</label>
-            			<label class="login-label">
-                			<input id="login_password" class="login-input password" type="password" placeholder="输入6～24位密码">
-            			</label>
-            			<a class="js-label-select label-select-box hide login-label-select text-center"><span class="js-country-user">+86</span><i class="icon-modal icon-l-caret"></i></a>
-						<div class="login-operation">
-                			<label><input id="autologin" type="checkbox">&nbsp;2周内自动登录</label>
-               				<a href="/user/reset_password" class="js-forget-passward pull-right">忘记密码</a>
-            			</div>
-            			<button class="js-btn-login btn-login">登&nbsp;录</button>
-        			</div>
-        			<div class="js-open-register register-text">极速注册</div>
-        			<div class="third-box">
-            			<div class="title"><span>第三方登录</span></div>
-            			<a href="#"><i class="icon-modal icon-login-qq"></i></a>
-            			<a class="js-login-switch"><i class="icon-modal icon-login-wx"></i></a>
-            			<a href="#"><i class="icon-modal icon-login-wb"></i></a>
-            			<a href="#"><i class="icon-modal icon-login-zfb"></i></a>
-        			</div>
-    			</div>
-            </div>
-			<div class="saoma" id="sm">
-				<div class="qr-code" style="text-align:center">
-                    <div class="title">微信登录</div>
-					<div class="waiting panelContent">
-						<div class="wrp_code"><img class="qrcode lightBorder" src="images/150943753529.png"></div>
-						<div class="info">
-							<div class="status status_browser js_status" id="wx_default_tip">
-			                	<p>请使用微信扫描二维码登录</p>
-                            	<p>"虎嗅网"</p>
-			           		 </div>
-						</div>
-					</div>
-                 </div>
-        		<div class="screen-tu" id="screen"></div>
-			</div>
-		</div>
-    	<div id="cd-signup"> <!-- 注册表单 -->
-			<div class="modal-alert-title">极速注册</div>
-       	    <div class="user-register-box">
-				<div class="login-form sms-box">
-					<label class="login-label col-xs-label transition"><input id="sms_username" class="login-input username" placeholder="手机号"></label>
-					<div class="geetest_login_sms_box" >
-						<div id="geetest_1496454436837" class="gt_holder gt_float" style="touch-action: none;">
-							<div class="gt_slider">
-								<div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div>
-								<div class="gt_slider_knob gt_show" style="left: 0px;"></div>
-								<div class="gt_curtain_knob gt_hide">移动到此开始验证</div>
-								<div class="gt_ajax_tip gt_ready"></div>
-							</div>
-						</div>
-					</div>
-					<label class="login-label captcha"><input id="sms_captcha" class="login-input" placeholder="输入6位验证码" maxlength="6">
-					<span class="js-btn-captcha btn-captcha">获取验证码</span></label>
-					<a class="js-label-select label-select-box text-center"><span class="js-country-sms">+86</span><i class="icon-modal icon-l-caret"></i></a>
-					<button class="js-btn-sms-login btn-login">注&nbsp;册</button>
-				</div>
-				<div class="js-user-login register-text">已有账号，立即登录</div></div>
-    		</div>
-			<a href="#0" class="cd-close-form ">关闭</a>
-	</div>
-</div>
 
 <script src="js/d-login.js"></script>
 <div id="cd-signup"> <!-- 注册表单 -->
@@ -195,7 +135,7 @@
                 <div class="article-author">
                 <span class="author-name"><a href="/member/1373658.html" target="_blank">${map.auth }</a></span>
                 <div class="column-link-box">
-                	<span class="article-time pull-left">2017-05-30 16:30</span>
+                	<span class="article-time pull-left">${map.creat_time }</span>
                     <span class="article-share pull-left">收藏87</span>
                     <span class="article-pl pull-left">评论16</span>
                 </div>                     
@@ -212,31 +152,8 @@
                       <br />
                       <span><b>未按照规范转载者，虎嗅保留追究相应责任的权利</b></span>
                  </div>
-                 <div class="neirong-shouquan-public">
-                      <span><b>未来面前，你我还都是孩子，还不去下载 <a href="#" target="_blank">虎嗅App </a>猛嗅创新！</b></span>
-                 </div>
+                
             </div>
-			<div class="Qr-code">
-                                                    <!--普通文章点赞-->
-                 <div class="praise-box transition js-like-article pull-right " data-type="like">
-                      <div class="praise-box-add"><i class="icon icon-article-zan-add"></i><span>+1</span></div>
-                      <i class="icon icon-article-zan"></i><span class="num">32</span>
-                 </div>
-				 <span class="btn tool-tip  btn-exceptional js-qr-ds transition">打赏</span>
-                 <div class="js-qr-img transition info-false">
-                      <div class="article-zfb-wx-box" onmouseover="isOut=false" onmouseout="isOut=true">
-                           <ul>
-                               <li class="zhifb-mouseover">
-                               	   <i class="icon icon-zhifb"></i>
-                                   <div class="j-btm zfbdashang-wrap"><img src="https://mobilecodec.alipay.com/show.htm?code=rex021253evapgmoq9smla8" alt=""/><i class="c2">给 Ta打个赏</i></div>
-                                </li>
-                                <li class="weix-mouseover"><i class="icon icon-weix"></i>
-                                    <div class="j-btm wxdashang-wrap"><img src="https://img.huxiucdn.com/author_qr/8/1373658_1496668398_weixin.jpg" alt=""/><i class="c2">给 Ta 打个赏</i></div>
-                                </li>                                      
-                           </ul>
-                       </div>
-                  </div>
-             </div>
                     <!--管理员底部按钮-->
              <div class="article-manage-bar article-bottom-manage-bar" id="article-bottom-manage-bar197460"></div>
 			 <div class="tag-box ">
@@ -251,10 +168,18 @@
                    <div class="pl-form-wrap">
                         <span class="span-mark-author active">发表评论</span>
                         <div class="pl-form-box pl-article-wrap">
-                             <div class="no-login-box "><a class="js-login">登录</a>后参与评论</div>
-                             <textarea class="form-control hide" id="saytext197460" name="saytext" placeholder="客官，8个字起评，不讲价哟"></textarea>
+                        <c:if test = "${sessionScope.umap eq null }">
+                             <div class="no-login-box ">
+                             	<ul class="main_nav">
+						            <li class="login-link-box"><a class="cd-signin">登录</a>后参与评论</li>
+						        </ul>
+					        </div>
+						</c:if>
+						<c:if test = "${sessionScope.umap != null }">
+						         <textarea class="form-control" id="saytext197460" name="saytext" placeholder="客官，8个字起评，不讲价哟"></textarea>
+                        </c:if>
                              <!--普通文章评论发表-->
-                             <button class="btn btn-article js-login transition ">发表</button>
+                             <button id="publish" onclick="publish()" class="btn btn-article js-login transition ">发表</button>
                         </div>
                    </div>
                    <div id="pl-wrap197460" name="pl-wrap"></div>
@@ -263,6 +188,7 @@
                         <a href="javascript:void(0)" class="span-mark-author active js-default-new-pl" data-type="agree">默认评论</a>
                         <i class="icon icon-line-pl"></i>
                         <a href="javascript:void(0)" class="span-mark-author new js-default-new-pl" data-type="dateline">最新评论</a>
+                       	<c:forEach var="list" items="${map.list }">
                         <div class="pl-box-wrap">
                 			<div class="pl-box-top">
             					<div class="dropdown pull-right">
@@ -272,10 +198,10 @@
             					</div>
             					<div class="author-info">
                 					<div class="author-face"><img src="https://img.huxiucdn.com/auth/data/avatar/001/54/60/18_1479690318.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></div>
-                					<span class="author-name"><a href="#">请叫我__宝器</a><a href="/vip" target="_blank"></a></span>
-                					<span class="time">6天前</span>
+                					<span class="author-name"><a href="#">${list.u_name }</a><a href="/vip" target="_blank"></a></span>
+                					<span class="time">${list.create_time }</span>
             					</div>
-            					<div class="pl-content">三个这么浅显的例子和分析就能让作者得出结论，这"一叶知秋"的本事我也是服的。</div>
+            					<div class="pl-content">${list.comment }</div>
                     		</div>
         					<div class="pl-box-btm">
                             	<div class="article-type pull-right">
@@ -285,10 +211,6 @@
                 					<div class="icon-no-like-prompt">
                     					<i class="icon icon-no-like active"></i><span class="c1">+1</span>
                 					</div>
-                					<ul>
-                    					<li class="js-icon-like" data-type="like"><i class="icon icon-like "></i><span class="like">2</span></li>
-                    					<li class="js-no-icon-like" data-type="no-like"><i class="icon icon-no-like "></i><span class="like">1</span></li>
-                					</ul>
             					</div>
             					<div class="btn-dp transition js-add-dp-box"><i class="icon icon-dp"></i>我要点评</div>
             					<div class="pl-form-box dp-article-box">
@@ -296,92 +218,8 @@
                 					<button class="btn btn-article js-article-dp">发表</button>
             					</div>
         					</div>
-                            
     					</div>
-    					<div class="pl-box-wrap  " data-pid="644658" id="g_pid644658">
-                			<div class="pl-box-top">
-            					<div class="dropdown pull-right">
-                					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    					<span class="caret"></span>
-                					</button>
-                					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li class="pl-report js-report-pl" aid="197460" pid="644658">举报</li>
-                					</ul>
-            					</div>
-            					<div class="author-info">
-                					<div class="author-face"><img src="https://img.huxiucdn.com/auth/data/avatar/001/68/30/86_1496144520.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></div>
-                					<span class="author-name">
-                    					<a href="#">lingboxiu</a>
-                    					<a href="#" target="_blank"></a>
-                					</span>
-                					<span class="time">6天前</span>
-            					</div>
-            					<div class="pl-content">小罐茶，记得是非常非常贵</div>
-                            	<div class="dp-box">
-                    				<span class="span-mark-author">点评</span>
-                                    <div class="dl-user dl-user-list  " data-type="dl-user" style="display:block">
-                            			<ul>
-                                            <li class="del-pl108924"><a href="#" target="_blank"><img src="https://img.huxiucdn.com/auth/data/avatar/3.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a></li>
-                                        </ul>
-                                                   <!--只有一条点评时显示-->
-                                		<div class="one-pl-content one-pl-content-box">
-                                    		<div class="pull-right time">6天前</div>
-												 <p class="content">
-                                        			<span class="name">寂地_</span>
-                                        			<a href="#" target="_blank"></a>&nbsp;&nbsp;
-                                        			<span class="author-content">@lingboxiu 马云家有，对我尔等来说确实是灰常贵</span>
-                                    			 </p>
-                                    			 <div class="js-hf-article-pl"><span>回复</span></div>
-                                                 <div class="hu-pl-box">
-                                        			  <textarea class="form-control" placeholder="客官，8个字起评，不讲价哟"></textarea>
-                                        			  <button class="btn btn-article js-article-dp" data-type="hf">发表</button>
-                                    			 </div>
-                                			</div>
-                                        </div>
-                        				<div class="dp-list-box" style="display:none">
-                                               <div class="dl-user del-pl108924">
-                                    				    <ul>
-                                        					<li><a href="#" target="_blank"><img src="https://img.huxiucdn.com/auth/data/avatar/3.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a></li>
-                                    					</ul>
-                                    					<div class="one-pl-content">
-                                        				 	 <div class="pull-right time">6天前</div>
-                                       						 <p class="content">
-                                            					<span class="name">寂地_</span>
-                                            					<a href="#" target="_blank"></a>&nbsp;&nbsp;
-                                            					<span class="author-content"><a href="#" target="_blank">@lingboxiu</a> 马云家有，对我尔等来说确实是灰常贵</span>
-                                       						 </p>
-                                        					 <div class="js-hf-article-pl"><span>回复</span></div>
-                                                             <div class="hu-pl-box">
-                                            					<textarea class="form-control" placeholder="客官，8个字起评，不讲价哟"></textarea>
-                                            					<button class="btn btn-article js-article-dp" data-type="hf">发表</button>
-                                        					 </div>
-                                    					 </div>
-                                					</div>
-                                                    <div class="close-dp-list-box js-show-hide-dp-box" data-buttom="true">收起</div>
-                                              </div>
-                						</div>
-                    			</div>
-          						<div class="pl-box-btm">
-            						<div class="article-type pull-right">
-                						<div class="icon-like-prompt">
-                    						<i class="icon icon-like active"></i><span class="c1">+1</span>
-                						</div>
-                						<div class="icon-no-like-prompt">
-                    						<i class="icon icon-no-like active"></i><span class="c1">+1</span>
-                						</div>
-                						<ul>
-                    						<li class="js-icon-like" data-type="like"><i class="icon icon-like "></i><span class="like">2</span></li>
-                    						<li class="js-no-icon-like" data-type="no-like"><i class="icon icon-no-like "></i><span class="like">1</span></li>
-                						</ul>
-            						</div>
-            						<div class="btn-dp transition js-add-dp-box"><i class="icon icon-dp"></i>我要点评</div>
-            						<div class="pl-form-box dp-article-box">
-                						<textarea class="form-control" placeholder="客官，8个字起评，不讲价哟"></textarea>
-                						<button class="btn btn-article js-article-dp">发表</button>
-            						</div>
-        						</div>
-    						</div>
-
+    					</c:forEach>
                        </div>
               </div>
                     <!--相关文章位置-->
@@ -394,7 +232,8 @@
         		<a href="#" target="_blank"><img src="https://img.huxiucdn.com/auth/data/avatar/001/37/36/58_avatar_big.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
     		</div>
     		<div class="author-name">
-        		<a href="#" target="_blank">判官</a>
+    			<%-- <input id="user_id" type="hidden" value="${umap.u_id }"> --%>
+        		<a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a>
         		<a href="#" target="_blank"><i class="i-vip icon-vip" title="虎嗅黑卡会员"></i></a>
         		<i class="i-icon icon-auth3" title="虎嗅认证作者"></i>    
         	</div>

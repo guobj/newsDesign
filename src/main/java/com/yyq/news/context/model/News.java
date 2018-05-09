@@ -1,5 +1,6 @@
 package com.yyq.news.context.model;
 
+import java.util.List;
 
 public class News {
 
@@ -30,6 +31,20 @@ public class News {
 	//是否删除 1-真 0-假
 	private Boolean dr;
 	
+	private Integer fk_u_id;
+	//标志公司级用户级，0公司级，1用户级
+	private Integer sign;
+	
+	private List commentList;
+	
+	public List getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List commentList) {
+		this.commentList = commentList;
+	}
+
 	public Integer getN_id() {
 		return n_id;
 	}
@@ -100,6 +115,22 @@ public class News {
 
 	public void setDr(Boolean dr) {
 		this.dr = dr;
+	}
+
+	public Integer getFk_u_id() {
+		return fk_u_id;
+	}
+
+	public void setFk_u_id(Integer fk_u_id) {
+		this.fk_u_id = fk_u_id;
+	}
+
+	public Integer getSign() {
+		return sign;
+	}
+
+	public void setSign(Integer sign) {
+		this.sign = sign;
 	}
 	
 	

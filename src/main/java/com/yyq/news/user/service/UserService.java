@@ -70,4 +70,16 @@ public class UserService {
 		
 		return res;
 	}
+	
+	//查询用户信息
+	public Map<String, Object> queryUserInfoById(Integer id){
+		
+		Map<String, Object> map = dao.queryUserInfoById(id);
+		
+		if(map.isEmpty()){
+			throw new RuntimeException("用户不存在");
+		}
+		
+		return map;
+	}
 }

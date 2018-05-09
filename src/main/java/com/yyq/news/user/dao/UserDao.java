@@ -73,4 +73,12 @@ public class UserDao {
 		
 		return res;
 	}
+	
+	//查询用户信息
+	public Map<String, Object> queryUserInfoById(Integer id){
+		
+		String sql = "select * from user where u_id = "+id;
+		Map<String, Object> map = jd.queryOne(sql, null);
+		return map;
+	}
 }

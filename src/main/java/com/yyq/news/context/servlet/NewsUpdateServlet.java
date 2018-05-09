@@ -28,6 +28,7 @@ public class NewsUpdateServlet extends HttpServlet {
 			String fk_nt_id = request.getParameter("type");
 			String auth = request.getParameter("auth");
 			String title = request.getParameter("title");
+			String content = request.getParameter("content");
 			
 			News news = new News();
 			news.setN_id(n_id);
@@ -35,6 +36,7 @@ public class NewsUpdateServlet extends HttpServlet {
 			news.setAuth(auth);
 			news.setTitle(title);
 			news.setUpdate_time(DateUtil.getInstance().creatDateTime());
+			news.setContent(content);
 			
 			Integer res = newsService.newsUpdate(news);
 			

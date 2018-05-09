@@ -116,7 +116,7 @@
 		     <td>${list.title }</td>
 		     <td><img width="100px" src="/upload/${list.img }"/></td>
 		     <td>${list.content }</td>
-		     <td>${list.auth }</td>
+		     <td>${list.u_name }</td>
 		     <td>${list.nt_name }</td>
 		     <td>${list.creat_time }</td>
 		     <td>${list.update_time }</td>
@@ -158,11 +158,82 @@
         	initialFrameWidth : 600,
             initialFrameHeight: 400
         })
-        var text = UE.getContentTxt();
+        var text = ue.getContentTxt();
          function func(){
-        	
         	return text;
         }   
+         /*新闻-编辑*/
+         function member_edit(id){
+         	$("#auth").attr("readonly",'readonly');
+         	$.post(
+         		"NewsQueryOneServlet.do",
+         		{id:id},
+         		function(data) {
+         			
+         			var text1 = data.content;
+         			console.log(text)
+         			/* console.log(data) */
+         			ue.addListener("ready", function () {
+         				// editor准备好之后才可以使用
+         				ue.setContent(text1);
+         				});
+         			$("#title").val(data.title);
+         			$("#auth").val(data.u_name);
+         			console.log(data.type)
+         			for(var t in data.type){
+         				$("#type").append("<option value="+data.type[t].nt_id+">"+data.type[t].nt_name+"</option>");
+         				if(parseInt(data.fk_nt_id) == data.type[t].nt_id){
+         					$("#type option[value='"+data.type[t].nt_id+"']").attr("selected",true);
+         				}
+         			}
+         		},
+         			"json"
+         		)
+         	  layer.open({
+                 type: 1,
+                 title: '修改新闻信息',
+         		maxmin: true, 
+         		shadeClose:false, //点击遮罩关闭层
+                 area : ['800px' , ''],
+                 content:$('#add_menber_style'),
+         		btn:['提交','取消'],
+         		yes:function(index,layero){	
+         		 var num=0;
+         		 var str="";
+              $(".add_menber input[type$='text']").each(function(n){
+                   if($(this).val()=="")
+                   {
+         			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+                         title: '提示框',				
+         				icon:0,								
+                   }); 
+         		    num++;
+                     return false;            
+                   } 
+         		 });
+         		  if(num>0){  return false;}	 	
+                   else{
+         			  layer.alert('编辑成功！',function(){
+         				 var text2 = ue.getContentTxt();
+     					 var form = new FormData(document.getElementById("test"));
+     					 console.log(text2);
+     					 form.append("content",text2);
+         				  $.ajax({
+         					  type:"post",
+         					  url:"NewsUpdateServlet.do",
+         					  data:form,
+         					  processData:false,
+       		                  contentType:false,
+         					  success:function (data) {
+         						  window.location.reload();
+         					  }
+         				  })
+         			  });
+         			   layer.close(index);	
+         		  }		  		     				
+         		}
+             });
+         }
     </script>
     	</span></li>
     </ul>
@@ -174,6 +245,8 @@
 <script type="text/javascript">
 /*新闻-添加*/
 $('#member_add').on('click', function(){
+	$("#auth").val("${map.e_name}");
+	$("#auth").attr("readonly",'readonly');
 	$.post(
 			"NewsTypeServlet.do",
 			function(data) {
@@ -208,19 +281,6 @@ $('#member_add').on('click', function(){
 		  if(num>0){  return false;}	 	
          else{
 			  layer.alert('添加成功！',function(){
-				  /* $.ajaxFileUpload({  
-					    type: "POST",  
-					    url: "NewsAddServlet.do",  
-					    data:{"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()},//要传到后台的参数，没有可以不写  
-					    secureuri : false,//是否启用安全提交，默认为false  
-					    fileElementId:'img',//文件选择框的id属性  
-					    dataType: 'json',//服务器返回的格式  
-					    async : false,  
-					    success: function(data){  
-					    	window.location.reload();
-					    } 
-					});  */
-					/* {"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()} */
 					var text = func();
 					var form = new FormData(document.getElementById("test"));
 					console.log(text);
@@ -243,64 +303,7 @@ $('#member_add').on('click', function(){
    });
 });
 
-/*新闻-编辑*/
-function member_edit(id){
-	$.post(
-		"NewsQueryOneServlet.do",
-		{id:id},
-		function(data) {
-			/* console.log(data) */
-			$("#title").val(data.title);
-			$("#auth").val(data.auth);
-			console.log(data.type)
-			for(var t in data.type){
-				$("#type").append("<option value="+data.type[t].nt_id+">"+data.type[t].nt_name+"</option>");
-				if(parseInt(data.fk_nt_id) == data.type[t].nt_id){
-					$("#type option[value='"+data.type[t].nt_id+"']").attr("selected",true);
-				}
-			}
-		},
-			"json"
-		)
-	  layer.open({
-        type: 1,
-        title: '修改新闻信息',
-		maxmin: true, 
-		shadeClose:false, //点击遮罩关闭层
-        area : ['800px' , ''],
-        content:$('#add_menber_style'),
-		btn:['提交','取消'],
-		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
-			  layer.alert('编辑成功！',function(){
-				  $.ajax({
-					  type:"post",
-					  url:"NewsUpdateServlet.do",
-					  data:{"id":id,"title":$("#title").val(),"auth":$("#auth").val(),"type":$("#type").val()},
-					  success:function (data) {
-						  window.location.reload();
-					  }
-				  })
-			  });
-			   layer.close(index);	
-		  }		  		     				
-		}
-    });
-}
+
 
 /*新闻-删除*/
 function member_del(id){

@@ -33,8 +33,8 @@ public class NewsDao {
 	//查询所有新闻信息
 	public List<Map<String, Object>> newsList(int pages,HttpServletRequest request){
 		
-		StringBuilder sqls = new StringBuilder("select * from news n left join "
-				+ "news_type nt on n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1");
+		StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
+				+ " LEFT JOIN `user` u  on n.fk_u_id=u.u_id where n.dr=1 and nt.nt_dr=1");
 		
 		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
 			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
@@ -69,9 +69,15 @@ public class NewsDao {
 	//查询一条记录
 	public Map<String, Object> queryOne(Integer id){
 		
-		String sql = "select * from news where n_id = ?";
+		String sql = "select * from news n LEFT JOIN `user` u on n.fk_u_id=u.u_id where n.n_id = ?";
+		
+		String commentSql = "select * from `comment` c LEFT JOIN `user` u ON c.fk_u_id=u.u_id where c.fk_n_id = ?";
+		
+		List<Map<String, Object>> list = jd.query(commentSql, new Object[]{id});
 		
 		Map<String, Object> map = jd.queryOne(sql, new Object[]{id});
+		
+		map.put("list", list);
 		
 		return map;
 	}
@@ -79,9 +85,9 @@ public class NewsDao {
 	//编辑新闻
 	public int newsUpdate(News news){
 		
-		String sql = "update news set title=?,fk_nt_id=?,auth=?,update_time=? where n_id=?";
+		String sql = "update news set title=?,fk_nt_id=?,update_time=?,content=? where n_id=?";
 		
-		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),news.getAuth(),news.getUpdate_time(),news.getN_id()});
+		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),news.getUpdate_time(),news.getN_id(),news.getContent()});
 		
 		return res;
 	}
