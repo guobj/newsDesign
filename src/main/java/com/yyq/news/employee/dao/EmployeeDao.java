@@ -50,10 +50,10 @@ public class EmployeeDao {
 	//添加员工
 	public Integer employeeAdd(Employee employee){
 		
-		String sql = "insert into employee(e_name,e_sex,e_age,e_address,fk_p_id,e_tel,e_email,account,password,e_dr) values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into employee(e_name,e_sex,e_age,e_address,fk_p_id,e_tel,e_email,account,password,e_dr,e_creat_time) values(?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int res = jd.updateData(sql, new Object[]{employee.getE_name(),employee.getE_sex(),employee.getE_age(),employee.getE_address(),
-				employee.getFk_p_id(),employee.getE_tel(),employee.getE_email(),employee.getAccount(),"1234",true});
+				employee.getFk_p_id(),employee.getE_tel(),employee.getE_email(),employee.getAccount(),"1234",true,employee.getE_creat_time()});
 		return res;
 	}
 	

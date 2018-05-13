@@ -11,8 +11,16 @@ public class News {
 	private String content;
 	
 	//作者
-	private String auth;
+	private Integer auth;
 	
+	public Integer getAuth() {
+		return auth;
+	}
+
+	public void setAuth(Integer auth) {
+		this.auth = auth;
+	}
+
 	//图片
 	private String img;
 	
@@ -59,14 +67,6 @@ public class News {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getAuth() {
-		return auth;
-	}
-
-	public void setAuth(String auth) {
-		this.auth = auth;
 	}
 
 	public String getImg() {

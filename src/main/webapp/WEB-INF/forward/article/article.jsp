@@ -50,9 +50,9 @@
 		<div class="icon icon-search-close js-show-search-box"><a class="close"></a></div>
    	 	<div class="search-content overlay-dialog-animate">
         	<div class="search-input">
-            	<form role="search" method="get" action="/search.html" onsubmit="return checkinput()">
+            	<form role="search" method="get" action="ArticleSearchServlet.so" onsubmit="return checkinput()">
                 	<button type="submit"></button>
-                	<input placeholder="请输入关键字" name="s" id="search-input">
+                	<input placeholder="请输入关键字" name="title" id="search-input">
                 </form>
         	</div>
         	<div class="search-history hide" id="history">
@@ -98,30 +98,7 @@
 </script>
 <jsp:include page="../../common/tag.jsp"></jsp:include>
 
-<script src="js/d-login.js"></script>
-<div id="cd-signup"> <!-- 注册表单 -->
-	<div class="modal-alert-title">极速注册</div>
-    <div class="user-register-box">
-		<div class="login-form sms-box">
-			<label class="login-label col-xs-label transition"><input id="sms_username" class="login-input username" placeholder="手机号"></label>
-			<div class="geetest_login_sms_box" >
-				<div id="geetest_1496454436837" class="gt_holder gt_float" style="touch-action: none;">
-					<div class="gt_slider">
-						<div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div>
-						<div class="gt_slider_knob gt_show" style="left: 0px;"></div>
-						<div class="gt_curtain_knob gt_hide">移动到此开始验证</div>
-						<div class="gt_ajax_tip gt_ready"></div>
-					</div>
-				</div>
-			</div>
-			<label class="login-label captcha"><input id="sms_captcha" class="login-input" placeholder="输入6位验证码" maxlength="6">
-			<span class="js-btn-captcha btn-captcha">获取验证码</span></label>
-			<a class="js-label-select label-select-box text-center"><span class="js-country-sms">+86</span><i class="icon-modal icon-l-caret"></i></a>
-			<button class="js-btn-sms-login btn-login">注&nbsp;册</button>
-		</div>
-		<div class="js-user-login register-text">已有账号，立即登录</div>
-    </div>
-</div>
+<script src="forward/js/d-login.js"></script>
 </header>
 <div class="placeholder-height"></div>
 <div class="article-section-wrap">
@@ -133,11 +110,14 @@
             <div class="article-wrap">
                 <h1 class="t-h1">${map.title }</h1>
                 <div class="article-author">
-                <span class="author-name"><a href="/member/1373658.html" target="_blank">${map.auth }</a></span>
+                <c:if test="${map.sign eq 1 }">
+                <span class="author-name"><a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a></span>
+                </c:if>
+                <c:if test="${map.sign eq 0 }">
+                <span class="author-name"><a href="MemberServlet.so?id=${map.e_id }" target="_blank">${map.e_name }</a></span>
+                </c:if>
                 <div class="column-link-box">
                 	<span class="article-time pull-left">${map.creat_time }</span>
-                    <span class="article-share pull-left">收藏87</span>
-                    <span class="article-pl pull-left">评论16</span>
                 </div>                     
             </div>
 <!--管理员按钮-->
@@ -157,11 +137,6 @@
                     <!--管理员底部按钮-->
              <div class="article-manage-bar article-bottom-manage-bar" id="article-bottom-manage-bar197460"></div>
 			 <div class="tag-box ">
-                  <ul class="transition">
-                      <a href="#" target="_blank"><li class="transition">投稿</li></a>
-                      <a href="#" target="_blank"><li class="transition">创业</li></a>
-                      <a href="#" target="_blank"><li class="transition">商业模式</li></a>
-                   </ul>
               </div>
               <!--公共评论-->
               <div class="pl-wrap" id="pl-wrap-article197460" name="pl-wrap-article">
@@ -229,11 +204,16 @@
      <div class="wrap-right pull-right">
      	<div class="box-author-info">
         	<div class="author-face">
-        		<a href="#" target="_blank"><img src="https://img.huxiucdn.com/auth/data/avatar/001/37/36/58_avatar_big.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
+        		<img src="forward/sy-img/78_avatar_big.jpg">
     		</div>
     		<div class="author-name">
     			<%-- <input id="user_id" type="hidden" value="${umap.u_id }"> --%>
-        		<a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a>
+    			<c:if test="${map.sign eq 1 }">
+        			<a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a>
+        		</c:if>
+        		<c:if test="${map.sign eq 0 }">
+        			<a href="javascript:;" target="_blank">${map.e_name }</a>
+        		</c:if>
         		<a href="#" target="_blank"><i class="i-vip icon-vip" title="虎嗅黑卡会员"></i></a>
         		<i class="i-icon icon-auth3" title="虎嗅认证作者"></i>    
         	</div>
@@ -269,41 +249,7 @@
         		</div>
     		</div>
 		<div class="placeholder"></div>
-    		<div class="box-moder hot-article">
-        		<h3>热文</h3>
-        		<span class="span-mark"></span>
-        		<ul>
-                    <li>
-                    	<div class="hot-article-img">
-                        	<a href="#" target="_blank"><img src="https://img.huxiucdn.com/article/cover/201706/04/105715329877.jpg?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
-                    	</div>
-                    	<a href="#" class="transition" target="_blank">3年了，我们的内容消费发生了什么变化？</a>
-                	</li>
-                    <li>
-                    	<div class="hot-article-img">
-                        	<a href="#" target="_blank"><img src="https://img.huxiucdn.com/article/cover/201706/04/191327154498.jpg?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
-                    	</div>
-                    	<a href="#" class="transition" target="_blank">顺丰，菜鸟，令狐冲，岳不群</a>
-               		</li>
-                    <li>
-                    	<div class="hot-article-img">
-                        	<a href="#" target="_blank"><img src="https://img.huxiucdn.com/article/cover/201706/04/105715329877.jpg?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
-                    	</div>
-                    	<a href="#" class="transition" target="_blank">3年了，我们的内容消费发生了什么变化？</a>
-                	</li>
-                    <li>
-                    	<div class="hot-article-img">
-                        	<a href="#" target="_blank"><img src="https://img.huxiucdn.com/article/cover/201706/04/191327154498.jpg?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
-                    	</div>
-                    	<a href="#" class="transition" target="_blank">顺丰，菜鸟，令狐冲，岳不群</a>
-               		</li>
-                    <li>
-                    	<div class="hot-article-img">
-                        	<a href="#" target="_blank"><img src="https://img.huxiucdn.com/article/cover/201706/04/105715329877.jpg?imageView2/1/w/280/h/210/|imageMogr2/strip/interlace/1/quality/85/format/jpg"></a>
-                    	</div>
-                    	<a href="#" class="transition" target="_blank">3年了，我们的内容消费发生了什么变化？</a>
-                	</li>
-                </ul>
+    		
     		</div>
         </div>
     </div>
@@ -352,8 +298,6 @@
             </ul>
         </div>
     </div>
-<div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
-<div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)"><div class="moquu_wshareh"></div></a></div>
 </footer>
 <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
 <script>

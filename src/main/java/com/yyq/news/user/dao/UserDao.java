@@ -67,9 +67,9 @@ public class UserDao {
 	
 	//用户注册
 	public Integer register(User user){
-		String sql = "insert into user(account,password,u_dr) values(?,?,?)";
+		String sql = "insert into user(account,password,u_dr,u_name) values(?,?,?,?)";
 		
-		Integer res = jd.updateData(sql, new Object[]{user.getAccount(),user.getPassword(),true});
+		Integer res = jd.updateData(sql, new Object[]{user.getAccount(),user.getPassword(),true,user.getU_name()});
 		
 		return res;
 	}

@@ -56,7 +56,7 @@ public class UserService {
 			throw new RuntimeException("账号已存在");
 		}
 		
-		return map;
+		return null;
 	}
 	
 	//用户注册

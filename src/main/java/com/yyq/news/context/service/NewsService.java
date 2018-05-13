@@ -40,6 +40,17 @@ public class NewsService {
 		return list;
 	}
 	
+	//查询公司所有新闻信息
+	public List<Map<String,Object>> companyNewsList(int pages,HttpServletRequest request){
+		
+		List<Map<String,Object>> list = dao.companyNewsList(pages,request);
+		
+		if(list == null || list.size()==0){
+			throw new RuntimeException("暂无数据");
+		}
+		return list;
+	}
+	
 	//添加新闻
 	public int newsAdd(News news){
 		
@@ -90,26 +101,50 @@ public class NewsService {
 	 * 
 	 */
 	
-	public List<Map<String, Object>> queryAll(){
+	public Map<String, Object> queryAll(){
 		
-		List<Map<String, Object>> list = dao.queryAll();
+		Map<String, Object> map = dao.queryAll();
 		
 //		List<Map<String, Object>> type = ntDao.queryForList();
 		
-		if(list == null || list.size() <= 0){
+		if(map.isEmpty()){
 			throw new RuntimeException("暂无数据");
 		}
 		
-		return list;
+		return map;
 	}
 	
 	//按照分类查询新闻
-	public List<Map<String, Object>> queryByType(Integer nt_id){
-		List<Map<String, Object>> list = dao.queryByType(nt_id);
-		if(list == null || list.size() <= 0){
+	public Map<String, Object> queryByType(Integer nt_id){
+		
+		Map<String, Object> map = dao.queryByType(nt_id);
+		
+		if(map.isEmpty()){
 			throw new RuntimeException("暂无数据");
 		}
 		
-		return list;
+		return map;
+	}
+	
+	public Map<String, Object> queryOneForForward(Integer id,Integer sign){
+		//分类列表
+		List<Map<String, Object>> list = ntDao.queryForList();
+		
+		//要修改的原数据
+		Map<String, Object> map = dao.queryOneForForward(id,sign);
+		
+		map.put("type", list);
+		
+		return map;
+	}
+	
+	//模糊搜索 根据标题
+	public Map<String, Object> queryByTitle(String title){
+		
+		Map<String, Object> map = dao.queryByTitle(title);
+		if(map.isEmpty()){
+			throw new RuntimeException("暂无相关记录");
+		}
+		return map;
 	}
 }

@@ -24,6 +24,15 @@ public class Employee {
 	
 	private Boolean e_dr;
 
+	private String e_creat_time;
+	public String getE_creat_time() {
+		return e_creat_time;
+	}
+
+	public void setE_creat_time(String e_creat_time) {
+		this.e_creat_time = e_creat_time;
+	}
+
 	public Integer getE_id() {
 		return e_id;
 	}

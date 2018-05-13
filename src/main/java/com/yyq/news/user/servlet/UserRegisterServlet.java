@@ -29,9 +29,12 @@ public class UserRegisterServlet extends HttpServlet {
 			
 			String password = request.getParameter("passward");
 			
+			String u_name = request.getParameter("u_name");
+			
 			User user = new User();
 			user.setAccount(account);
 			user.setPassword(password);
+			user.setU_name(u_name);
 			
 			Integer res = userService.register(user);
 			

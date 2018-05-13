@@ -21,11 +21,12 @@ public class MainForwardServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			
-			List<Map<String, Object>> list = newsService.queryAll();
+			Map<String, Object> map = newsService.queryAll();
 			
-			request.setAttribute("list", list);
+			request.setAttribute("map", map);
 			
 			request.getRequestDispatcher("WEB-INF/forward/main/main.jsp").forward(request, response);
+//			request.getRequestDispatcher("WEB-INF/forward/article/news_publish.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("message", e.getMessage());
 		}

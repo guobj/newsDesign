@@ -79,7 +79,7 @@
  	<div class="centent_style" id="centent_style">
      <div id="covar_list" class="order_list">
      <div class="search_style">
-     <form action="NewsServlet.do" method="post">
+     <form action="CompanyNewsListServlet.do" method="post">
 	      <ul class="search_content clearfix">
 	       <li><label class="l_f">新闻标题</label><input name="title" type="text" class="text_add" placeholder="请输入新闻标题"  style=" width:200px" value="${title }"/></li>
 	       <li><label class="l_f">新闻分类</label><input name="nt_name" type="text" class="text_add" placeholder="请输入新闻分类" style=" margin-left:10px;" style=" width:200px" value="${nt_name }"></li>
@@ -90,6 +90,7 @@
      <!---->
      <div class="border clearfix">
        <span class="l_f">
+       <a href="javascript:void(0)" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>新增新闻</a>
      <!--    <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a> -->
        </span>
      </div>
@@ -115,12 +116,12 @@
 		     <td>${list.title }</td>
 		     <td><img width="100px" src="/upload/${list.img }"/></td>
 		     <td>${list.content }</td>
-		     <td>${list.u_name }</td>
+		     <td>${list.e_name }</td>
 		     <td>${list.nt_name }</td>
 		     <td>${list.creat_time }</td>
 		     <td>${list.update_time }</td>
 		     <td class="td-manage">
-			     <%-- <a title="查看" href="javascript:void(0)" onclick="member_edit(${list.n_id })" class="btn btn-xs btn-info" ><i>编辑</i></a> --%>
+			     <a title="编辑" href="javascript:void(0)" onclick="member_edit(${list.n_id })" class="btn btn-xs btn-info" ><i>编辑</i></a>
 		         <a href="javascript:void(0)" onclick="member_del(${list.n_id })" class="btn btn-xs btn-danger" title="删除"><i class="icon-trash" style="height:20px"></i>删除</a>
 		     </td>
 	     </tr>
@@ -139,7 +140,6 @@
   <form id="test">
     <ul class=" page-content">
      <li><label class="label_name">新闻标题：</label><span class="add_name"><input id="title" value="" name="title" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</label><span class="add_name"><input id="auth" name="auth" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
       <li><label class="label_name">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：&nbsp;</label>
       <span class="add_name">
       <select class="text_add" name="type" id="type">
@@ -147,6 +147,7 @@
       </select></span><div class="prompt r_f"></div></li>
       <!-- 加载编辑器的容器 -->
       <li><label class="label_name">图片上传：</label><span class="add_name"><input id="img" name="file" type="file"  class="text_add"/></span><div class="prompt r_f"></div></li>
+   		<li></li>
     <li><label class="label_name">文章内容：</label>
     <span class="add_name">
     <!-- <textarea id="container" name="content"></textarea> -->

@@ -24,7 +24,9 @@ public class ArticleServlet extends HttpServlet {
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		
-		Map<String, Object> map = newsService.queryOne(id);
+		Integer sign = Integer.parseInt(request.getParameter("sign"));
+		
+		Map<String, Object> map = newsService.queryOneForForward(id,sign);
 		
 		request.setAttribute("map", map);
 		

@@ -85,9 +85,9 @@
 		<div class="icon icon-search-close js-show-search-box"><a class="close"></a></div>
    	 	<div class="search-content overlay-dialog-animate">
         	<div class="search-input">
-            	<form role="search" method="get" action="/search.html" onsubmit="return checkinput()">
+            	<form role="search" method="get" action="ArticleSearchServlet.so" onsubmit="return checkinput()">
                 	<button type="submit"></button>
-                	<input placeholder="请输入关键字" name="s" id="search-input">
+                	<input placeholder="请输入关键字" name="title" id="search-input">
                 </form>
         	</div>
         	<div class="search-history hide" id="history">
@@ -131,79 +131,6 @@
     }
 </script>
     <jsp:include page="../../common/tag.jsp"></jsp:include>
-<div class="cd-user-modal"> 
-	<div class="cd-user-modal-container">
-		<div id="cd-login"> <!-- 登录表单 -->
-			<div class="modal-alert-title">登录虎嗅</div>
-            <div class="register" >
-				<div class="register-top" id="reg-top"><i><a id="qrcode" href="#"></a></i></div>
-				<div class="register-con" id="rc">
-                	<div class="login-form username-box " style="margin-top:52px;">
-           				<a class="js-open-sms-login sms-text">短信快捷登录</a>
-            			<label class="login-label transition" >
-                			<input id="login_username" class="login-input" placeholder="手机号／邮箱／虎嗅账号">
-            			</label>
-            			<label class="login-label">
-                			<input id="login_password" class="login-input password" type="password" placeholder="输入6～24位密码">
-            			</label>
-            			<a class="js-label-select label-select-box hide login-label-select text-center"><span class="js-country-user">+86</span><i class="icon-modal icon-l-caret"></i></a>
-						<div class="login-operation">
-                			<label><input id="autologin" type="checkbox">&nbsp;2周内自动登录</label>
-               				<a href="/user/reset_password" class="js-forget-passward pull-right">忘记密码</a>
-            			</div>
-            			<button class="js-btn-login btn-login">登&nbsp;录</button>
-        			</div>
-        			<div class="js-open-register register-text">极速注册</div>
-        			<div class="third-box">
-            			<div class="title"><span>第三方登录</span></div>
-            			<a href="#"><i class="icon-modal icon-login-qq"></i></a>
-            			<a class="js-login-switch"><i class="icon-modal icon-login-wx"></i></a>
-            			<a href="#"><i class="icon-modal icon-login-wb"></i></a>
-            			<a href="#"><i class="icon-modal icon-login-zfb"></i></a>
-        			</div>
-    			</div>
-            </div>
-			<div class="saoma" id="sm">
-				<div class="qr-code" style="text-align:center">
-                    <div class="title">微信登录</div>
-					<div class="waiting panelContent">
-						<div class="wrp_code"><img class="qrcode lightBorder" src="forward/images/150943753529.png"></div>
-						<div class="info">
-							<div class="status status_browser js_status" id="wx_default_tip">
-			                	<p>请使用微信扫描二维码登录</p>
-                            	<p>"虎嗅网"</p>
-			           		 </div>
-						</div>
-					</div>
-                 </div>
-        		<div class="screen-tu" id="screen"></div>
-			</div>
-		</div>
-    	<div id="cd-signup"> <!-- 注册表单 -->
-			<div class="modal-alert-title">极速注册</div>
-       	    <div class="user-register-box">
-				<div class="login-form sms-box">
-					<label class="login-label col-xs-label transition"><input id="sms_username" class="login-input username" placeholder="手机号"></label>
-					<div class="geetest_login_sms_box" >
-						<div id="geetest_1496454436837" class="gt_holder gt_float" style="touch-action: none;">
-							<div class="gt_slider">
-								<div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div>
-								<div class="gt_slider_knob gt_show" style="left: 0px;"></div>
-								<div class="gt_curtain_knob gt_hide">移动到此开始验证</div>
-								<div class="gt_ajax_tip gt_ready"></div>
-							</div>
-						</div>
-					</div>
-					<label class="login-label captcha"><input id="sms_captcha" class="login-input" placeholder="输入6位验证码" maxlength="6">
-					<span class="js-btn-captcha btn-captcha">获取验证码</span></label>
-					<a class="js-label-select label-select-box text-center"><span class="js-country-sms">+86</span><i class="icon-modal icon-l-caret"></i></a>
-					<button class="js-btn-sms-login btn-login">注&nbsp;册</button>
-				</div>
-				<div class="js-user-login register-text">已有账号，立即登录</div></div>
-    		</div>
-			<a href="#0" class="cd-close-form ">关闭</a>
-	</div>
-</div>
 
 <script src="forward/js/d-login.js"></script>
 <div id="cd-signup"> <!-- 注册表单 -->
@@ -235,44 +162,12 @@
 <div class="placeholder-height"></div>
 <div class="container" id="index">
 	<div class="wrap-left pull-left">
-        <!-- <div class="big-pic-box">
-             <div class="big-pic">
-                  <a id="firsta" target="_blank" class="transition">
-                     <div class="back-img"><img width="533px" height="400px" id="firstimg"></div>
-                     <div class="big-pic-content">
-                          <h1 id="firsth" class="t-h1"></h1>
-                      </div>
-                  </a>
-             </div>
-             <div class="big2-pic big2-pic-index big2-pic-index-top">
-                  <a id="seconda" class="back-img transition" target="_blank">
-                     <div class="back-img"><img width="257px" height="195px" id="secondimg" class="lazy"></div>
-                  	<div class="big2-pic-content">
-                          <h2 id="secondh" class="t-h1"></h2>
-                     </div>
-                  </a>
-                  <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
-                     
-                  </a>
-             </div>
-             <div class="big2-pic big2-pic-index big2-pic-index-bottom">
-                  <a id="thirda" class="back-img transition" target="_blank">
-                    <div class="back-img"><img width="257px" height="195px" class="lazy" id="thirdimg"></div>
-                  	<div class="big2-pic-content">
-                          <h2  id="thirdh" class="t-h1"></h2>
-                     </div>
-                  </a>
-                  <a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
-                     
-                  </a>
-             </div>
-       </div> -->
        <div class="mod-info-flow">
-       <c:forEach  var="list" items="${list }" begin="3">
+       <c:forEach  var="list" items="${map.list }">
             <div class="mod-b mod-art" data-aid="213665">
             	<!--  <div class="mod-angle">热</div>--> 
                  <div class="mod-thumb ">
-                       <a class="transition" title="${list.title }" href="ArticleServlet.so?id=${list.n_id }" target="_blank">
+                       <a class="transition" title="${list.title }" href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign }" target="_blank">
 						  <img class="lazy" src="/upload/${list.img }" alt="${list.title }">
                        </a>
                  </div>
@@ -282,24 +177,15 @@
                  <div class="mob-ctt">
                     <h2><a href="ArticleServlet.so?id=${list.n_id }" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
-                         <div class="author-face">
-                              <a href="#" target="_blank"><img src="forward/sy-img/59_1502432173.jpg"></a>
-                         </div>
                          <!-- <a href="#" target="_blank">
                             <span class="author-name ">量子位</span>
                          </a> -->
                          <!-- <a href="#" target="_blank" title="购买VIP会员"></a> -->
-                         <span class="time">1小时前</span>
+                         <span class="time">${list.creat_time }</span>
                          <i class="icon icon-cmt"></i><em>0</em>
                          <i class="icon icon-fvr"></i><em>0</em>
                     </div>
-                    <div class="test">公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
-                    a's'kBS jsaliuhflakjhsd lkaidhksdjakfkjasdfkNkH lj asedfoij efo按键松开的方法烦烦烦烦烦烦烦烦烦烦烦烦
-                    jshfdlas hasiluafdhlahflahfl就少得可怜回复你看了就收到回复啦圣诞节欸佛啊啊发       i
-                    好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的公司纷纷看好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
-                    a's'kBS jsaliuhflakjhsd lkaidhksdjakfkjasdfkNkH lj asedfoij efo按键松开的方法烦烦烦烦烦烦烦烦烦烦烦烦
-                    jshfdlas hasiluafdhlahflahfl就少得可怜回复你看了就收到回复啦圣诞节欸佛啊啊发       i
-                    好人工智能技术潜力的同时，真正应用在自己业务中的并不算多上来看附件是考虑福克斯的符号是开放的
+                    <div class="test">${list.content }
                     </div>
                  </div>
             </div>
@@ -321,257 +207,7 @@
     		<div class="story-box-warp hour-box-warp">
         		<div class="nano">
             	<div class="overthrow nano-content description" tabindex="0">
-                	<ul class="box-list mt-box-list">
-                    <!--公共24小时列表部分-->
-                    	<li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。                                                            <a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp] </a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。 <a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。 <a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-                        <li>
-            				<div class="story-content">
-                				<div class="mt-story-title js-story-title" story-data-show="true">
-                    				<p class="transition hour-arrow">
-                        				<span class="icon icon-caret js-mt-index-icon"></span>
-                   					</p>
-                    				<ul class="hour-head">
-                        				<li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li>
-                        				<li>
-                            				<p>果然黑</p>
-                            				<p>3分钟前</p>
-                        				</li>
-                    				</ul>
-                				</div>
-                				<div class="mt-index-info-parent">
-                    				<div class="story-info mt-story-info">
-                        				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">#苹果至少要等到2019年才能摆脱对三星的依赖#  作为苹果现有LCD显示屏长期的供货商，LG Display可做到2019年实现OLED显示屏的全面发货，明年年底可以实现少量的发货。目前，LG与苹果就一些协商预付款的细节问题讨论到最后阶段。<a href="#" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
-                                         </p>
-                        				 <div class="mt-index-end">
-                            			 	<div class="mt-index-realend">...</div>
-                        				 </div>
-                    				</div>
-                				</div>
-            				</div>
-        				</li>
-					</ul>
-            	</div>
+					<jsp:include page="../../common/hour24.jsp"></jsp:include>            	</div>
             	<div class="nano-pane">
                 	<div class="nano-slider" style="height: 179px; transform: translate(0px, 0px);"></div>
             	</div>
@@ -585,243 +221,12 @@
     	<div class="ad-title">广告</div>
     </div>
     <div class="placeholder"></div>
-<!--传言-->
-<!--传言部分开始-->
-    <div id="rumor_center"></div>
-    <div class="box-moder moder-rumors-list">
-        <h3>传言</h3>
-        <span class="span-mark"></span>
-        <div class="big2-pic pull-right">
-            <a href="#" class="back-img" target="_blank">
-                <img class="lazy" src="sy-img/105108838520.jpg" alt="">
-            </a>
-            <a href="https://chuanyan.huxiu.com/rumor/detail/684.html" target="_blank">
-                <div class="big2-pic-content">
-                   <!--  <h2 class="t-h1">传苹果和亚马逊正在竞购“007”品牌特许经营权</h2> -->
-                </div>
-                <div class="clear"></div>
-            </a>
-        </div>
-        <div class="clear"></div>
-        <ul class="rumorlist">
-            <li>
-                <div class="icon-clock"><img src="images/clock.jpg"/></div>
-                <p class="rumor-time">09月07日  08:00</p>
-                <p class="rumor-detail"><a href="#" target="_blank">美媒报道称，苹果和亚马逊正在竞购“007”詹姆斯·邦德品牌的特...</a></p>
-            </li>
-        </ul>
-        <div class="rumor-more">
-            <p><a href="#" target="_blank">详情>></a></p>
-        </div>
-                    <!--24小时不展示此按钮-->
-            <div class="rumor-brunt-box">
-                <a class="btn btn-blue-cy js-update-cy transition  js-show-bruntback-box1" >我要爆料</a>
-            </div>
-            </div>
     <div class="placeholder"></div>
     <!--传言部分结束-->
-	<div class="ad-wrap">
-    	<div class="ad-title">广告</div>
-	</div>
     <div class="placeholder"></div>
-    <div class="box-moder moder-project-list">
-        <h3>创业白板</h3>
-        <span class="pull-right project-more"><a href="#" class="transition" target="_blank">全部</a></span>
-        <span class="span-mark"></span>
-        <ul>
-            <li>
-                <div class="project-pic">
-                        <img src="sy-img/1503478306719861.png">
-                </div>
-                <div class="project-content">
-                     <div class="project-title">
-                         <a href="#" class="transition" target="_blank">车悦宝</a>
-                     </div>
-                     <p>车载综合音频娱乐服务商</p>
-                 </div>
-            </li>
-           	<li>
-                <div class="project-pic">
-                        <img src="sy-img/1503478306719861.png">
-                </div>
-                <div class="project-content">
-                     <div class="project-title">
-                         <a href="#" class="transition" target="_blank">车悦宝</a>
-                     </div>
-                     <p>车载综合音频娱乐服务商</p>
-                 </div>
-            </li>
-            <li>
-                <div class="project-pic">
-                        <img src="sy-img/1503478306719861.png">
-                </div>
-                <div class="project-content">
-                     <div class="project-title">
-                         <a href="#" class="transition" target="_blank">车悦宝</a>
-                     </div>
-                     <p>车载综合音频娱乐服务商</p>
-                 </div>
-            </li>
-            <li>
-                <div class="project-pic">
-                        <img src="sy-img/1503478306719861.png">
-                </div>
-                <div class="project-content">
-                     <div class="project-title">
-                         <a href="#" class="transition" target="_blank">车悦宝</a>
-                     </div>
-                     <p>车载综合音频娱乐服务商</p>
-                 </div>
-            </li>
-            <li>
-                <div class="project-pic">
-                        <img src="sy-img/1503478306719861.png">
-                </div>
-                <div class="project-content">
-                     <div class="project-title">
-                         <a href="#" class="transition" target="_blank">车悦宝</a>
-                     </div>
-                     <p>车载综合音频娱乐服务商</p>
-                 </div>
-            </li>
-         </ul>
-        <div class="project-btn-box">
-            <a class="js-open-cy btn btn-blue-cy transition">立即报名，获得曝光机会！</a>
-        </div>
-        <ul class="project-info">
-            <li>创业公司立即报名提交信息的好处：</li>
-            <li>1.优质的展示和访谈机会</li>
-            <li>2.获得投资人的关注</li>
-            <li>3.虎嗅提供的创业支持服务</li>
-        </ul>
-    </div>
     <div class="placeholder"></div>
-    <div class="box-moder moder-project-list promote-box">
-        <h3>赞助内容</h3>
-        <span class="span-mark"></span>
-        <ul>
-            <li>
-                <div class="mod-thumb">
-                     <a href="#" target="_blank">
-                        <img src="sy-img/233950517521.jpg">
-                     </a>
-                </div>
-                <div class="project-content">
-                     <a href="#" class="c2" target="_blank">实体商业转型</a>
-                     <span class="point">&bull;</span>
-                     <a href="#" target="_blank">实体空间在召唤，他们押宝了零售业态转型升级</a>
-                </div>
-            </li>
-            <li>
-                <div class="mod-thumb">
-                     <a href="#" target="_blank">
-                        <img src="sy-img/233950517521.jpg">
-                     </a>
-                </div>
-                <div class="project-content">
-                     <a href="#" class="c2" target="_blank">实体商业转型</a>
-                     <span class="point">&bull;</span>
-                     <a href="#" target="_blank">实体空间在召唤，他们押宝了零售业态转型升级</a>
-                </div>
-            </li>
-            <li>
-                <div class="mod-thumb">
-                     <a href="#" target="_blank">
-                        <img src="sy-img/233950517521.jpg">
-                     </a>
-                </div>
-                <div class="project-content">
-                     <a href="#" class="c2" target="_blank">实体商业转型</a>
-                     <span class="point">&bull;</span>
-                     <a href="#" target="_blank">实体空间在召唤，他们押宝了零售业态转型升级</a>
-                </div>
-            </li>
-         </ul>
-    </div>
     <div class="placeholder"></div>
-
-
-<!--研究报告部分开始-->
-    <div class="box-moder hot-article">
-        <h3>创新案例</h3>
-        <span class="pull-right project-more story-more">
-            <a href="#" class="transition" target="_blank">全部</a></span>
-        <span class="span-mark"></span>
-        <ul>           
-            <li>
-            	<div class="hot-article-img">
-                	<a href="#" target="_blank">
-                   		<img src="sy-img/105108838520.jpg">
-                	</a>
-            	</div>
-            	<a href="#" class="transition" target="_blank">【经济学人】比特币内战打响，加密货币走到分岔路口</a>
-            	<div class="report-author-info" style="margin-left:0px;margin-top:0px;">
-                	<span class="author-face">
-                    	<img src="sy-img/97.jpg">
-                	</span>
-                	<span>虎嗅会员小秘书</span>
-                	<div style="margin-left: 40px;margin-top: 5px;">微信号：huxiuvip302</div>
-            	</div>
-        	</li>
-        </ul>
-        <div class="report-explain">全年30+篇 案例分析，复盘有代表性的创新公司，还原商业成功背后的魔鬼细节。</div>
-    </div>
     <div class="placeholder"></div>
-    <div class="box-moder hot-article">
-        <h3>热文</h3>
-        <span class="span-mark"></span>
-        <ul>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            <li>
-                <div class="hot-article-img">
-                     <a href="#" target="_blank" title="华谊：老了，还花心">
-                        <img src="sy-img/105108838520.jpg">
-					 </a>
-                </div>
-                <a href="#" class="transition" target="_blank">华谊：老了，还花心</a>
-            </li>
-            
-         </ul>
-    </div>
     <div class="placeholder"></div>
 </div>
 </div>
@@ -866,8 +271,6 @@
             </ul>
         </div>
     </div>
-<div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
-<div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)"><div class="moquu_wshareh"></div></a></div>
 </footer>
 <script type="text/javascript" src="forward/js/mouse.js"></script>
 

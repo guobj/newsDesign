@@ -36,9 +36,9 @@
 		<div class="icon icon-search-close js-show-search-box"><a class="close"></a></div>
    	 	<div class="search-content overlay-dialog-animate">
         	<div class="search-input">
-            	<form role="search" method="get" action="/search.html" onsubmit="return checkinput()">
+            	<form role="search" method="get" action="ArticleSearchServlet.so" onsubmit="return checkinput()">
                 	<button type="submit"></button>
-                	<input placeholder="请输入关键字" name="s" id="search-input">
+                	<input placeholder="请输入关键字" name="title" id="search-input">
                 </form>
         	</div>
         	<div class="search-history hide" id="history">
@@ -476,8 +476,6 @@
             </ul>
         </div>
     </div>
-<div id="moquu_wxin" class="moquu_wxin"><a href="javascript:void(0)"><div class="moquu_wxinh"></div></a></div>
-<div id="moquu_wshare" class="moquu_wshare"><a href="javascript:void(0)"><div class="moquu_wshareh"></div></a></div>
 </footer>
 <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
 <script>

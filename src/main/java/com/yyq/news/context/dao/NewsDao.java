@@ -1,5 +1,6 @@
 package com.yyq.news.context.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class NewsDao {
 	public List<Map<String, Object>> newsList(int pages,HttpServletRequest request){
 		
 		StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
-				+ " LEFT JOIN `user` u  on n.fk_u_id=u.u_id where n.dr=1 and nt.nt_dr=1");
+				+ " LEFT JOIN `user` u  on n.auth=u.u_id where n.dr=1 and nt.nt_dr=1 and n.sign = 1");
 		
 		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
 			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
@@ -52,15 +53,37 @@ public class NewsDao {
 		
 	}
 	
+	//查询所有公司新闻信息
+		public List<Map<String, Object>> companyNewsList(int pages,HttpServletRequest request){
+			
+			StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
+					+ " LEFT JOIN employee e on n.auth=e.e_id where n.dr=1 and nt.nt_dr=1 and n.sign = 0");
+			
+			if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
+				sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
+				request.setAttribute("title", request.getParameter("title"));
+			}
+			if(request.getParameter("nt_name")!=null&&request.getParameter("nt_name").trim()!=""){
+				sqls=sqls.append(" and nt.nt_name like '%"+request.getParameter("nt_name").trim()+"%'");
+				request.setAttribute("nt_name", request.getParameter("nt_name"));
+			}
+			
+			String sql = sqls.toString();
+			@SuppressWarnings("static-access")
+			List<Map<String, Object>> list = PageUtil.getInstance().ListForPage(sql, jd, request, pages);
+			return list;
+			
+		}
+	
 	//添加新闻
 	public int newsAdd(News news){
 		
-		String sql = "insert into news(title,fk_nt_id,auth,dr,content,img,creat_time,update_time)"
-				+ " value(?,?,?,?,?,?,?,?)";
+		String sql = "insert into news(title,fk_nt_id,auth,dr,content,img,creat_time,update_time,sign)"
+				+ " value(?,?,?,?,?,?,?,?,?)";
 		
 		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),
 				news.getAuth(),news.getDr(),news.getContent(),
-				news.getImg(),news.getCreat_time(),news.getUpdate_time()});
+				news.getImg(),news.getCreat_time(),news.getUpdate_time(),news.getSign()});
 		
 		return res; 
 		
@@ -69,7 +92,7 @@ public class NewsDao {
 	//查询一条记录
 	public Map<String, Object> queryOne(Integer id){
 		
-		String sql = "select * from news n LEFT JOIN `user` u on n.fk_u_id=u.u_id where n.n_id = ?";
+		String sql = "select * from news n where n.n_id = ?";
 		
 		String commentSql = "select * from `comment` c LEFT JOIN `user` u ON c.fk_u_id=u.u_id where c.fk_n_id = ?";
 		
@@ -87,7 +110,7 @@ public class NewsDao {
 		
 		String sql = "update news set title=?,fk_nt_id=?,update_time=?,content=? where n_id=?";
 		
-		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),news.getUpdate_time(),news.getN_id(),news.getContent()});
+		Integer res = jd.updateData(sql, new Object[]{news.getTitle(),news.getFk_nt_id(),news.getUpdate_time(),news.getContent(),news.getN_id()});
 		
 		return res;
 	}
@@ -108,24 +131,83 @@ public class NewsDao {
 	 */
 	
 	//查询新闻
-	public List<Map<String, Object>> queryAll(){
+	public Map<String, Object> queryAll(){
 		
 		String sql = "select * from news n left join news_type nt on "
-				+ "n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1";
+				+ "n.fk_nt_id=nt.nt_id where n.sign = 1 and n.dr=1 and nt.nt_dr=1";
 		
+		String sql2 = "select * from news n left join news_type nt on "
+				+ "n.fk_nt_id=nt.nt_id LEFT JOIN employee e ON e.e_id = "
+				+ "n.auth where n.sign = 0 and n.dr=1 and nt.nt_dr=1";
+		
+		List<Map<String, Object>> cList = jd.query(sql2, null);
 		List<Map<String, Object>> list = jd.query(sql, null);
 		
-		return list;
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("cList", cList);
+		return map;
 	}
 	
 	//按照分类查询新闻
-	public List<Map<String, Object>> queryByType(Integer nt_id){
+	public Map<String, Object> queryByType(Integer nt_id){
 		
 		String sql = "select * from news n left join news_type nt on "
-				+ "n.fk_nt_id=nt.nt_id where n.dr=1 and nt.nt_dr=1 and nt.nt_id = "+nt_id;
+				+ "n.fk_nt_id=nt.nt_id where n.sign = 1 and n.dr=1 and nt.nt_dr=1 and nt.nt_id = "+nt_id;
 		
+		//右边24小时的数据
+		String sql2 = "select * from news n left join news_type nt on "
+				+ "n.fk_nt_id=nt.nt_id LEFT JOIN employee e ON e.e_id = "
+				+ "n.auth where n.sign = 0 and n.dr=1 and nt.nt_dr=1";
+		
+		List<Map<String, Object>> cList = jd.query(sql2, null);
 		List<Map<String, Object>> list = jd.query(sql, null);
 		
-		return list;
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("list", list);
+		map.put("cList", cList);
+		return map;
+	}
+	
+	//查询一条记录
+	public Map<String, Object> queryOneForForward(Integer id,Integer sign){
+		
+		String sql = "";
+		
+		if(sign.equals(1) && sign == 1){
+			sql = "select * from news n left join user u on n.auth=u.u_id where n.sign=1 and n.n_id = ?";
+		}else{
+			sql = "select * from news n left join employee e on n.auth=e.e_id where n.sign=0 and n.n_id = ?";
+		}
+		
+		
+		String commentSql = "select * from `comment` c LEFT JOIN `user` u ON c.fk_u_id=u.u_id where c.fk_n_id = ?";
+		
+		List<Map<String, Object>> list = jd.query(commentSql, new Object[]{id});
+		
+		Map<String, Object> map = jd.queryOne(sql, new Object[]{id});
+		
+		map.put("list", list);
+		
+		return map;
+	}
+	
+	//模糊搜索  根据标题
+	public Map<String, Object> queryByTitle(String title){
+		
+		String sql = "select * from news where title like '%"+title+"%'";
+		//右边24小时的数据
+		String sql2 = "select * from news n left join news_type nt on "
+				+ "n.fk_nt_id=nt.nt_id LEFT JOIN employee e ON e.e_id = "
+				+ "n.auth where n.sign = 0 and n.dr=1 and nt.nt_dr=1";
+		
+		List<Map<String, Object>> cList = jd.query(sql2, null);
+		List<Map<String, Object>> list = jd.query(sql, null);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", list);
+		map.put("cList", cList);
+		return map;
 	}
 }

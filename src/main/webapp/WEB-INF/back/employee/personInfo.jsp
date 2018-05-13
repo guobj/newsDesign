@@ -215,7 +215,7 @@ function save_info(){
 						  "password":$("#Nes_pas").val()
 					  },
 					  success:function (data) {
-						  window.location.href="LoginOutServlet.do";
+						  window.top.location.href="LoginOutServlet.do";
 					  }
 				  })
 			  }); 

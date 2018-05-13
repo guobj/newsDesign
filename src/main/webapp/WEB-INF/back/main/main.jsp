@@ -52,32 +52,8 @@
          <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="artDialog/dist/dialog-plus.js"></script>
     	<link href="artDialog/css/ui-dialog.css" rel="stylesheet" type="text/css" />
-    	<script type="text/javascript">
-    		function pwdUpdate(id) {
-				var d = top.dialog({
-					title:"修改密码",
-					url:'PwdServlet.do?e_id='+id,
-					onclose:function(){
-						window.location.reload();
-					}
-				});
-				d.showModal();
-				
-			}
-    	</script>
-    	<script type="text/javascript">
-    		function personInfo() {
-				var d = top.dialog({
-					title:"个人信息",
-					url:'PersonBackServlet.do',
-					onclose:function(){
-						window.location.reload();
-					}
-				});
-				d.showModal();
-				
-			}
-    	</script>
+    	
+    	
 		<script type="text/javascript">	
 				 $(function(){ 
 				 var cid = $('#nav_list> li>.submenu');
@@ -273,14 +249,14 @@
                <ul class="nav ace-nav">	
                 <li class="light-blue">
 				<a data-toggle="dropdown" href="javascript:void(0)" class="dropdown-toggle">
-				 <span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${eMap.e_name }</span>
+				 <span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${map.e_name }</span>
 				 <i class="icon-caret-down"></i>
 				</a>
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<!-- <li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li> -->
-				 <li><a href="javascript:void(0)" onclick="personInfo()" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
+				 <li><a href="javascript:void(0)" onclick="PersonInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
 				 <li class="divider"></li>
-				 <li><a href="LogOutServlet.do" id="Exit_system"><i class="icon-off"></i>退出</a></li>
+				 <li><a href="LoginOutServlet.do" id="Exit_system"><i class="icon-off"></i>退出</a></li>
 				</ul>
 			   </li>
 	           <li class="purple">
@@ -332,10 +308,11 @@
 					<!-- #sidebar-shortcuts -->
 					<div id="menu_style" class="menu_style">
 					<ul class="nav nav-list" id="nav_list">
-				     <li class="home"><a href="javascript:void(0)" name="IndexServlet.do" class="iframeurl" title=""><i class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li>
+				     <!-- <li class="home"><a href="javascript:void(0)" name="IndexServlet.do" class="iframeurl" title=""><i class="icon-home"></i><span class="menu-text"> 系统首页 </span></a></li> -->
                      <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 新闻管理 </span><b class="arrow icon-angle-down"></b></a>
 					   <ul class="submenu">
-                         <li class="home"><a  href="javascript:void(0)" name="NewsServlet.do"  title="新闻类表" class="iframeurl"><i class="icon-double-angle-right"></i>新闻列表</a></li>
+					   	 <li class="home"><a  href="javascript:void(0)" name="CompanyNewsListServlet.do"  title="新闻类表" class="iframeurl"><i class="icon-double-angle-right"></i>公司新闻列表</a></li>
+                         <li class="home"><a  href="javascript:void(0)" name="NewsServlet.do"  title="新闻类表" class="iframeurl"><i class="icon-double-angle-right"></i>用户新闻列表</a></li>
 						 <li class="home"><a  href="javascript:void(0)" name="NewsTypeListServlet.do" title="新闻分类"  class="iframeurl"><i class="icon-double-angle-right"></i>新闻分类</a></li>
 
 						</ul>
@@ -359,7 +336,6 @@
 					<a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-user"></i><span class="menu-text"> 用户管理 </span><b class="arrow icon-angle-down"></b></a>
                     <ul class="submenu">
                     <li class="home"><a href="javascript:void(0)" name="UserListServlet.do" title="用户列表"  class="iframeurl"><i class="icon-double-angle-right"></i>用户列表</a></li>
-                    <li class="home"><a href="javascript:void(0)" name="UserGradingServlet.do" title="等级管理"  class="iframeurl"><i class="icon-double-angle-right"></i>等级管理</a></li>
                    <!--  <li class="home"><a href="javascript:void(0)" name="IntegrationServlet.do" title="会员记录管理"  class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li> -->
 
                    </ul>
@@ -384,18 +360,17 @@
                                 <li class="home"><a href="javascript:void(0)" name="System_Logs.html" title="系统日志" class="iframeurl"><i class="icon-double-angle-right"></i>系统日志</a></li>
 							</ul>
 						</li> -->
-                        <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a>
+                        <!-- <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
 							
 								<li class="home"><a href="javascript:void(0)" name="AdminComServlet.do" title="权限管理"  class="iframeurl"><i class="icon-double-angle-right"></i>权限管理</a></li>
                                 <li class="home"><a href="javascript:void(0)" name="AdminListServlet.do" title="管理员列表" class="iframeurl"><i class="icon-double-angle-right"></i>管理员列表</a></li>
-								 <!--  <li class="home"><a href="AdminInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li> -->
+								  <li class="home"><a href="AdminInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-comments-alt"></i><span class="menu-text"> 个人信息 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)" name="PersonInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
-								<li class="home"><a href="javascript:void(0)" onclick="pwdUpdate(${sessionScope.eMap.e_id})" title="密码修改" class="iframeurl"><i class="icon-double-angle-right"></i>密码修改</a></li>
                               
 							</ul>
 						</li>
@@ -435,7 +410,7 @@
 						</ul>
 					</div>
                     
-                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="IndexServlet.do">  </iframe>
+                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="">  </iframe>
 				 
 
 <!-- /.page-content -->

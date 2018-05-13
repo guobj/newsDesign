@@ -49,7 +49,7 @@ public class SessionFilter implements Filter {
 		System.out.println(path);
 		System.out.println(request.getContextPath());
 		if(session.getAttribute("map")!=null||path.endsWith("LoginServlet.do")||
-				path.endsWith("LoginDoServlet.do")){
+				path.endsWith("LoginDoServlet.do")||path.endsWith("NewsTypeServlet.do")){
 			chain.doFilter(req, res);
 		}else{
 			response.setContentType("text/html; charset=UTF-8");

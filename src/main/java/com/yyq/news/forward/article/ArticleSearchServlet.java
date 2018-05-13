@@ -13,22 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import com.yyq.news.context.service.NewsService;
 
 /**
- * Servlet implementation class ArticleTypeServlet
+ * Servlet implementation class ArticleSearchServlet
  */
-@WebServlet("/ArticleTypeServlet.so")
-public class ArticleTypeServlet extends HttpServlet {
+@WebServlet("/ArticleSearchServlet.so")
+public class ArticleSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	NewsService newsService = NewsService.getInstance();
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
-			Integer nt_id = Integer.parseInt( request.getParameter("id"));
+			String title = request.getParameter("title");
 			
-			Map<String, Object> map = newsService.queryByType(nt_id);
+			Map<String, Object> map = newsService.queryByTitle(title);
+			
 			request.setAttribute("map", map);
+//			request.getRequestDispatcher("WEB-INF/forward/article/article_type.jsp");
 		} catch (Exception e) {
+			// TODO: handle exception
 			request.setAttribute("message", e.getMessage());
 		}
 		request.getRequestDispatcher("WEB-INF/forward/article/article_type.jsp").forward(request, response);
