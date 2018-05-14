@@ -59,12 +59,16 @@
 					  url:"ForwardNewsAddServlet.so",
 					  data:form,
 					  processData:false,
-					  contentType:false,
-					  async:false,
-					  success:function(data){
-							  window.location.href="MainForwardServlet.so";
+		              contentType:false,
+		              async:false,
+					  success:function (data) {
+						  console.log("success"+data)
+						  window.location.href="MainForwardServlet.so";
+					  },
+					  error:function(data){
+						  console.log("error"+data)
 					  }
-				  })
+				  });
 			}
 	</script>
 </head>
