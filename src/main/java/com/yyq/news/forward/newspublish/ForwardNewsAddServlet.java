@@ -65,9 +65,11 @@ public class ForwardNewsAddServlet extends HttpServlet {
 			Integer res = newsService.newsAdd(news);
 			
 			JsonUtil.getInstance().toJson(response, res);
+			System.out.println(res);
 			
 		} catch (Exception e) {
 			request.setAttribute("message", e.getMessage());
+			System.out.println(e.getMessage());
 			JsonUtil.getInstance().toJson(response, e.getMessage());
 		}
 	}

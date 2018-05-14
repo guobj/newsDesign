@@ -11,7 +11,7 @@
 <head>
 	<base href="${basePath }">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>新闻投稿</title>
+	<title>Insert title here</title>
 	<script type="text/javascript" src="ueditor/ueditor.config.js"></script>    
 	<script type="text/javascript" src="ueditor/ueditor.all.js"></script>  
 	<script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script> 
@@ -59,15 +59,12 @@
 					  url:"ForwardNewsAddServlet.so",
 					  data:form,
 					  processData:false,
-		              contentType:false,
-					  success:function (data) {
-						  console.log("success"+data)
-						  window.location.href="MainForwardServlet.so";
-					  },
-					  error:function(data){
-						  console.log("error"+data)
+					  contentType:false,
+					  async:false,
+					  success:function(data){
+							  window.location.href="MainForwardServlet.so";
 					  }
-				  });
+				  })
 			}
 	</script>
 </head>
@@ -86,7 +83,7 @@
 			<label>
 				<span>新闻图片：</span><input style="margin-top: 15px" type="file" id="img" name="file">
 			</label>
-			<script style="margin-top: 15px" type="text/plain" id="container"></script>
+			<script style="margin-top: 15px" type="text/plain" id="container" name="content"></script>
 			<script type="text/javascript">
 				 var ue = UE.getEditor('container',{
 			        	initialFrameWidth : 600,

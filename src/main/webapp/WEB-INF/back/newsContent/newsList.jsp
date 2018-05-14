@@ -286,7 +286,6 @@ function member_edit(id){
  			  layer.alert('编辑成功！',function(){
  				 var text2 = ue.getPlainTxt();
  				 var text3 = $("#container").val();
- 				 debugger
 					 var formUpdate = new FormData(document.getElementById("test"));
 					/* console.log(text);
 					 console.log(text2);
