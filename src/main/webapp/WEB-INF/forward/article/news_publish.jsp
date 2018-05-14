@@ -54,21 +54,22 @@
 				console.log(text);
 				form.append("sign",1)
 				form.append("content",text);
-			$.ajax({
-				  type:"POST",
-				  url:"ForwardNewsAddServlet.so",
-				  data:form,
-				  processData:false,
-	              contentType:false,
-				  success:function (data) {
-					  window.location.reload();
-				  }
-			  })
+				$.ajax({
+					  type:"POST",
+					  url:"ForwardNewsAddServlet.so",
+					  data:form,
+					  processData:false,
+					  contentType:false,
+					  async:false,
+					  success:function(data){
+							  window.location.href="MainForwardServlet.so";
+					  }
+				  })
 			}
 	</script>
 </head>
 <body>
-	<form id="news">
+	<form id="news" method="post">
 		<div>
 			<label>
 				<span>新闻标题：</span><input style="margin-top: 15px" type="text" id="title" name="title"><br>
@@ -82,7 +83,7 @@
 			<label>
 				<span>新闻图片：</span><input style="margin-top: 15px" type="file" id="img" name="file">
 			</label>
-			<script style="margin-top: 15px" type="text/plain" id="container"></script>
+			<script style="margin-top: 15px" type="text/plain" id="container" name="content"></script>
 			<script type="text/javascript">
 				 var ue = UE.getEditor('container',{
 			        	initialFrameWidth : 600,
