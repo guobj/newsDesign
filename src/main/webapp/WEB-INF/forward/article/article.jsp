@@ -31,15 +31,20 @@
 </head>
 <script type="text/javascript">
 	function publish(){
-		$.ajax({
-			type : "post",
-			url : "CommentAddServlet.so",
-			dataType : "json",
-			data : {"fk_n_id":"${map.n_id}","fk_u_id":"${sessionScope.umap.u_id}","comment":$("#saytext197460").val()},
-			success : function(data){
-					window.location.href = "ArticleServlet.so?id="+${map.n_id}
-			}
-		});
+		var comment = $("#saytext197460").val();
+		if(comment == null || comment == ""){
+			$("#error").html("评论内容不能为空！");
+		}else{
+			$.ajax({
+				type : "post",
+				url : "CommentAddServlet.so",
+				dataType : "json",
+				data : {"fk_n_id":"${map.n_id}","fk_u_id":"${sessionScope.umap.u_id}","comment":$("#saytext197460").val()},
+				success : function(data){
+						window.location.href = "ArticleServlet.so?id="+${map.n_id}+"&sign=${map.sign}"
+				}
+			});
+		}
 	}
 </script>
 <body>
@@ -152,6 +157,7 @@
 						</c:if>
 						<c:if test = "${sessionScope.umap != null }">
 						         <textarea class="form-control" id="saytext197460" name="saytext" placeholder="客官，8个字起评，不讲价哟"></textarea>
+						         <font color="red" id="error"></font>
                         </c:if>
                              <!--普通文章评论发表-->
                              <button id="publish" onclick="publish()" class="btn btn-article js-login transition ">发表</button>

@@ -27,7 +27,7 @@
      		<input type="hidden" name="u_name" value="${u_name }">
      	</c:if>
      	<c:if test="${!empty account }">
-     		<input type="hidden" name="account" value="${"account" }">
+     		<input type="hidden" name="account" value="${account }">
      	</c:if>
      	<input type="hidden" name="pages" id="pages">
      	<div style="float: right;">

@@ -11,7 +11,7 @@
 <head>
 	<base href="${basePath }">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>新闻投稿</title>
 	<script type="text/javascript" src="ueditor/ueditor.config.js"></script>    
 	<script type="text/javascript" src="ueditor/ueditor.all.js"></script>  
 	<script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script> 
@@ -54,21 +54,25 @@
 				console.log(text);
 				form.append("sign",1)
 				form.append("content",text);
-			$.ajax({
-				  type:"POST",
-				  url:"ForwardNewsAddServlet.so",
-				  data:form,
-				  processData:false,
-	              contentType:false,
-				  success:function (data) {
-					  window.location.reload();
-				  }
-			  })
+				$.ajax({
+					  type:"POST",
+					  url:"ForwardNewsAddServlet.so",
+					  data:form,
+					  processData:false,
+		              contentType:false,
+					  success:function (data) {
+						  console.log("success"+data)
+						  window.location.href="MainForwardServlet.so";
+					  },
+					  error:function(data){
+						  console.log("error"+data)
+					  }
+				  });
 			}
 	</script>
 </head>
 <body>
-	<form id="news">
+	<form id="news" method="post">
 		<div>
 			<label>
 				<span>新闻标题：</span><input style="margin-top: 15px" type="text" id="title" name="title"><br>
