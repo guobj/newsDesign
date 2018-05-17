@@ -11,7 +11,7 @@
 <head>
 	<base href="${basePath }">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>新闻投稿</title>
 	<script type="text/javascript" src="ueditor/ueditor.config.js"></script>    
 	<script type="text/javascript" src="ueditor/ueditor.all.js"></script>  
 	<script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script> 

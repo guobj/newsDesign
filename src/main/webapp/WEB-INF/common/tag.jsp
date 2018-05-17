@@ -30,7 +30,7 @@
 		if("${sessionScope.umap}" == null || "${sessionScope.umap}" == ""){
 			alert("请先登录！");
 		}else{
-			window.location.href = "NewsPublishServlet.so"
+			window.open("NewsPublishServlet.so");
 		}
 	}
 	//注册
@@ -113,10 +113,10 @@
 			target="_blank">政治</a></li>
 		<li class="nav-news"><a href="ArticleTypeServlet.so?id=3"
 			target="_blank">经济<span class="nums-prompt"></span></a></li>
-		<li class="nav-news"><a href="ArticleTypeServlet.so?id=4"
-			target="_blank">娱乐<em class="nums-prompt"></em></a></li>
 		<li class="nav-news"><a href="ArticleTypeServlet.so?id=5"
-			target="_blank">军事</a></li>
+			target="_blank">娱乐<em class="nums-prompt"></em></a></li>
+		<li class="nav-news"><a href="ArticleTypeServlet.so?id=15"
+			target="_blank">健康</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right transition  xiala main_nav">
 		<li class="search-li js-show-search-box"><a><i
@@ -144,7 +144,7 @@
 							placeholder="请输入账号">
 						</label> <label class="login-label"> <input id="login_password"
 							name="password" class="login-input password" type="password"
-							placeholder="请输入账号">
+							placeholder="请输入密码">
 						</label> <font color="red" id="message"></font>
 						<button id="login-button" class="js-btn-login btn-login">登&nbsp;录</button>
 					</div>

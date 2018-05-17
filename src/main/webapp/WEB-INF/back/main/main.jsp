@@ -11,7 +11,7 @@
 	<head>
 		<base href="${basePath }">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>二当家的官网网站后台管理系统  </title>
+		<title>新闻发布后台管理系统  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
@@ -260,7 +260,6 @@
 				</ul>
 			   </li>
 	           <li class="purple">
-				<a data-toggle="dropdown" class="" href="javascript:void(0)"><img width="45px" src="/upload/${eMap.e_logo }"><span class="badge badge-important"></span></a>
                 </div>
 			</div>
 		</div>

@@ -23,7 +23,9 @@ public class ArticleSearchServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String title = request.getParameter("title");
+			request.setCharacterEncoding("UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			String title = new String(request.getParameter("title").getBytes("ISO-8859-1"),"UTF-8");
 			
 			Map<String, Object> map = newsService.queryByTitle(title);
 			

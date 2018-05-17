@@ -14,7 +14,7 @@
         				<ul class="hour-head">
             				<!-- <li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li> -->
             				<li>
-                				<p>${list.e_name }</p>
+                				<p>${list.title }</p>
                 				<p>${list.creat_time }</p>
             				</li>
         				</ul>

@@ -284,17 +284,17 @@
         <div class="footer-icon-list pull-right">
             <ul class="Qr-codee">
                 <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/weixin_erweima.png"></div>
+                    <div class="app-qrcode"><img src="forward/images/weixin_erweima.png"></div>
                     <i class="icon icon-footer icon-footer-wx"></i>
                 </li>
                 </a>
                 <a><li class="Qr-code-footer">
-                	<div class="app-qrcode"><img src="images/app_erweima.png"></div>
+                	<div class="app-qrcode"><img src="forward/images/app_erweima.png"></div>
                     <i class="icon icon-footer icon-footer-ios"></i>
                 </li>
                 </a>
                 <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/app_erweima.png"></div>
+                    <div class="app-qrcode"><img src="forward/images/app_erweima.png"></div>
                     <i class="icon icon-footer icon-footer-android"></i>
                 </li>
                 </a>

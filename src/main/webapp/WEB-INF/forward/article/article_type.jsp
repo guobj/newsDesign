@@ -172,10 +172,10 @@
                        </a>
                  </div>
                  <div class="column-link-box">
-                 	<a href="ArticleServlet.so?id=${list.n_id }" class="column-link" target="_blank">${list.nt_name }</a>
+                 	<a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="column-link" target="_blank">${list.nt_name }</a>
                  </div>
                  <div class="mob-ctt">
-                    <h2><a href="ArticleServlet.so?id=${list.n_id }" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
+                    <h2><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
                          <!-- <a href="#" target="_blank">
                             <span class="author-name ">量子位</span>

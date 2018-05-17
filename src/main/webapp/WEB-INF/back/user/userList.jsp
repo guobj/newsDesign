@@ -50,7 +50,7 @@
         <script src="assets/laydate/laydate.js" type="text/javascript"></script>
         <script type="text/javascript" src="artDialog/dist/dialog-plus.js"></script>
 	    <link href="artDialog/css/ui-dialog.css" rel="stylesheet" type="text/css" />
-	<title>订单管理</title>
+	<title>用户管理</title>
 	</head>
 	
 <body>
@@ -68,12 +68,6 @@
       </form>
     </div>
      <!---->
-     <div class="border clearfix">
-       <span class="l_f">
-       <a href="javascript:void(0)" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加员工</a>
-     <!--    <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a> -->
-       </span>
-     </div>
       <div class="table_menu_list">
 	 <table class="table table-striped table-bordered table-hover" id="sample-table">
 		<thead>
@@ -103,7 +97,6 @@
 		     <td>${list.u_email }</td>
 		     <td>${list.account }</td>
 		     <td class="td-manage">
-			     <a title="编辑" href="javascript:void(0)" onclick="member_edit(${list.u_id })" class="btn btn-xs btn-info" ><i>编辑</i></a>
 		         <a href="javascript:void(0)" onclick="member_del(${list.u_id })" class="btn btn-xs btn-danger" title="删除"><i class="icon-trash" style="height:20px"></i>删除</a>
 		     </td>
 	     </tr>
