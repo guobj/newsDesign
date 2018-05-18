@@ -82,4 +82,23 @@ public class UserService {
 		
 		return map;
 	}
+	
+	//用户完善个人信息
+	public Integer userUpdate(User user){
+		
+		Integer res = dao.userUpdate(user);
+		if(res <= 0){
+			throw new RuntimeException("完善未完成");
+		}
+		return res;
+	}
+	
+	//用户上传头像
+	public Integer userLog(String img,Integer id){
+		Integer res = dao.userLog(img, id);
+		if(res <= 0){
+			throw new RuntimeException("上传失败");
+		}
+		return res;
+	}
 }

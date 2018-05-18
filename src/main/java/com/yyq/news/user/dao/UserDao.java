@@ -81,4 +81,25 @@ public class UserDao {
 		Map<String, Object> map = jd.queryOne(sql, null);
 		return map;
 	}
+	
+	//用户完善个人信息
+	public Integer userUpdate(User user){
+		
+		String sql = "update user set u_address=?,u_tel=?,u_email=?,u_blog=?,u_profession=?,u_realname=?,u_create_time=? where u_id=?";
+		
+		Integer res = jd.updateData(sql, new Object[]{user.getU_address(),user.getU_tel(),user.getU_email(),user.getU_blog(),
+				user.getU_profession(),user.getU_realname(),user.getU_create_time(),user.getU_id()});
+		
+		return res;
+	}
+	
+	//用户上传头像
+	public Integer userLog(String img,Integer id){
+		
+		String sql = "update user set u_img=? where u_id=?";
+		
+		Integer res = jd.updateData(sql, new Object[]{img,id});
+		
+		return res;
+	}
 }

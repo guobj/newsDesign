@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -26,6 +27,54 @@
     <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="forward/js/main.js"></script>
     <script language="javascript" type="text/javascript" src="forward/js/popwin.js"></script> 
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style type="text/css">
+    	.file {
+			    position: relative;
+			    display: inline-block;
+			    background: #D0EEFF;
+			    border: 1px solid #99D3F5;
+			    border-radius: 4px;
+			    padding: 4px 12px;
+			    overflow: hidden;
+			    color: #1E88C7;
+			    text-decoration: none;
+			    text-indent: 0;
+			    line-height: 20px;
+			}
+			.file input {
+			    position: absolute;
+			    font-size: 100px;
+			    right: 0;
+			    top: 0;
+			    opacity: 0;
+			}
+			.file:hover {
+			    background: #AADFFD;
+			    border-color: #78C3F3;
+			    color: #004974;
+			    text-decoration: none;
+			}
+    </style>
+    <script type="text/javascript">
+    $(function(){
+	    $("#upload").on("change","input[type='file']",function(){
+	    	debugger
+	        var filePath=$(this).val();
+	        if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
+	            $(".fileerrorTip").html("").hide();
+	            var arr=filePath.split('\\');
+	            var fileName=arr[arr.length-1];
+	            $(".showFileName").html(fileName);
+	            $("#confirmUpload").removeAttr("disabled");
+	        }else{
+	            $(".showFileName").html("");
+	            $(".fileerrorTip").html("您未上传文件，或者您上传文件类型有误！").show();
+	            return false 
+	        }
+	    })
+    })
+    </script>
 </head>
 
 <body style="background-color:#f0f4fb;">
@@ -112,44 +161,38 @@
 <div class="container per_center_body" id="per_center">
     <div class="user-info-warp">
         <div class="user-head-box">
-            <div class="user-face"><img src="images/58_avatar_big.jpg"></div>
+            <div class="user-face"><img src="/upload/${map.u_img }"></div>
             <div class="user-name">${map.u_name }<a href="#" target="_blank"><i class="i-vip icon-vip" title="虎嗅黑卡会员"></i></a></div>
-            <div class="user-one">产品老司机</div>
+            <div class="user-one">${map.u_profession }</div>
                  <div class="user-one user-auth">虎嗅认证作者<i class="i-icon icon-auth3" title="虎嗅认证作者"></i></div>
-                 <a href="javascript:" class="btn btn-messages js-login" uid="1373658" name="判官">给TA发私信</a>
+                 <form method="post" action="UserLogServlet.so?id=${sessionScope.umap.u_id }" enctype="multipart/form-data">
+                 	<span id="upload" class="file">选择头像
+                 		<input class="btn btn-messages js-login" type="file" name="file">
+                 	</span>
+                 	<span class="file">确认上传
+                 		<input id="confirmUpload" disabled="disabled" type="submit">
+                 	</span>
+                 	<div class="fileerrorTip"></div>
+					<div class="showFileName"></div>
+                 </form>
                  <div class="admin-btn-warp"></div>
         	</div>
         	<div class="user-info-box">
             <div class="col-lg-5">
-                <div class="user-info"><i class="icon icon-user-point"></i>公司：旅客App</div>
-                <div class="user-info"><i class="icon icon-user-point"></i>职业：产品个体户</div>
+                <div class="user-info"><i class="icon icon-user-point"></i>真实姓名：${map.u_realname }</div>
+                <div class="user-info"><i class="icon icon-user-point"></i>手机：${map.u_tel }</div>
                 <div class="user-info"><i class="icon icon-user-point"></i>邮箱：${map.u_email }</div>
             </div>
             <div class="col-lg-7">
-                <div class="user-info"><i class="icon icon-user-point"></i>微博：http://weibo.com/alexli2011</div>
-                <div class="user-info"><i class="icon icon-user-point"></i>微信：17276694</div>
-                <div class="user-info"><i class="icon icon-user-point"></i>微信公众号：lvkeapp2015</div>
+            	<div class="user-info"><i class="icon icon-user-point"></i>职业：${map.u_profession }</div>
+                <div class="user-info"><i class="icon icon-user-point"></i>所在地址：${map.u_address }</div>
+<%--                 <fmt:formatDate type="time" var="realDate" value="${map.u_create_time }" pattern="yyyy-MM-dd HH:mm:ss"/> --%>
+                <div class="user-info"><i class="icon icon-user-point"></i>注册时间：<fmt:formatDate value="${map.u_create_time }" type="both"/></div>
             </div>
             <div class="btn-box"><a class="js-sea-more-info more-info pull-right">更多<span class="caret"></span></a></div>
             <div class="more-user-info-box">
                 <div class="col-lg-5">
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>真实姓名：保密</div>
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>手机：${map.u_tel }</div>
-                </div>
-                <div class="col-lg-7">
-                <c:if test="${map.u_sex eq 1 }">
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>性别：男</div>
-                </c:if>
-                <c:if test="${map.u_sex eq 0 }">
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>性别：女</div>
-                </c:if>
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>所在地址：${map.u_address }</div>
-                </div>
-                <div style="clear:both; width:100%;">
-                    <div class="more-user-info"><i class="icon icon-user-point"></i>注册时间：2015-06-29</div>
-                </div>
-                <div style="width:100%;">
-                    <div class="more-user-info" style="padding-left:75px;"><span>认证星级：<i class="i-icon2 icon2-stars03"></i></span></div>
+                    <div class="more-user-info"><i class="icon icon-user-point"></i>博客：${map.u_blog }</div>
                 </div>
             </div>
         </div>

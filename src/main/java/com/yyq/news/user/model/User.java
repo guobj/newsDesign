@@ -6,10 +6,6 @@ public class User {
 	
 	private String u_name;
 	
-	private Integer u_sex;
-	
-	private Integer u_age;
-	
 	private String account;
 	
 	private String password;
@@ -21,6 +17,31 @@ public class User {
 	private String u_email;
 	
 	private Boolean u_dr;
+	
+	private String u_blog;
+	
+	private String u_profession;
+	
+	private String u_realname;
+
+	private String u_create_time;
+	
+	private String u_img;
+	public String getU_img() {
+		return u_img;
+	}
+
+	public void setU_img(String u_img) {
+		this.u_img = u_img;
+	}
+
+	public String getU_create_time() {
+		return u_create_time;
+	}
+
+	public void setU_create_time(String u_create_time) {
+		this.u_create_time = u_create_time;
+	}
 
 	public Integer getU_id() {
 		return u_id;
@@ -38,20 +59,28 @@ public class User {
 		this.u_name = u_name;
 	}
 
-	public Integer getU_sex() {
-		return u_sex;
+	public String getU_blog() {
+		return u_blog;
 	}
 
-	public void setU_sex(Integer u_sex) {
-		this.u_sex = u_sex;
+	public void setU_blog(String u_blog) {
+		this.u_blog = u_blog;
 	}
 
-	public Integer getU_age() {
-		return u_age;
+	public String getU_profession() {
+		return u_profession;
 	}
 
-	public void setU_age(Integer u_age) {
-		this.u_age = u_age;
+	public void setU_profession(String u_profession) {
+		this.u_profession = u_profession;
+	}
+
+	public String getU_realname() {
+		return u_realname;
+	}
+
+	public void setU_realname(String u_realname) {
+		this.u_realname = u_realname;
 	}
 
 	public String getAccount() {
