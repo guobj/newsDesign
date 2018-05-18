@@ -210,4 +210,14 @@ public class NewsDao {
 		map.put("cList", cList);
 		return map;
 	}
+	
+	//根据user ID查询新闻
+	public List<Map<String, Object>> queryByUserId(Integer id){
+		
+		String sql = "select * from news where sign = 1 and auth = "+id;
+		
+		List<Map<String, Object>> list = jd.query(sql, null);
+		
+		return list;
+	}
 }

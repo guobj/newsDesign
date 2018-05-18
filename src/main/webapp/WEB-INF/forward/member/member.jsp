@@ -11,7 +11,7 @@
 <html>
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>个人中心-虎嗅网</title>
+    <title>个人中心-猎讯网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta name="renderer" content="webkit">
@@ -59,7 +59,6 @@
     <script type="text/javascript">
     $(function(){
 	    $("#upload").on("change","input[type='file']",function(){
-	    	debugger
 	        var filePath=$(this).val();
 	        if(filePath.indexOf("jpg")!=-1 || filePath.indexOf("png")!=-1){
 	            $(".fileerrorTip").html("").hide();
@@ -201,116 +200,29 @@
     <div class="user-menu-warp">
         <div class="menu-warp">
             <ul id=myTabs1>
-                <li class="active" onMouseDown=Tabs1(this,0);><a href="#menu">TA的文章</a></li>
-                <li class="" onMouseDown=Tabs1(this,1);><a href="#menu">TA的评论</a></li>
+                <li class="active" onMouseDown=Tabs1(this,0);><a href="#menu">我的文章</a></li>
+                <li class=""><a href="UserInfoServlet.so" target="_self">完善资料</a></li>
+                <!-- <li class="" onMouseDown=Tabs1(this,1);><a href="#menu">TA的评论</a></li>
                 <li class="" onMouseDown=Tabs1(this,2);><a href="#menu">TA的收藏</a></li>
                 <li class="" onMouseDown=Tabs1(this,3);><a href="#menu">TA的关注</a></li>
-                <li class="" onMouseDown=Tabs1(this,4);><a href="#menu" >TA的项目</a></li>
+                <li class="" onMouseDown=Tabs1(this,4);><a href="#menu" >TA的项目</a></li> -->
             </ul>
         </div>
 		<div class="user-content-warp" id=myTabs1_Content0>
             <div class="message-box" >
-                <div class="mod-b mod-art ">
-                	<a class="transition" href="/article/197460.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="闪送、小罐茶：将单一元素推向极致的创业给我们什么启发？" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197460.html?f=member_article" class="transition" target="_blank">1闪送、小罐茶：将单一元素推向极致的创业给我们什么启发？</a></h3>
-                         <div class="mob-author"><span class="time">6天前</span></div>
-                         <div class="mob-sub">就问你怕不怕</div>
-                    </div>
-                </div>
-                <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">2冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
+            <c:forEach var="list" items="${map.list }">
                  <div class="mod-b mod-art ">
                     <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
+                       <div class="mod-thumb"><img class="lazy" src="/upload/${list.img }" alt="${list.title }" style="display: inline;"></div>
                     </a>
                     <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">3冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
+                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">${list.title }</a></h3>
+                         <div class="mob-author"><span class="time"><fmt:formatDate value="${list.creat_time }" type="both"/></span></div>
+                         <div class="mob-sub">${list.content }</div>
                     </div>
-                 </div>
-                 <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">4冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">5冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">6冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art " >
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">7冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art " >
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">8冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">9冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>
-                 <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
-                       <div class="mod-thumb"><img class="lazy" src="images/ad1.jpg" alt="冷眼看快手、陌陌们的"短视频社交"" style="display: inline;"></div>
-                    </a>
-                    <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">10冷眼看快手、陌陌们的"短视频社交"</a></h3>
-                         <div class="mob-author"><span class="time">2017-05-28</span></div>
-                         <div class="mob-sub">短视频天然离社交远一点。</div>
-                    </div>
-                 </div>          
-                 <nav class="page-nav">
+                 </div> 
+             </c:forEach>         
+                <!--  <nav class="page-nav">
                  	<ul class="pagination">
                     	<li class="disabled"><a href="#" aria-label="First"><span aria-hidden="true"><i class="icon icon-first"></i></span></a></li>
                         <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true"><i class="icon icon-lt"></i></span></a></li>
@@ -321,7 +233,7 @@
                         <li><a href="/member/1373658/article/2.html"><i class="icon icon-gt"></i></a></li>
                         <li><a href="/member/1373658/article/4.html"><i class="icon icon-last"></i></a></li>
                      </ul>
-                 </nav>        
+                 </nav>     -->    
             </div>
         </div>
         <div class="user-content-warp" style="display:none" id=myTabs1_Content1>

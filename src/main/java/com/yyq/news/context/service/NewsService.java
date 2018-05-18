@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.w3c.dom.ls.LSInput;
+
 import com.yyq.news.context.dao.NewsDao;
 import com.yyq.news.context.dao.NewsTypeDao;
 import com.yyq.news.context.model.News;
@@ -146,5 +148,17 @@ public class NewsService {
 			throw new RuntimeException("暂无相关记录");
 		}
 		return map;
+	}
+	
+	//根据user ID查询新闻
+	public List<Map<String, Object>> queryByUserId(Integer id){
+		
+		List<Map<String, Object>> list = dao.queryByUserId(id);
+		
+		if(list == null || list.size() <= 0){
+			throw new RuntimeException("暂无数据");
+		}
+		
+		return list;
 	}
 }

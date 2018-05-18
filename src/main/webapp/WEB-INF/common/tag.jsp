@@ -2,6 +2,98 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <script type="text/javascript" src="js/jquery.js"></script>
+ <style type="text/css">
+
+    /* /*为了使菜单居中
+    body {
+        padding-top:100px;
+        text-align:center; 
+    } */
+    
+    
+    /* -------------菜单css代码----------begin---------- */
+   /*  .menuDiv { 
+        border: 2px solid #aac; 
+        overflow: hidden; 
+        display:inline-block;
+    } */
+    
+    /* 去掉a标签的下划线 */
+    .menuDiv a {
+        text-decoration: none;
+    }
+    
+    /* 设置ul和li的样式 */ 
+    .menuDiv ul , .menuDiv li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        float: left;
+    } 
+    
+    /* 设置二级菜单绝对定位，并隐藏 */
+    .menuDiv > ul > li > ul {
+        position: absolute;
+        display: none;
+        width: 40px;
+    }
+
+    /* 设置二级菜单的li的样式 */
+    .menuDiv > ul > li > ul > li {
+        float: none;
+    }
+  
+    /* 鼠标放在一级菜单上，显示二级菜单 */
+    .menuDiv > ul > li:hover ul {
+        display: block;
+    }
+
+   /*  /* 一级菜单 
+    .menuDiv > ul > li > a {
+        width: 120px;
+        line-height: 40px;
+        color: black;
+        background-color: #cfe;
+        text-align: center;
+        border-left: 1px solid #bbf;
+        display: block;
+    } */
+    
+   /*  /* 在一级菜单中，第一个不设置左边框 
+    .menuDiv > ul > li:first-child > a {
+        border-left: none;
+    } */
+
+    /* 在一级菜单中，鼠标放上去的样式 */
+    .menuDiv > ul > li > a:hover {
+        color: #EE82EE;
+        background-color: #fff;
+    }
+
+    /* 二级菜单*/
+    .menuDiv > ul > li > ul > li > a {
+        width: 120px;
+        line-height: 20px;
+        color: #456;
+        background-color: #FFF;
+        border: 1px solid #fff;
+        border-top: none;
+        display: block;
+    } 
+    
+    /* /* 在二级菜单中，第一个设置顶边框 */
+    .menuDiv > ul > li > ul > li:first-child > a {
+        border-top: 15px solid #fff;
+    } 
+    
+    /* 在二级菜单中，鼠标放上去的样式 */
+    .menuDiv > ul > li > ul > li > a:hover {
+        color: #EE82EE;
+        background-color: #fff;
+    }
+    /* -------------菜单css代码----------end---------- */
+    
+    </style>
 <script type="text/javascript">
 <!-- 登录操作 -->
 	$(document).ready(function() {
@@ -82,8 +174,8 @@
 </script>
 <div class="container">
 	<div class="navbar-header transition">
-		<a href="javascript:;" title="首页"><img src="forward/images/huntingnews.jpg"
-			alt="猎讯网" title="首页" /></a>
+		<a href="#" title="首页"><img src="forward/images/huntingnews.jpg"
+			alt="虎嗅网" title="首页" /></a>
 	</div>
 	<ul class="nav navbar-nav navbar-left" id="jsddm">
 		<li class="nav-news js-show-menu"><a href="MainForwardServlet.so">资讯 </a></li>
@@ -118,15 +210,30 @@
 		<li class="nav-news"><a href="ArticleTypeServlet.so?id=15"
 			target="_blank">健康</a></li>
 	</ul>
-	<ul class="nav navbar-nav navbar-right transition  xiala main_nav">
+	<c:if test="${sessionScope.umap eq null }">
+	<ul class="nav navbar-nav navbar-right transition xiala main_nav">
 		<li class="search-li js-show-search-box"><a><i
 				class="icon icon-search "></i></a><span>搜索</span></li>
-		<c:if test="${sessionScope.umap eq null }">
 			<li class="login-link-box"><a class="cd-signin">登录</a></li>
-		</c:if>
 		<li><a class="cd-signup">注册</a></li>
+		<li><a href="javascript:;" onclick="publishNews()" id="tougao">投稿</a></li>
 	</ul>
-		<a href="javascript:;" onclick="publishNews()" id="tougao">投稿</a>
+	</c:if>
+	<c:if test="${sessionScope.umap != null }">
+	<div class="menuDiv">
+		<ul class="navbar-nav navbar-right">
+			<li class="search-li js-show-search-box"><a><i
+					class="icon icon-search "></i></a><span>搜索</span></li>
+					<li><a href="javascript:;">${sessionScope.umap.u_name }</a>
+						<ul>
+							 <li><a href="MemberServlet.so?id=${sessionScope.umap.u_id }">个人中心</a></li>
+		                     <li><a href="#">退出</a></li>
+						</ul>
+					</li>
+			<li><a href="javascript:;" onclick="publishNews()" id="tougao">投稿</a></li>
+		</ul>
+	</div>
+	</c:if>
 </div>
 <div class="cd-user-modal">
 	<div class="cd-user-modal-container">
@@ -135,6 +242,7 @@
 			<div class="modal-alert-title">登录</div>
 			<div class="register">
 				<div class="register-top" id="reg-top">
+					<i><a id="qrcode" href="#"></a></i>
 				</div>
 				<div class="register-con" id="rc">
 					<div class="login-form username-box " style="margin-top: 52px;">
