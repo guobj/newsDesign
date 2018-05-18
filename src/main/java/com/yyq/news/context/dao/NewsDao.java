@@ -220,4 +220,14 @@ public class NewsDao {
 		
 		return list;
 	}
+	
+	//查询一条最新新闻
+	public Map<String, Object> queryLatestbyUserID(Integer id,Integer sign){
+		
+		String sql = "select n.*,MAX(creat_time) from news n WHERE n.sign = ? and n.dr = 1 AND auth = ?";
+		
+		Map<String, Object> map = jd.queryOne(sql, new Object[]{sign,id});
+		
+		return map;
+	}
 }

@@ -47,6 +47,18 @@
 			});
 		}
 	}
+	$(function(){
+		$.ajax({
+			type : "post",
+			url : "LatestArticleServlet.so",
+			data :{"auth":"${map.auth}","sign":"${map.sign}"},
+			dataType : "json",
+			success : function(data) {
+				$("#latestnews").html(data.title);
+				$("#latestnews").attr({"href":'ArticleServlet.so?id='+data.n_id+'&sign='+data.sign});
+			}
+		});
+	});
 </script>
 <body>
 <header id="top" role="banner" class="transition">
@@ -211,24 +223,30 @@
      </div>
      <div class="wrap-right pull-right">
      	<div class="box-author-info">
-        	<div class="author-face">
-        		<img src="/upload/${map.u_img }">
-    		</div>
-    		<div class="author-name">
-    			<%-- <input id="user_id" type="hidden" value="${umap.u_id }"> --%>
-    			<c:if test="${map.sign eq 1 }">
+     		<c:if test="${map.sign eq 1 }">
+	        	<div class="author-face">
+	        		<img src="/upload/${map.u_img }">
+	    		</div>
+	    		<div class="author-name">
         			<a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a>
-        		</c:if>
-        		<c:if test="${map.sign eq 0 }">
-        			<a href="javascript:;" target="_blank">${map.e_name }</a>
-        		</c:if>
-        		<a href="#" target="_blank"><i class="i-vip icon-vip" title="猎讯黑卡会员"></i></a>
-        		<i class="i-icon icon-auth3" title="猎讯认证作者"></i>    
-        	</div>
+	        		<a href="#" target="_blank"><i class="i-vip icon-vip" title="猎讯黑卡会员"></i></a>
+	        		<i class="i-icon icon-auth3" title="猎讯认证作者"></i>    
+	        	</div>
+        	</c:if>
+        	<c:if test="${map.sign eq 0 }">
+	        	<div class="author-face">
+	        		<img src="forward/images/huntingnews.jpg">
+	    		</div>
+	    		<div class="author-name">
+	        		<a href="javascript:;" target="_blank">${map.e_name }</a>
+	        		<a href="#" target="_blank"><i class="i-vip icon-vip" title="猎讯黑卡会员"></i></a>
+	        		<i class="i-icon icon-auth3" title="猎讯认证作者"></i>    
+	        	</div>
+        	</c:if>
     		<div class="author-one">${map.u_profession }</div>
         	<div class="author-next-article">
         		<div class="author-one c2">最近文章</div>
-        			<a href="#" target="_blank">冷眼看快手、陌陌们的"短视频社交"</a>
+        			<a id="latestnews" target="_blank"></a>
     			</div>
         	</div>
     		<div class="box-moder hot-tag">

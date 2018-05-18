@@ -161,4 +161,12 @@ public class NewsService {
 		
 		return list;
 	}
+	
+	//查询一条最新新闻
+	public Map<String, Object> queryLatestbyUserID(Integer id,Integer sign){
+		
+		Map<String, Object> map = dao.queryLatestbyUserID(id, sign);
+		
+		return map;
+	}
 }

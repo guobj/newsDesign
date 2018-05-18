@@ -213,7 +213,6 @@ $('#member_add').on('click', function(){
 					var form = new FormData(document.getElementById("test"));
 					console.log(text);
 					form.append("content",text);
-					debugger
 					form.append("sign",0);
 				$.ajax({
 					  type:"post",
