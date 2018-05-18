@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="js/jquery.js"></script>
 <ul class="box-list mt-box-list">
             <!--公共24小时列表部分-->
@@ -15,7 +16,7 @@
             				<!-- <li><img class="hour-tx" src="sy-img/touxiang.jpg" alt="头像"></li> -->
             				<li>
                 				<p>${list.title }</p>
-                				<p>${list.creat_time }</p>
+                				<p><fmt:formatDate value="${list.creat_time }" type="both"/></p>
             				</li>
         				</ul>
     				</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -122,7 +123,7 @@
                 <span class="author-name"><a href="MemberServlet.so?id=${map.e_id }" target="_blank">${map.e_name }</a></span>
                 </c:if>
                 <div class="column-link-box">
-                	<span class="article-time pull-left">${map.creat_time }</span>
+                	<span class="article-time pull-left"><fmt:formatDate value="${map.creat_time }" type="both"/></span>
                 </div>                     
             </div>
 <!--管理员按钮-->
@@ -133,7 +134,7 @@
 				<p>${map.content }</p>                                                                <!--作者认证-->
                  <div class="neirong-shouquan">
                       <span class="c2">*文章为作者独立观点，不代表猎讯网立场<br></span>
-                      <span>本文由 <a href="MemberServlet.so" target="_blank">判官</a> 授权 <a href="/">猎讯网</a> 发表，并经猎讯网编辑。
+                      <span>本文由 <a href="MemberServlet.so?id=${map.u_id }" target="_blank">${map.u_name }</a> 授权 <a href="/">猎讯网</a> 发表，并经猎讯网编辑。
                       <br />转载此文请于文首标明作者姓名，保持文章完整性，并请附上出处。</span>
                       <br />
                       <span><b>未按照规范转载者，猎讯保留追究相应责任的权利</b></span>
@@ -179,9 +180,9 @@
                 					</button>
             					</div>
             					<div class="author-info">
-                					<div class="author-face"><img src="https://img.huxiucdn.com/auth/data/avatar/001/54/60/18_1479690318.jpg?|imageMogr2/strip/interlace/1/quality/85/format/jpg"></div>
+                					<div class="author-face"><img src="/upload/${list.u_img }"></div>
                 					<span class="author-name"><a href="#">${list.u_name }</a><a href="/vip" target="_blank"></a></span>
-                					<span class="time">${list.create_time }</span>
+                					<span class="time"><fmt:formatDate value="${list.create_time }" type="both"/></span>
             					</div>
             					<div class="pl-content">${list.comment }</div>
                     		</div>
@@ -211,7 +212,7 @@
      <div class="wrap-right pull-right">
      	<div class="box-author-info">
         	<div class="author-face">
-        		<img src="forward/sy-img/78_avatar_big.jpg">
+        		<img src="/upload/${map.u_img }">
     		</div>
     		<div class="author-name">
     			<%-- <input id="user_id" type="hidden" value="${umap.u_id }"> --%>
@@ -224,13 +225,7 @@
         		<a href="#" target="_blank"><i class="i-vip icon-vip" title="猎讯黑卡会员"></i></a>
         		<i class="i-icon icon-auth3" title="猎讯认证作者"></i>    
         	</div>
-    		<div class="author-one">产品老司机</div>
-    		<div class="author-one">产品个体户</div>
-    		<div class="author-article-pl">
-        		<ul>
-            		<li><a href="#" target="_blank">32篇文章</a></li>
-        		</ul>
-    		</div>
+    		<div class="author-one">${map.u_profession }</div>
         	<div class="author-next-article">
         		<div class="author-one c2">最近文章</div>
         			<a href="#" target="_blank">冷眼看快手、陌陌们的"短视频社交"</a>

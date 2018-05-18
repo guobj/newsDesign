@@ -16,7 +16,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta name="renderer" content="webkit">
     <meta name="baidu-site-verification" content="R9XA5lWxu2" />
-    <meta name="author" content="虎嗅网">
+    <meta name="author" content="猎讯网">
     <meta name="keywords" content="科技资讯,商业评论,明星公司,动态,宏观,趋势,创业,精选,有料,干货,有用,细节,内幕">
     <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在虎嗅，不错过互联网的每个重要时刻。">
     <link rel="stylesheet" type="text/css" href="forward/css/bootstrap.min.css">
@@ -164,6 +164,7 @@
             <div class="user-name">${map.u_name }<a href="#" target="_blank"><i class="i-vip icon-vip" title="虎嗅黑卡会员"></i></a></div>
             <div class="user-one">${map.u_profession }</div>
                  <div class="user-one user-auth">虎嗅认证作者<i class="i-icon icon-auth3" title="虎嗅认证作者"></i></div>
+                 <c:if test="${map.u_id eq sessionScope.umap.u_id }">
                  <form method="post" action="UserLogServlet.so?id=${sessionScope.umap.u_id }" enctype="multipart/form-data">
                  	<span id="upload" class="file">选择头像
                  		<input class="btn btn-messages js-login" type="file" name="file">
@@ -174,6 +175,7 @@
                  	<div class="fileerrorTip"></div>
 					<div class="showFileName"></div>
                  </form>
+                 </c:if>
                  <div class="admin-btn-warp"></div>
         	</div>
         	<div class="user-info-box">
@@ -200,8 +202,13 @@
     <div class="user-menu-warp">
         <div class="menu-warp">
             <ul id=myTabs1>
-                <li class="active" onMouseDown=Tabs1(this,0);><a href="#menu">我的文章</a></li>
-                <li class=""><a href="UserInfoServlet.so" target="_self">完善资料</a></li>
+				<c:if test="${map.u_id ne sessionScope.umap.u_id }">
+	                <li class="active" onMouseDown=Tabs1(this,0);><a href="#menu">TA的文章</a></li>
+                </c:if>
+                <c:if test="${map.u_id eq sessionScope.umap.u_id }">
+	                <li class="active" onMouseDown=Tabs1(this,0);><a href="#menu">我的文章</a></li>
+	                <li class=""><a href="UserInfoServlet.so" target="_self">完善资料</a></li>
+                </c:if>
                 <!-- <li class="" onMouseDown=Tabs1(this,1);><a href="#menu">TA的评论</a></li>
                 <li class="" onMouseDown=Tabs1(this,2);><a href="#menu">TA的收藏</a></li>
                 <li class="" onMouseDown=Tabs1(this,3);><a href="#menu">TA的关注</a></li>
@@ -212,11 +219,11 @@
             <div class="message-box" >
             <c:forEach var="list" items="${map.list }">
                  <div class="mod-b mod-art ">
-                    <a class="transition" href="/article/197348.html?f=member_article" target="_blank">
+                    <a class="transition" href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" target="_blank">
                        <div class="mod-thumb"><img class="lazy" src="/upload/${list.img }" alt="${list.title }" style="display: inline;"></div>
                     </a>
                     <div class="mob-ctt">
-                         <h3><a href="/article/197348.html?f=member_article" class="transition" target="_blank">${list.title }</a></h3>
+                         <h3><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition" target="_blank">${list.title }</a></h3>
                          <div class="mob-author"><span class="time"><fmt:formatDate value="${list.creat_time }" type="both"/></span></div>
                          <div class="mob-sub">${list.content }</div>
                     </div>

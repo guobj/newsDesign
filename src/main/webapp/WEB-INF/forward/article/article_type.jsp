@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -177,7 +178,7 @@
                  <div class="mob-ctt">
                     <h2><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
-                    <span class="time">${list.creat_time }</span>
+                    <span class="time"><fmt:formatDate value="${list.creat_time }" type="both"/></span>
                          <i class="icon icon-cmt"></i><em>0</em>
                          <i class="icon icon-fvr"></i><em>0</em>
                     </div>

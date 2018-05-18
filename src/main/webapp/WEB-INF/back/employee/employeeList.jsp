@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -82,10 +83,11 @@
 				<th width="100px">姓名</th>
 				<th width="80px">性别</th>
 				<th width="80px">年龄</th>
-				<th width="300px">住址</th>
+				<th width="280px">住址</th>
 				<th width="120px">电话</th>
-                <th width="170px">邮箱</th>				
-				<th width="150px">账号</th>
+                <th width="150px">邮箱</th>				
+				<th width="100px">账号</th>
+				<th width="150px">入职时间</th>
 				<th width="130px">权限</th>
 				<th width="200px">操作</th>
 			</tr>
@@ -103,6 +105,7 @@
 		     <td>${list.e_tel }</td>
 		     <td>${list.e_email }</td>
 		     <td>${list.account }</td>
+		     <td><fmt:formatDate value="${list.e_creat_time }" type="both"/></td>
 		     <td>${list.p_name }</td>
 		     <td class="td-manage">
 			     <a title="编辑" href="javascript:void(0)" onclick="member_edit(${list.e_id })" class="btn btn-xs btn-info" ><i>编辑</i></a>

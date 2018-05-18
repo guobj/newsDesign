@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -73,13 +74,16 @@
 		<thead>
 		 <tr>
 				<th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-				<th width="100px">用户名</th>
-				<th width="80px">性别</th>
-				<th width="80px">年龄</th>
-				<th width="300px">住址</th>
-				<th width="120px">电话</th>
-                <th width="170px">邮箱</th>				
 				<th width="150px">账号</th>
+				<th width="100px">用户名</th>
+				<th width="100px">图片</th>
+				<th width="80px">真实姓名</th>
+				<th width="80px">电话</th>
+				<th width="300px">住址</th>
+				<th width="120px">职业</th>
+                <th width="170px">邮箱</th>				
+				<th width="150px">博客</th>
+				<th width="150px">注册时间</th>
 				<th width="200px">操作</th>
 			</tr>
 		</thead>
@@ -87,15 +91,16 @@
 		<c:forEach var="list" items="${list }">
 	     <tr>
 		     <td><label><input name="u_id" type="checkbox" class="ace" value="${list.u_id }"><span class="lbl"></span></label></td>
-		     <td>${list.u_name }</td>
-		     <td><c:if test="${list.u_sex eq 1 }">男</c:if>
-	             <c:if test="${list.u_sex eq 0 }">女</c:if>
-		     </td>
-		     <td>${list.u_age }</td>
-		     <td>${list.u_address }</td>
-		     <td>${list.u_tel }</td>
-		     <td>${list.u_email }</td>
 		     <td>${list.account }</td>
+		     <td>${list.u_name }</td>
+		     <td><img width="100px" src="/upload/${list.u_img }"/></td>
+		     <td>${list.u_realname }</td>
+		     <td>${list.u_tel }</td>
+		     <td>${list.u_address }</td>
+		     <td>${list.u_profession }</td>
+		     <td>${list.u_email }</td>
+		     <td>${list.u_blog }</td>
+		     <td><fmt:formatDate value="${list.u_create_time }" type="both"/></td>
 		     <td class="td-manage">
 		         <a href="javascript:void(0)" onclick="member_del(${list.u_id })" class="btn btn-xs btn-danger" title="删除"><i class="icon-trash" style="height:20px"></i>删除</a>
 		     </td>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -117,8 +118,8 @@
 		     <td>${list.content }</td>
 		     <td>${list.u_name }</td>
 		     <td>${list.nt_name }</td>
-		     <td>${list.creat_time }</td>
-		     <td>${list.update_time }</td>
+		     <td><fmt:formatDate value="${list.creat_time }" type="both"/></td>
+		     <td><fmt:formatDate value="${list.update_time }" type="both"/></td>
 		     <td class="td-manage">
 			     <%-- <a title="查看" href="javascript:void(0)" onclick="member_edit(${list.n_id })" class="btn btn-xs btn-info" ><i>编辑</i></a> --%>
 		         <a href="javascript:void(0)" onclick="member_del(${list.n_id })" class="btn btn-xs btn-danger" title="删除"><i class="icon-trash" style="height:20px"></i>删除</a>

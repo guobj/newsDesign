@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -74,7 +75,7 @@
           </span></div>
           </div>
            <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">注册时间： </label>
-          <div class="col-sm-9" > <span>${personInfo.e_creat_time}</span></div>
+          <div class="col-sm-9" > <span><fmt:formatDate value="${personInfo.e_creat_time}" type="both"/></span></div>
           </div>
            <div class="Button_operation clearfix"> 
 				<button onclick="modify();" class="btn btn-danger radius" type="submit">修改信息</button>				
