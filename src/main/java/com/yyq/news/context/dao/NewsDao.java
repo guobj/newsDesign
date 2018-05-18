@@ -31,11 +31,34 @@ public class NewsDao {
 	//取到JDBC实例
 	JdbcUtils jd = JdbcUtils.getInstance();
 	
-	//查询所有新闻信息
+	//查询用户所有新闻信息
 	public List<Map<String, Object>> newsList(int pages,HttpServletRequest request){
 		
 		StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
 				+ " LEFT JOIN `user` u  on n.auth=u.u_id where n.dr=1 and nt.nt_dr=1 and n.sign = 1");
+		
+		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
+			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
+			request.setAttribute("title", request.getParameter("title"));
+		}
+		if(request.getParameter("nt_name")!=null&&request.getParameter("nt_name").trim()!=""){
+			sqls=sqls.append(" and nt.nt_name like '%"+request.getParameter("nt_name").trim()+"%'");
+			request.setAttribute("nt_name", request.getParameter("nt_name"));
+		}
+		
+		sqls.append(" order by creat_time DESC");
+		String sql = sqls.toString();
+		@SuppressWarnings("static-access")
+		List<Map<String, Object>> list = PageUtil.getInstance().ListForPage(sql, jd, request, pages);
+		return list;
+		
+	}
+	
+	//查询所有公司新闻信息
+	public List<Map<String, Object>> companyNewsList(int pages,HttpServletRequest request){
+		
+		StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
+				+ " LEFT JOIN employee e on n.auth=e.e_id where n.dr=1 and nt.nt_dr=1 and n.sign = 0");
 		
 		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
 			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
@@ -52,28 +75,6 @@ public class NewsDao {
 		return list;
 		
 	}
-	
-	//查询所有公司新闻信息
-		public List<Map<String, Object>> companyNewsList(int pages,HttpServletRequest request){
-			
-			StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
-					+ " LEFT JOIN employee e on n.auth=e.e_id where n.dr=1 and nt.nt_dr=1 and n.sign = 0");
-			
-			if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
-				sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
-				request.setAttribute("title", request.getParameter("title"));
-			}
-			if(request.getParameter("nt_name")!=null&&request.getParameter("nt_name").trim()!=""){
-				sqls=sqls.append(" and nt.nt_name like '%"+request.getParameter("nt_name").trim()+"%'");
-				request.setAttribute("nt_name", request.getParameter("nt_name"));
-			}
-			
-			String sql = sqls.toString();
-			@SuppressWarnings("static-access")
-			List<Map<String, Object>> list = PageUtil.getInstance().ListForPage(sql, jd, request, pages);
-			return list;
-			
-		}
 	
 	//添加新闻
 	public int newsAdd(News news){
@@ -134,11 +135,11 @@ public class NewsDao {
 	public Map<String, Object> queryAll(){
 		
 		String sql = "select * from news n left join news_type nt on "
-				+ "n.fk_nt_id=nt.nt_id where n.sign = 1 and n.dr=1 and nt.nt_dr=1";
+				+ "n.fk_nt_id=nt.nt_id where n.sign = 1 and n.dr=1 and nt.nt_dr=1 order by creat_time DESC";
 		
 		String sql2 = "select * from news n left join news_type nt on "
 				+ "n.fk_nt_id=nt.nt_id LEFT JOIN employee e ON e.e_id = "
-				+ "n.auth where n.sign = 0 and n.dr=1 and nt.nt_dr=1";
+				+ "n.auth where n.sign = 0 and n.dr=1 and nt.nt_dr=1  order by creat_time DESC";
 		
 		List<Map<String, Object>> cList = jd.query(sql2, null);
 		List<Map<String, Object>> list = jd.query(sql, null);
