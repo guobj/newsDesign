@@ -11,14 +11,14 @@
 <head lang="en">
 	<base href="${basePath }">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>个人中心-虎嗅网</title>
+    <title>个人中心-猎讯网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta name="renderer" content="webkit">
     <meta name="baidu-site-verification" content="R9XA5lWxu2" />
-    <meta name="author" content="虎嗅网">
+    <meta name="author" content="猎讯网">
     <meta name="keywords" content="科技资讯,商业评论,明星公司,动态,宏观,趋势,创业,精选,有料,干货,有用,细节,内幕">
-    <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在虎嗅，不错过互联网的每个重要时刻。">
+    <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在猎讯，不错过互联网的每个重要时刻。">
     <link rel="stylesheet" type="text/css" href="forward/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="forward/css/build.css">
     <link rel="stylesheet" type="text/css" href="forward/css/activity.css">
@@ -27,7 +27,7 @@
     <link href="forward/css/dlzc.css" rel="stylesheet" type="text/css"/>
     <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
 	<script language="javascript" type="text/javascript" src="forward/js/main.js"></script>
-    <script language="javascript" type="text/javascript" src="forward/js/popwin.js"></script> 
+    <script language="javascript" type="text/javascript" src="forward/js/popwin.js" charset="gbk"></script> 
     <link rel="stylesheet" type="text/css" href="forward/css/nanoscroller.css">
     <script type="text/javascript" src="js/jquery.js"></script>
     
@@ -140,24 +140,9 @@
 <div id="cd-signup"> <!-- 注册表单 -->
 	<div class="modal-alert-title">极速注册</div>
     <div class="user-register-box">
-		<div class="login-form sms-box">
-			<label class="login-label col-xs-label transition"><input id="sms_username" class="login-input username" placeholder="手机号"></label>
-			<div class="geetest_login_sms_box" >
-				<div id="geetest_1496454436837" class="gt_holder gt_float" style="touch-action: none;">
-					<div class="gt_slider">
-						<div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div>
-						<div class="gt_slider_knob gt_show" style="left: 0px;"></div>
-						<div class="gt_curtain_knob gt_hide">移动到此开始验证</div>
-						<div class="gt_ajax_tip gt_ready"></div>
-					</div>
-				</div>
-			</div>
-			<label class="login-label captcha"><input id="sms_captcha" class="login-input" placeholder="输入6位验证码" maxlength="6">
-			<span class="js-btn-captcha btn-captcha">获取验证码</span></label>
-			<a class="js-label-select label-select-box text-center"><span class="js-country-sms">+86</span><i class="icon-modal icon-l-caret"></i></a>
+		<div class="login-form sms-box">			
 			<button class="js-btn-sms-login btn-login">注&nbsp;册</button>
 		</div>
-		<div class="js-user-login register-text">已有账号，立即登录</div>
     </div>
 </div>
 </header>
@@ -182,9 +167,6 @@
                           <h2 id="secondh" class="t-h1"></h2>
                      </div>
                   </a>
-                  <!-- <a href="#" target="_blank" title="嘘！Facebook 正在上海悄悄寻找办公室">
-                     
-                  </a> -->
              </div>
              <div class="big2-pic big2-pic-index big2-pic-index-bottom">
                   <a id="thirda" class="back-img transition" target="_blank">
@@ -193,9 +175,6 @@
                           <h2  id="thirdh" class="t-h1"></h2>
                      </div>
                   </a>
-                  <!--<a href="#" target="_blank" 马云在人生最艰难时去了延安，在革命根据地决定建立淘宝>
-                     
-                  </a> -->
              </div>
        </div>
        <div class="mod-info-flow">
@@ -208,19 +187,12 @@
                        </a>
                  </div>
                  <div class="column-link-box">
-                 	<a href="ArticleServlet.so?id=${list.n_id }" class="column-link" target="_blank">${list.nt_name }</a>
+                 	<a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="column-link" target="_blank">${list.nt_name }</a>
                  </div>
                  <div class="mob-ctt">
-                    <h2><a href="ArticleServlet.so?id=${list.n_id }" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
+                    <h2><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
-                         <!-- <div class="author-face">
-                              <a href="#" target="_blank"><img src="forward/sy-img/59_1502432173.jpg"></a>
-                         </div> -->
-                         <!-- <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a> -->
-                         <!-- <a href="#" target="_blank" title="购买VIP会员"></a> -->
-                         <span class="time">${list.creat_time }</span>
+                  <span class="time">${list.creat_time }</span>
                          <i class="icon icon-cmt"></i><em>0</em>
                          <i class="icon icon-fvr"></i><em>0</em>
                     </div>
@@ -278,34 +250,9 @@
             <a href="#" target="_blank" class="transition">常见问题解答</a>
             <a href="#" target="_blank" class="transition">防网络诈骗专题</a>
         </div>
-        <span>Copyright © <a href="#">虎嗅网</a> <a href="#" target="_blank">京ICP备12013432号-1</a>
-            &nbsp;<a href="#" target="_blank"><i class="i-wj"></i>京公网安备 11010102001402号</a>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
+        <span>Copyright © <a href="MainForwardServlet.so">猎讯网</a> <em class="bull-right">京ICP备12013432号-1</em>
+            &nbsp;<em class="bull-right"><i class="i-wj"></i>京公网安备 11010102001402号</em>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
         </span>
-        <div class="footer-icon-list pull-right">
-            <ul class="Qr-codee">
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="forward/images/weixin_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-wx"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                	<div class="app-qrcode"><img src="forward/images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-ios"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="forward/images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-android"></i>
-                </li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅英文版">
-                    <li><i class="icon icon-footer icon-footer-inter"></i></li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅RSS订阅中心">
-                    <li><i class="icon icon-footer icon-footer-rss"></i></li>
-                </a>
-            </ul>
-        </div>
     </div>
 </footer>
 <script type="text/javascript" src="forward/js/mouse.js"></script>

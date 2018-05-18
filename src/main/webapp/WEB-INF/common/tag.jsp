@@ -82,8 +82,8 @@
 </script>
 <div class="container">
 	<div class="navbar-header transition">
-		<a href="#" title="首页"><img src="forward/images/logo.jpg"
-			alt="虎嗅网" title="首页" /></a>
+		<a href="javascript:;" title="首页"><img src="forward/images/huntingnews.jpg"
+			alt="猎讯网" title="首页" /></a>
 	</div>
 	<ul class="nav navbar-nav navbar-left" id="jsddm">
 		<li class="nav-news js-show-menu"><a href="MainForwardServlet.so">资讯 </a></li>
@@ -135,7 +135,6 @@
 			<div class="modal-alert-title">登录</div>
 			<div class="register">
 				<div class="register-top" id="reg-top">
-					<i><a id="qrcode" href="#"></a></i>
 				</div>
 				<div class="register-con" id="rc">
 					<div class="login-form username-box " style="margin-top: 52px;">

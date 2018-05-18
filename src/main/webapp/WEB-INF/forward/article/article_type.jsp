@@ -11,12 +11,12 @@
 <head lang="en">
 	<base href="${basePath }">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>个人中心-虎嗅网</title>
+    <title>个人中心-猎讯网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta name="renderer" content="webkit">
     <meta name="baidu-site-verification" content="R9XA5lWxu2" />
-    <meta name="author" content="虎嗅网">
+    <meta name="author" content="猎讯网">
     <meta name="keywords" content="科技资讯,商业评论,明星公司,动态,宏观,趋势,创业,精选,有料,干货,有用,细节,内幕">
     <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在虎嗅，不错过互联网的每个重要时刻。">
     <link rel="stylesheet" type="text/css" href="forward/css/bootstrap.min.css">
@@ -177,11 +177,7 @@
                  <div class="mob-ctt">
                     <h2><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition msubstr-row2" target="_blank">${list.title }</a></h2>
 					<div class="mob-author">
-                         <!-- <a href="#" target="_blank">
-                            <span class="author-name ">量子位</span>
-                         </a> -->
-                         <!-- <a href="#" target="_blank" title="购买VIP会员"></a> -->
-                         <span class="time">${list.creat_time }</span>
+                    <span class="time">${list.creat_time }</span>
                          <i class="icon icon-cmt"></i><em>0</em>
                          <i class="icon icon-fvr"></i><em>0</em>
                     </div>
@@ -242,34 +238,9 @@
             <a href="#" target="_blank" class="transition">常见问题解答</a>
             <a href="#" target="_blank" class="transition">防网络诈骗专题</a>
         </div>
-        <span>Copyright © <a href="#">虎嗅网</a> <a href="#" target="_blank">京ICP备12013432号-1</a>
-            &nbsp;<a href="#" target="_blank"><i class="i-wj"></i>京公网安备 11010102001402号</a>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
+        <span>Copyright © <a href="MainForwardServlet.so">猎讯网</a> <em class="bull-right">京ICP备12013432号-1</em>
+            &nbsp;<em class="bull-right"><i class="i-wj"></i>京公网安备 11010102001402号</em>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
         </span>
-        <div class="footer-icon-list pull-right">
-            <ul class="Qr-codee">
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/weixin_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-wx"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                	<div class="app-qrcode"><img src="images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-ios"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-android"></i>
-                </li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅英文版">
-                    <li><i class="icon icon-footer icon-footer-inter"></i></li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅RSS订阅中心">
-                    <li><i class="icon icon-footer icon-footer-rss"></i></li>
-                </a>
-            </ul>
-        </div>
     </div>
 </footer>
 <script type="text/javascript" src="forward/js/mouse.js"></script>

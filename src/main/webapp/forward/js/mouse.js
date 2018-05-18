@@ -3,7 +3,7 @@
 	
 	
 	
-	/*导航app下载鼠标经过*/
+	/*瀵艰埅app涓嬭浇榧犳爣缁忚繃*/
 	
 	
 	
@@ -11,7 +11,7 @@
 	var mst;
 			jQuery(".xiala li").hover(function(){
 			var curItem = jQuery(this);
-			mst = setTimeout(function(){//延时触发
+			mst = setTimeout(function(){//寤舵椂瑙﹀彂
 				curItem.find("div").slideDown('fast');
 				mst = null;
 			});
@@ -24,11 +24,11 @@
 	
 	
 	
-	/*底部鼠标经过*/
+	/*搴曢儴榧犳爣缁忚繃*/
 			var mst;
 			jQuery(".Qr-codee li").hover(function(){
 			var curItem = jQuery(this);
-			mst = setTimeout(function(){//延时触发
+			mst = setTimeout(function(){//寤舵椂瑙﹀彂
 				curItem.find("div").slideDown('fast');
 				mst = null;
 			});
@@ -39,11 +39,11 @@
 			
 
 
-	/*底部鼠标经过*/
+			/*搴曢儴榧犳爣缁忚繃*/
 			var mst;
 			jQuery(".article-left-btn-group li").hover(function(){
 			var curItem = jQuery(this);
-			mst = setTimeout(function(){//延时触发
+			mst = setTimeout(function(){//寤舵椂瑙﹀彂
 				curItem.find("div").slideDown('fast');
 				mst = null;
 			});
@@ -54,7 +54,7 @@
 			
 			
 	
-	//页面切换
+	//椤甸潰鍒囨崲
 	// JavaScript Document
 function Tabs2(thisObj,Num){
 if(thisObj.className == "active")return;

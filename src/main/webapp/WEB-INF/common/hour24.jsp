@@ -20,8 +20,8 @@
         				</ul>
     				</div>
     				<div class="mt-index-info-parent">
-        				<div class="story-info mt-story-info">
-            				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">${list.content }<a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" target="_blank" class="mt-index-cont2-a">[&nbsp原文&nbsp]</a>
+        				<div class="story-info mt-story-info" >
+            				<p class="story-detail-hide hour-detail-hide mt-index-cont mt-index-cont2 js-mt-index-cont2">${list.content }<a style="float:right" href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" target="_blank" class="mt-index-cont2-a">&nbsp原文&nbsp</a>
                              </p>
         				</div>
     				</div>

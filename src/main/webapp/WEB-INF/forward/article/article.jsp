@@ -11,14 +11,14 @@
 <head lang="en">
 	<base href="${basePath }">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>文章页-虎嗅网</title>
+    <title>文章页-猎讯网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <meta name="renderer" content="webkit">
     <meta name="baidu-site-verification" content="R9XA5lWxu2" />
-    <meta name="author" content="虎嗅网">
+    <meta name="author" content="猎讯网">
     <meta name="keywords" content="科技资讯,商业评论,明星公司,动态,宏观,趋势,创业,精选,有料,干货,有用,细节,内幕">
-    <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在虎嗅，不错过互联网的每个重要时刻。">
+    <meta name="description" content="聚合优质的创新信息与人群，捕获精选|深度|犀利的商业科技资讯。在猎讯，不错过互联网的每个重要时刻。">
     <link rel="stylesheet" type="text/css" href="forward/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="forward/css/build.css">
     <link href="forward/css/login.css" rel="stylesheet" type="text/css"/>
@@ -132,10 +132,11 @@
             <div id="article_content197460" class="article-content-wrap">
 				<p>${map.content }</p>                                                                <!--作者认证-->
                  <div class="neirong-shouquan">
-                      <span class="c2">*文章为作者独立观点，不代表虎嗅网立场<br></span>
-                      <span>本文由 <a href="#" target="_blank">判官</a> 授权 <a href="/">虎嗅网</a> 发表，并经虎嗅网编辑。转载此文请于文首标明作者姓名，保持文章完整性（包括虎嗅注及其余作者身份信息），并请附上出处</span>
+                      <span class="c2">*文章为作者独立观点，不代表猎讯网立场<br></span>
+                      <span>本文由 <a href="MemberServlet.so" target="_blank">判官</a> 授权 <a href="/">猎讯网</a> 发表，并经猎讯网编辑。
+                      <br />转载此文请于文首标明作者姓名，保持文章完整性，并请附上出处。</span>
                       <br />
-                      <span><b>未按照规范转载者，虎嗅保留追究相应责任的权利</b></span>
+                      <span><b>未按照规范转载者，猎讯保留追究相应责任的权利</b></span>
                  </div>
                 
             </div>
@@ -220,8 +221,8 @@
         		<c:if test="${map.sign eq 0 }">
         			<a href="javascript:;" target="_blank">${map.e_name }</a>
         		</c:if>
-        		<a href="#" target="_blank"><i class="i-vip icon-vip" title="虎嗅黑卡会员"></i></a>
-        		<i class="i-icon icon-auth3" title="虎嗅认证作者"></i>    
+        		<a href="#" target="_blank"><i class="i-vip icon-vip" title="猎讯黑卡会员"></i></a>
+        		<i class="i-icon icon-auth3" title="猎讯认证作者"></i>    
         	</div>
     		<div class="author-one">产品老司机</div>
     		<div class="author-one">产品个体户</div>
@@ -275,34 +276,9 @@
             <a href="#" target="_blank" class="transition">常见问题解答</a>
             <a href="#" target="_blank" class="transition">防网络诈骗专题</a>
         </div>
-        <span>Copyright © <a href="#">虎嗅网</a> <a href="#" target="_blank">京ICP备12013432号-1</a>
-            &nbsp;<a href="#" target="_blank"><i class="i-wj"></i>京公网安备 11010102001402号</a>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
+        <span>Copyright © <a href="MainForwardServlet.so">猎讯网</a> <em class="bull-right">京ICP备12013432号-1</em>
+            &nbsp;<em class="bull-right"><i class="i-wj"></i>京公网安备 11010102001402号</em>&nbsp;&nbsp;&nbsp;<em class="bull-right">本站由</em><i class="icon-aliyun" style="width: 70px;background-size: 100%;left: 7px;"></i><em class="bull-em">提供计算与安全服务</em>
         </span>
-        <div class="footer-icon-list pull-right">
-            <ul class="Qr-codee">
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/weixin_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-wx"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                	<div class="app-qrcode"><img src="images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-ios"></i>
-                </li>
-                </a>
-                <a><li class="Qr-code-footer">
-                    <div class="app-qrcode"><img src="images/app_erweima.png"></div>
-                    <i class="icon icon-footer icon-footer-android"></i>
-                </li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅英文版">
-                    <li><i class="icon icon-footer icon-footer-inter"></i></li>
-                </a>
-                <a href="#" target="_blank" title="虎嗅RSS订阅中心">
-                    <li><i class="icon icon-footer icon-footer-rss"></i></li>
-                </a>
-            </ul>
-        </div>
     </div>
 </footer>
 <script language="javascript" type="text/javascript" src="forward/js/jquery-1.11.1.min.js"></script>
