@@ -254,7 +254,7 @@
 				</a>
 				<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 				<!-- <li><a href="javascript:void(0" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-cog"></i>网站设置</a></li> -->
-				 <li><a href="javascript:void(0)" onclick="PersonInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
+				 <li><a href="javascript:void(0)" name="PersonInfoServlet.do" title="个人信息" class="iframeurl"><i class="icon-user"></i>个人资料</a></li>
 				 <li class="divider"></li>
 				 <li><a href="LoginOutServlet.do" id="Exit_system"><i class="icon-off"></i>退出</a></li>
 				</ul>

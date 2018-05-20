@@ -56,6 +56,16 @@
 			    text-decoration: none;
 			}
     </style>
+    <style>
+		.hiddenText {
+			font-size:14px;
+			color:#999;
+			line-height:24px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space:nowrap;
+		}
+	</style>
     <script type="text/javascript">
     $(function(){
 	    $("#upload").on("change","input[type='file']",function(){
@@ -226,7 +236,7 @@
                     <div class="mob-ctt">
                          <h3><a href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" class="transition" target="_blank">${list.title }</a></h3>
                          <div class="mob-author"><span class="time"><fmt:formatDate value="${list.creat_time }" type="both"/></span></div>
-                         <div class="mob-sub">${list.content }</div>
+                         <div class="mob-sub hiddenText">${list.content }</div>
                     </div>
                  </div> 
              </c:forEach>         
