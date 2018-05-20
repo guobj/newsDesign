@@ -155,10 +155,6 @@ public class NewsService {
 		
 		List<Map<String, Object>> list = dao.queryByUserId(id);
 		
-		if(list == null || list.size() <= 0){
-			throw new RuntimeException("暂无数据");
-		}
-		
 		return list;
 	}
 	

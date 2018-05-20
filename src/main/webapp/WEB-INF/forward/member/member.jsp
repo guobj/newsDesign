@@ -217,6 +217,7 @@
         </div>
 		<div class="user-content-warp" id=myTabs1_Content0>
             <div class="message-box" >
+            <c:if test="${map.list eq null}"></c:if>
             <c:forEach var="list" items="${map.list }">
                  <div class="mod-b mod-art ">
                     <a class="transition" href="ArticleServlet.so?id=${list.n_id }&sign=${list.sign}" target="_blank">
