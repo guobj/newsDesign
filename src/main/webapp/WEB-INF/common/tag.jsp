@@ -228,7 +228,7 @@
 					<li><a href="javascript:;">${sessionScope.umap.u_name }</a>
 						<ul>
 							 <li><a href="MemberServlet.so?id=${sessionScope.umap.u_id }">个人中心</a></li>
-		                     <li><a href="#">退出</a></li>
+		                     <li><a href="LogOutForwardServlet.so">退出</a></li>
 						</ul>
 					</li>
 			<li><a href="javascript:;" onclick="publishNews()" id="tougao">投稿</a></li>
