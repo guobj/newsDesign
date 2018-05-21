@@ -348,7 +348,6 @@
 						 <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-bookmark"></i><span class="menu-text"> 员工管理 </span><b class="arrow icon-angle-down"></b></a>
 							<ul class="submenu">
 								<li class="home"><a href="javascript:void(0)" name="EmployeeListServlet.do" title="在职员工" class="iframeurl"><i class="icon-double-angle-right"></i>在职员工</a></li>
-                                <li class="home"><a href="javascript:void(0)" name="NotEmployeeListServlet.do" title="离职员工" class="iframeurl"><i class="icon-double-angle-right"></i>离职员工</a></li>
 							</ul>
 						</li>
                         	<!-- <li><a href="javascript:void(0)" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b class="arrow icon-angle-down"></b></a>

@@ -243,7 +243,6 @@
 			<div class="modal-alert-title">登录</div>
 			<div class="register">
 				<div class="register-top" id="reg-top">
-					<i><a id="qrcode" href="#"></a></i>
 				</div>
 				<div class="register-con" id="rc">
 					<div class="login-form username-box " style="margin-top: 52px;">
