@@ -35,6 +35,7 @@ public class JdbcUtils {
 	
 	static {
 		try {
+			//获得数据库驱动
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -43,6 +44,7 @@ public class JdbcUtils {
 
 	public Connection getConn(){
 		try {
+			//连接数据库
 			conn=(conn==null||conn.isClosed())?DriverManager.getConnection(url, user, password):conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +92,12 @@ public class JdbcUtils {
 			while(rs.next()){
 				Map<String, Object> map = new HashMap<String,Object>();
 				ResultSetMetaData rsmd = rs.getMetaData();
+				//共有多少列
 				int columnCount = rsmd.getColumnCount();
 				for(int i=0;i<columnCount;i++){
+					//获取字段名
 					String columnName = rsmd.getColumnLabel(i+1);
+					//取出对应字段的值并存入map
 					map.put(columnName, rs.getObject(columnName));
 				}
 				list.add(map);

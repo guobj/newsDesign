@@ -45,8 +45,10 @@ public class NewsService {
 	//查询公司所有新闻信息
 	public List<Map<String,Object>> companyNewsList(int pages,HttpServletRequest request){
 		
+		//调用dao层的方法
 		List<Map<String,Object>> list = dao.companyNewsList(pages,request);
 		
+		//判断是否存在数据：不存在抛出异常。交给servlet捕获异常并处理异常（try...catch）
 		if(list == null || list.size()==0){
 			throw new RuntimeException("暂无数据");
 		}

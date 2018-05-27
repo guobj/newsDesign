@@ -57,9 +57,11 @@ public class NewsDao {
 	//查询所有公司新闻信息
 	public List<Map<String, Object>> companyNewsList(int pages,HttpServletRequest request){
 		
+		//sql语句
 		StringBuilder sqls = new StringBuilder("SELECT * from news n LEFT JOIN news_type nt on n.fk_nt_id=nt.nt_id"
 				+ " LEFT JOIN employee e on n.auth=e.e_id where n.dr=1 and nt.nt_dr=1 and n.sign = 0");
 		
+		//模糊查询拼接的条件，条件为null时，不拼接条件，执行原始sqls
 		if(request.getParameter("title")!=null&&request.getParameter("title").trim()!=""){
 			sqls=sqls.append(" and title like '%"+request.getParameter("title").trim()+"%'");
 			request.setAttribute("title", request.getParameter("title"));

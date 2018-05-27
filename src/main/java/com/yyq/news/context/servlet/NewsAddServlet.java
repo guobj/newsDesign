@@ -42,10 +42,13 @@ public class NewsAddServlet extends HttpServlet {
 //		Integer fk_nt_id = Integer.parseInt(request.getParameter("type"));
 		try {
 			
+			//获取session
 			HttpSession session = request.getSession();
 			
+			//调用文件上传工具类取得上传文件的名字
 			String img = FileUtils.getInstance().generateFileName(request);
 			
+			//取得标志公司新闻||用户新闻
 			Integer sign = Integer.parseInt(request.getParameter("sign"));
 			Integer auth = 0;
 			if(sign.equals(0) || sign == 0){
@@ -74,6 +77,7 @@ public class NewsAddServlet extends HttpServlet {
 			
 			Integer res = newsService.newsAdd(news);
 			
+			//转为json
 			JsonUtil.getInstance().toJson(response, res);
 			
 		} catch (Exception e) {

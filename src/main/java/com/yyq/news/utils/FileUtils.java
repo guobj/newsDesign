@@ -26,14 +26,17 @@ public class FileUtils {
 	
 	public String generateFileName(HttpServletRequest request) throws IOException, ServletException{
 		
+		//取得文件
 		Part part = request.getPart("file");
 		String root="D:/photo";
 		File file = new File(root);
 		
 		//文件名
 		String name=part.getHeader("content-disposition");
+		//文件后缀（.jpg|.png|.gif）
 		String ext=name.substring(name.lastIndexOf("."),name.length()-1);
 		
+		//切分字符串
 		String[] nameArray=name.split("\"");
 		String realName=nameArray[3];
 		name=UUID.randomUUID().toString().replaceAll("-", "");

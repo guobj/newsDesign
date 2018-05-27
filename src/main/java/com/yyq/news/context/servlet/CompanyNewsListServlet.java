@@ -23,18 +23,31 @@ public class CompanyNewsListServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
+			//首页
 			int pages=1;
-			if(request.getParameter("pages")!=null&&request.getParameter("pages")!=""){
+			
+			//接受前端传来的页数（第几页）
+			if(request.getParameter("pages") != null && request.getParameter("pages") != ""){
+				//将string转换为integer
 				pages=Integer.parseInt(request.getParameter("pages"));
+				//已key-values形式存储到request里，返回给前端（key：pages，value：pages的值）
 				request.setAttribute("pages", pages);
 			}
+			//调用service层方法
 			List<Map<String, Object>> list = newsService.companyNewsList(pages, request);
+			
+			//已key-values形式存储到request里，返回给前端（key：newsList，value：list的值）
 			request.setAttribute("newsList", list);
+			
+			//已key-values形式存储到request里，返回给前端（url，value：CompanyNewsListServlet.do）
+			//此url为前端翻页时跳转的路径
 			request.setAttribute("url", "CompanyNewsListServlet.do");
 		} catch (Exception e) {
+			//异常处理
 			request.setAttribute("message", e.getMessage());
 		}
 		
+		//请求转发，携带request的值到相应页面，前后页面共享一个request，只要中间页面不展示request一直存在
 		request.getRequestDispatcher("WEB-INF/back/newsContent/company_newsList.jsp").forward(request, response);
 	}
 
